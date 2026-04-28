@@ -30,7 +30,7 @@ This is NOT a typical commercial project. This is a **humanitarian effort** to s
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/YOUR_USERNAME/dhoya-mukto-poth.git
 cd dhoya-mukto-poth
 
 # Install dependencies

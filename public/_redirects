@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects
+
+# Redirect old paths if any (none currently needed)
+
+# SPA fallback for 404
+/* /404.html 404

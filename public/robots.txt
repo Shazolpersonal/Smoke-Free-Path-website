@@ -1,0 +1,9 @@
+# Robots.txt for Dhoya-Mukto Poth
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://smoke-free-path.pages.dev/sitemap.xml
+
+# Disallow admin/test routes
+Disallow: /test-components/

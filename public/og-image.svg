@@ -1,0 +1,37 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <rect width="1200" height="630" fill="url(#gradient)" opacity="0.3"/>
+  
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Main headline -->
+  <text x="600" y="220" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    ধোঁয়া-মুক্ত পথ
+  </text>
+  
+  <!-- Subheadline -->
+  <text x="600" y="300" font-family="Arial, sans-serif" font-size="36" fill="#E2E8F0" text-anchor="middle">
+    তিনটি অ্যাপ। ৪১ দিনের যাত্রা।
+  </text>
+  
+  <text x="600" y="350" font-family="Arial, sans-serif" font-size="36" fill="#E2E8F0" text-anchor="middle">
+    সারাজীবনের স্বাধীনতা।
+  </text>
+  
+  <!-- Price badge -->
+  <rect x="475" y="400" width="250" height="80" rx="40" fill="#10B981"/>
+  <text x="600" y="450" font-family="Arial, sans-serif" font-size="48" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    মাত্র ৳৩৬৯
+  </text>
+  
+  <!-- Bottom tagline -->
+  <text x="600" y="550" font-family="Arial, sans-serif" font-size="24" fill="#94A3B8" text-anchor="middle">
+    ৪১-দিন প্রতিশ্রুতি | একবার পেমেন্ট | সারাজীবন
+  </text>
+</svg>

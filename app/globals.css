@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Brand Colors */
+  --color-emerald-deep: #0F5132;
+  --color-gold-royal: #D4A017;
+  --color-blue-serenity: #1E6091;
+  --color-white-pure: #FAFAF7;
+  --color-charcoal: #1A1A1A;
+  
+  /* Accent Colors */
+  --color-red-alert: #B8342D;
+  --color-orange-sunrise: #E07A3B;
+  --color-mint-fresh: #6FB897;
+  
+  /* Default backgrounds */
+  --background: var(--color-white-pure);
+  --foreground: var(--color-charcoal);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Brand Colors */
+  --color-emerald-deep: #0F5132;
+  --color-gold-royal: #D4A017;
+  --color-blue-serenity: #1E6091;
+  --color-white-pure: #FAFAF7;
+  --color-charcoal: #1A1A1A;
+  --color-red-alert: #B8342D;
+  --color-orange-sunrise: #E07A3B;
+  --color-mint-fresh: #6FB897;
+  
+  /* Semantic colors */
+  --color-background: var(--color-white-pure);
+  --color-foreground: var(--color-charcoal);
+  
+  /* Font families */
+  --font-hind-siliguri: var(--font-hind-siliguri);
+  --font-noto-bengali: var(--font-noto-bengali);
+  --font-playfair: var(--font-playfair);
+  --font-inter: var(--font-inter);
+  --font-amiri: var(--font-amiri);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

@@ -21,32 +21,35 @@
 
 ---
 
-## ⚠️ এখনও করতে হবে:
+## 🚨 জরুরি: এখনই করতে হবে!
 
-### 1. Token Revoke করুন (নিরাপত্তার জন্য)
+### 1. Token Revoke করুন (অত্যন্ত গুরুত্বপূর্ণ!)
 
-আপনার token publicly visible হয়েছিল, তাই:
+আপনার tokens দুইবার publicly visible হয়েছে! **এখনই revoke করুন:**
 
 1. যান: https://github.com/settings/tokens
-2. Token খুঁজুন এবং **Delete/Revoke** করুন
-3. নতুন token তৈরি করুন (workflow scope সহ)
+2. **সব tokens** খুঁজুন এবং **Delete/Revoke** করুন
+3. নতুন token তৈরি করুন (repo + workflow scope সহ)
+4. বিস্তারিত দেখুন: **TOKEN_SECURITY_WARNING.md** ⚠️
 
-### 2. GitHub Actions Workflow Add করুন
+### 2. Workflow File Push করুন
 
-Workflow file local-এ আছে কিন্তু GitHub-এ push করতে হবে।
-
-**নতুন token তৈরি করার পর:**
+**সহজ উপায় - Automated Script:**
 
 ```bash
-# নতুন token দিয়ে push করুন
-git add .github/workflows/deploy.yml
-git commit -m "Add GitHub Actions workflow"
-git push
+# এই script চালান (এটি আপনাকে token জিজ্ঞাসা করবে)
+./push-workflow.sh
 ```
 
-**Token তৈরি করার সময় এই scopes দিন:**
-- ✅ `repo` (সব sub-checkboxes)
-- ✅ `workflow` ← এটা গুরুত্বপূর্ণ!
+**Manual উপায়:**
+
+```bash
+git push
+# Username: Shazolpersonal
+# Password: [নতুন token paste করুন]
+```
+
+**বিস্তারিত guide:** `FINAL_STEPS.md` দেখুন
 
 ---
 
@@ -103,6 +106,9 @@ git push
 
 ## 📚 Available Guides:
 
+- **🚨 TOKEN_SECURITY_WARNING.md** - জরুরি নিরাপত্তা সতর্কতা (এখনই পড়ুন!)
+- **FINAL_STEPS.md** - সম্পূর্ণ setup guide
+- **push-workflow.sh** - Automated push script
 - **QUICK_START.md** - দ্রুত শুরু করার guide
 - **GITHUB_UPLOAD_GUIDE.md** - বিস্তারিত upload guide
 - **AUTHENTICATION_FIX.md** - Authentication সমস্যার সমাধান

@@ -1,0 +1,22 @@
+# Cloudflare Worker configuration.
+#
+# After deploy, the public URL becomes:
+#   https://sfp-order-handler.<your-subdomain>.workers.dev
+# Paste that into NEXT_PUBLIC_ORDER_WORKER_URL in Cloudflare Pages.
+
+name = "sfp-order-handler"
+main = "src/index.ts"
+compatibility_date = "2026-04-01"
+
+[vars]
+# Public values only — secrets go through `wrangler secret put`.
+# Leave this array empty to auto-allow the two common origins below.
+ALLOWED_ORIGINS = ["https://smoke-free-path.pages.dev", "http://localhost:3000"]
+
+# Sender shown in the From: header. Replace with your own domain once
+# you verify it in Resend; `onboarding@resend.dev` works out of the box.
+FROM_EMAIL = "Smoke-Free Path <onboarding@resend.dev>"
+
+# Secrets to configure AFTER first deploy:
+#   wrangler secret put RESEND_API_KEY
+#   wrangler secret put ORDER_EMAIL

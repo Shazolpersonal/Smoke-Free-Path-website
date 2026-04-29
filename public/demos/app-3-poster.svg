@@ -1,10 +1,66 @@
-<svg width="1080" height="1920" xmlns="http://www.w3.org/2000/svg">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ধোঁয়া-মুক্ত পথ :: ৩৬৯ (App 3)
+  Portrait demo poster — 9:16 (1080×1920)
+  Concept: Tesla's 369 method • spiritual transformation • premium emerald+gold
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920"
+     font-family="Hind Siliguri, Noto Sans Bengali, Lohit Bengali, sans-serif">
   <defs>
-    <linearGradient id="gradP3" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#112233;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#224455;stop-opacity:1" />
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A2C29"/><stop offset="45%" stop-color="#0E4037"/><stop offset="100%" stop-color="#1A1D25"/>
     </linearGradient>
+    <radialGradient id="goldHalo" cx="50%" cy="52%" r="48%">
+      <stop offset="0%" stop-color="#E7C878" stop-opacity="0.45"/><stop offset="60%" stop-color="#C9A96E" stop-opacity="0.1"/><stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="geo3" width="160" height="160" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#E7C878" stroke-opacity="0.06" stroke-width="1.2">
+        <circle cx="80" cy="80" r="60"/><circle cx="80" cy="80" r="40"/>
+        <path d="M0 80 L160 80 M80 0 L80 160"/><path d="M20 20 L140 140 M140 20 L20 140"/>
+      </g>
+    </pattern>
+    <linearGradient id="goldText" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F7D98C"/><stop offset="100%" stop-color="#C9A96E"/></linearGradient>
   </defs>
-  <rect width="100%" height="100%" fill="url(#gradP3)" />
-  <text x="50%" y="50%" font-family="sans-serif" font-size="64" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">Demo 3 Poster</text>
+
+  <rect width="1080" height="1920" fill="url(#bg3)"/>
+  <rect width="1080" height="1920" fill="url(#geo3)"/>
+  <rect width="1080" height="1920" fill="url(#goldHalo)"/>
+
+  <g>
+    <circle cx="85" cy="120" r="22" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
+    <path d="M73 120 L97 120 M85 108 L85 132" stroke="#C9A96E" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="130" y="115" fill="#F6F1E4" font-size="30" font-weight="700">ধোঁয়া-মুক্ত পথ</text>
+    <text x="130" y="148" fill="#C9A96E" font-size="22" font-weight="500">App 3 of 3</text>
+  </g>
+
+  <g text-anchor="middle">
+    <text x="540" y="560" fill="url(#goldText)" font-size="320" font-weight="700" letter-spacing="-10">৩৬৯</text>
+    <text x="540" y="640" fill="#F6F1E4" font-size="32" font-weight="500" opacity="0.9">টেসলার গুপ্ত গাণিতিক নিয়ম</text>
+  </g>
+
+  <g transform="translate(540 940)">
+    <g transform="translate(-220 0)"><circle r="110" fill="none" stroke="#C9A96E" stroke-width="2.5" stroke-opacity="0.85"/><circle r="80" fill="#C9A96E" fill-opacity="0.1"/><text text-anchor="middle" y="20" fill="#F7D98C" font-size="96" font-weight="700">৩</text></g>
+    <g><circle r="130" fill="none" stroke="#C9A96E" stroke-width="2.5"/><circle r="100" fill="#C9A96E" fill-opacity="0.12"/><text text-anchor="middle" y="24" fill="#F7D98C" font-size="120" font-weight="700">৬</text></g>
+    <g transform="translate(220 0)"><circle r="110" fill="none" stroke="#C9A96E" stroke-width="2.5" stroke-opacity="0.85"/><circle r="80" fill="#C9A96E" fill-opacity="0.1"/><text text-anchor="middle" y="20" fill="#F7D98C" font-size="96" font-weight="700">৯</text></g>
+    <g fill="none" stroke="#C9A96E" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="4 6"><path d="M-220 0 L0 0 L220 0"/><path d="M-220 0 L0 -130 L220 0 Z"/></g>
+  </g>
+
+  <g text-anchor="middle">
+    <text x="540" y="1200" fill="#F6F1E4" font-size="34" font-weight="700">৩ বার সকালে • ৬ বার দুপুরে • ৯ বার রাতে</text>
+    <text x="540" y="1255" fill="#F6F1E4" opacity="0.78" font-size="26">কুরআনি যিকর + নিয়ত + ভিজ্যুয়ালাইজেশন</text>
+  </g>
+
+  <g transform="translate(80 1340)">
+    <rect x="0" y="0" width="920" height="440" rx="32" fill="#C9A96E" fill-opacity="0.12" stroke="#C9A96E" stroke-opacity="0.5" stroke-width="1.5"/>
+    <text x="460" y="100" text-anchor="middle" fill="#F7D98C" font-size="34" font-weight="700">আধ্যাত্মিক রূপান্তর</text>
+    <text x="460" y="150" text-anchor="middle" fill="#F6F1E4" opacity="0.85" font-size="24">যখন ইচ্ছাশক্তি ফুরিয়ে যায়, তখন এই নিয়ম শুরু হয়</text>
+    <g text-anchor="middle" fill="#F6F1E4">
+      <g transform="translate(155 240)"><text y="-40" fill="#F7D98C" font-size="60" font-weight="700">৪১</text><text font-size="22" opacity="0.85">দিন ধরে</text><text y="26" font-size="22" opacity="0.85">নিয়মিত</text></g>
+      <g transform="translate(460 240)"><text y="-40" fill="#F7D98C" font-size="60" font-weight="700">১৮</text><text font-size="22" opacity="0.85">বার প্রতিদিন</text><text y="26" font-size="22" opacity="0.85">(৩+৬+৯)</text></g>
+      <g transform="translate(765 240)"><text y="-40" fill="#F7D98C" font-size="60" font-weight="700">১</text><text font-size="22" opacity="0.85">জীবনের</text><text y="26" font-size="22" opacity="0.85">পরিবর্তন</text></g>
+    </g>
+    <text x="460" y="380" text-anchor="middle" fill="#F6F1E4" opacity="0.75" font-size="22" font-style="italic">“হে রব্ব, আমাকে সুস্থতা দাও।”</text>
+  </g>
+
+  <text x="540" y="1870" text-anchor="middle" fill="#F6F1E4" opacity="0.6" font-size="24">smoke-free-path.pages.dev  •  আধ্যাত্মিক নোঙর</text>
 </svg>

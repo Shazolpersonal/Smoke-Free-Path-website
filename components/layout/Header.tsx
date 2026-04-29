@@ -20,10 +20,12 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Absolute paths (with leading "/") so in-page anchors also work when
+  // the user is currently on a sub-page like /checkout or /story.
   const navLinks = [
-    { href: "#hero", label: "হোম" },
-    { href: "#story", label: "গল্প" },
-    { href: "#faq", label: "FAQ" },
+    { href: "/#hero", label: "হোম" },
+    { href: "/#story", label: "গল্প" },
+    { href: "/#faq", label: "FAQ" },
     { href: "/contact", label: "যোগাযোগ" },
   ];
 

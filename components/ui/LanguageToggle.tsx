@@ -1,13 +1,48 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+type Lang = "bn" | "en";
+
 interface LanguageToggleProps {
-  current?: "bn" | "en";
-  onChange?: (lang: "bn" | "en") => void;
+  current?: Lang;
+  onChange?: (lang: Lang) => void;
   className?: string;
+}
+
+// --- External-store adapter for the "language" localStorage key ---------
+//
+// React's recommended way to read from an external data source (like
+// localStorage, a browser API, or a third-party store) is
+// `useSyncExternalStore`. It avoids the hydration mismatch and
+// cascading-render problems that `useState + useEffect + setState`
+// produces.
+
+const LANG_STORAGE_KEY = "language";
+const LANG_CHANGE_EVENT = "smokefree:language-change";
+
+function subscribe(callback: () => void) {
+  // Fires in OTHER tabs when localStorage changes:
+  window.addEventListener("storage", callback);
+  // Fires in THIS tab when we dispatch it from handleToggle:
+  window.addEventListener(LANG_CHANGE_EVENT, callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(LANG_CHANGE_EVENT, callback);
+  };
+}
+
+function getSnapshot(): Lang {
+  const saved = localStorage.getItem(LANG_STORAGE_KEY);
+  return saved === "en" ? "en" : "bn";
+}
+
+// During server-render / static export there is no window - always default
+// to the site's primary language so the SSR HTML matches client first paint.
+function getServerSnapshot(): Lang {
+  return "bn";
 }
 
 export function LanguageToggle({
@@ -15,25 +50,21 @@ export function LanguageToggle({
   onChange,
   className,
 }: LanguageToggleProps) {
-  const [current, setCurrent] = useState<"bn" | "en">("bn");
+  const storedLang = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot
+  );
 
-  // Load from localStorage on mount
-  useEffect(() => {
+  // Controlled value (if parent passed one) takes precedence; otherwise we
+  // use the value read from localStorage via useSyncExternalStore.
+  const activeLang = controlledCurrent ?? storedLang;
+
+  const handleToggle = (lang: Lang) => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("language") as "bn" | "en" | null;
-      if (saved) {
-        setCurrent(saved);
-      }
-    }
-  }, []);
-
-  // Use controlled value if provided
-  const activeLang = controlledCurrent || current;
-
-  const handleToggle = (lang: "bn" | "en") => {
-    setCurrent(lang);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("language", lang);
+      localStorage.setItem(LANG_STORAGE_KEY, lang);
+      // Manually notify THIS tab so useSyncExternalStore re-reads.
+      window.dispatchEvent(new Event(LANG_CHANGE_EVENT));
     }
     onChange?.(lang);
   };

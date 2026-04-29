@@ -1,36 +1,48 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/ui";
 import { copyBn } from "@/content";
 
+/**
+ * LiveDemo — showcases the three apps with static posters.
+ *
+ * NOTE (2026 refactor): Previously rendered <video> with 0-byte demo .mp4
+ * files which broke playback on all devices. We now ship editable SVG
+ * posters that render crisply at every DPI and are tiny (~5KB each).
+ *
+ * To bring videos back later, replace <Image ... /> with <video poster={...}>
+ * and add the .mp4 files to /public/demos/. The poster SVGs remain useful
+ * as the `poster` attribute.
+ */
 export function LiveDemo() {
   const demos = [
     {
       title: "মুহূর্ত ব্রেথ",
-      videoSrc: "/demos/app-1-demo.mp4",
-      posterSrc: "/demos/app-1-poster.svg",
       description: "তাৎক্ষণিক শান্তির কৌশল",
+      poster: "/demos/app-1-poster.svg",
+      alt:
+        "মুহূর্ত ব্রেথ অ্যাপ পোস্টার — ২১ সেকেন্ডের শ্বাস-প্রশ্বাস ব্যায়াম, যখন তলব আসে তখন ব্যবহারের জন্য।",
     },
     {
       title: "ধোঁয়া-মুক্ত পথ: পদক্ষেপ",
-      videoSrc: "/demos/app-2-demo.mp4",
-      posterSrc: "/demos/app-2-poster.svg",
       description: "৪১ দিনের যাত্রা",
+      poster: "/demos/app-2-poster.svg",
+      alt:
+        "পদক্ষেপ অ্যাপ পোস্টার — ৪১ দিনের সূর্যোদয় পথ, দৈনিক চ্যালেঞ্জ ও প্রগতি ট্র্যাকার।",
     },
     {
       title: "ধোঁয়া-মুক্ত পথ: ৩৬৯",
-      videoSrc: "/demos/app-3-demo.mp4",
-      posterSrc: "/demos/app-3-poster.svg",
       description: "আধ্যাত্মিক রূপান্তর",
+      poster: "/demos/app-3-poster.svg",
+      alt:
+        "৩৬৯ অ্যাপ পোস্টার — টেসলার ৩৬৯ মেথড অনুসারে ৩ বার সকালে, ৬ বার দুপুরে, ৯ বার রাতে জিকিরের ভিজ্যুয়াল।",
     },
   ];
 
   return (
-    <SectionWrapper
-      id="live-demo"
-      bgVariant="emerald"
-    >
+    <SectionWrapper id="live-demo" bgVariant="emerald">
       {/* Section Heading */}
       <motion.div
         className="text-center mb-12"
@@ -47,11 +59,11 @@ export function LiveDemo() {
         </p>
       </motion.div>
 
-      {/* Demo Videos Grid */}
+      {/* Demo Posters Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {demos.map((demo, index) => (
           <motion.div
-            key={index}
+            key={demo.title}
             className="relative rounded-xl overflow-hidden bg-white-pure shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -59,47 +71,29 @@ export function LiveDemo() {
             transition={{ duration: 0.6, delay: index * 0.1 }}
             whileHover={{ scale: 1.02, boxShadow: "0 12px 24px rgba(0,0,0,0.15)" }}
           >
-            {/* Video Container */}
+            {/* Poster container — 9:16 aspect */}
             <div className="relative aspect-[9/16] bg-charcoal/5">
-              <video
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster={demo.posterSrc}
-                aria-label={`${demo.title} ডেমো ভিডিও`}
+              <Image
+                src={demo.poster}
+                alt={demo.alt}
+                width={1080}
+                height={1920}
+                sizes="(min-width: 768px) 33vw, 100vw"
+                className="absolute inset-0 w-full h-full object-cover"
+                priority={index === 0}
+                unoptimized
+              />
+
+              {/* "Coming soon" ribbon — visible until real video ships */}
+              <div
+                className="absolute top-3 right-3 bg-gold-royal text-charcoal text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider font-noto-sans-bengali shadow-md"
+                aria-hidden="true"
               >
-                <source src={demo.videoSrc} type="video/mp4" />
-                {/* Fallback placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-emerald-deep/20 to-gold-royal/20">
-                  <div className="text-center text-charcoal/50">
-                    <svg
-                      className="w-16 h-16 mx-auto mb-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <p className="text-sm">Demo Video</p>
-                  </div>
-                </div>
-              </video>
+                ভিডিও শীঘ্রই
+              </div>
             </div>
 
-            {/* Demo Info */}
+            {/* Info */}
             <div className="p-4 bg-white-pure">
               <h3 className="text-lg font-bold text-charcoal mb-1 font-hind-siliguri">
                 {demo.title}
@@ -111,6 +105,10 @@ export function LiveDemo() {
           </motion.div>
         ))}
       </div>
+
+      <p className="text-center text-sm text-charcoal/60 mt-8 font-noto-sans-bengali">
+        ডেমো ভিডিও শীঘ্রই যুক্ত হবে। আপাতত প্রতিটি অ্যাপের পূর্ণাঙ্গ বিবরণ উপরের পোস্টারে।
+      </p>
     </SectionWrapper>
   );
 }

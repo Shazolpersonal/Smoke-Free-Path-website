@@ -101,9 +101,9 @@ export const copyEn = {
     heading: "Why I Built These Apps — My Father's Story",
     paragraphs: [
       "My father's name was Abdul Karim.",
-      "He drove a rickshaw on the streets of Dhaka for 40 years.",
+      "He drove a car on the streets of Dhaka for 30 years.",
       "He picked up his first cigarette at fourteen — standing in the cold winter night waiting for passengers, trying to keep warm.",
-      "He quit 37 times.\n37 times he came back.",
+      "He quit 100 times.\n100 times he came back.",
       "The last words written in my father's diary were:",
       "'I couldn't do it, Ma.\nI don't know if I'll see my daughter's wedding day.'",
       "He couldn't.",

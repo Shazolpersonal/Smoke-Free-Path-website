@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Hind_Siliguri, Noto_Sans_Bengali, Playfair_Display, Inter, Amiri } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 // Bengali Headlines
 const hindSiliguri = Hind_Siliguri({
@@ -161,7 +163,11 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="min-h-full flex flex-col font-noto-bengali">{children}</body>
+      <body className="min-h-full flex flex-col font-noto-bengali">
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

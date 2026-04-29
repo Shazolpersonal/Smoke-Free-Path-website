@@ -59,11 +59,11 @@ export const metadata: Metadata = {
     siteName: "ধোঁয়া-মুক্ত পথ",
     images: [
       {
-        url: "/og/hero-og.png",
+        url: "/og/hero-og.svg",
         width: 1200,
         height: 630,
         alt: "ধোঁয়া-মুক্ত পথ - তিনটি অ্যাপ। ৪১ দিনের যাত্রা। সারাজীবনের স্বাধীনতা।",
-        type: "image/png",
+        type: "image/svg+xml",
       },
     ],
   },
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ধোঁয়া-মুক্ত পথ | সম্পূর্ণ যাত্রা",
     description: "তিনটি অ্যাপ। ৪১ দিনের যাত্রা। সারাজীবনের স্বাধীনতা।",
-    images: ["/og/hero-og.png"],
+    images: ["/og/hero-og.svg"],
   },
   robots: {
     index: true,
@@ -100,7 +100,7 @@ export default function RootLayout({
         "@id": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://smoke-free-path.pages.dev'}/#organization`,
         "name": "ধোঁয়া-মুক্ত পথ",
         "url": process.env.NEXT_PUBLIC_SITE_URL || 'https://smoke-free-path.pages.dev',
-        "logo": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://smoke-free-path.pages.dev'}/og/hero-og.png`,
+        "logo": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://smoke-free-path.pages.dev'}/og/hero-og.svg`,
         "description": "তিনটি অ্যাপ। ৪১ দিনের যাত্রা। সারাজীবনের স্বাধীনতা।",
         "contactPoint": {
           "@type": "ContactPoint",
@@ -114,7 +114,7 @@ export default function RootLayout({
         "@id": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://smoke-free-path.pages.dev'}/#product`,
         "name": "ধোঁয়া-মুক্ত পথ - সম্পূর্ণ যাত্রা",
         "description": "তিনটি অ্যাপ। ৪১ দিনের যাত্রা। সারাজীবনের স্বাধীনতা। টেসলার ৩৬৯ মেথড, আচরণগত বিজ্ঞান, এবং আধ্যাত্মিক শক্তি — একসাথে।",
-        "image": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://smoke-free-path.pages.dev'}/og/hero-og.png`,
+        "image": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://smoke-free-path.pages.dev'}/og/hero-og.svg`,
         "offers": {
           "@type": "Offer",
           "price": process.env.NEXT_PUBLIC_BUNDLE_PRICE || "369",

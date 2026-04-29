@@ -9,12 +9,11 @@ import { copyBn } from "@/content";
  * LiveDemo — showcases the three apps with static posters.
  *
  * NOTE (2026 refactor): Previously rendered <video> with 0-byte demo .mp4
- * files which broke playback on all devices. Until real, optimized demo
- * videos are produced we ship high-quality brand posters (SVG source +
- * WebP for web + PNG fallback).
+ * files which broke playback on all devices. We now ship editable SVG
+ * posters that render crisply at every DPI and are tiny (~5KB each).
  *
  * To bring videos back later, replace <Image ... /> with <video poster={...}>
- * and add the .mp4 files to /public/demos/. The poster assets remain useful
+ * and add the .mp4 files to /public/demos/. The poster SVGs remain useful
  * as the `poster` attribute.
  */
 export function LiveDemo() {
@@ -22,21 +21,21 @@ export function LiveDemo() {
     {
       title: "মুহূর্ত ব্রেথ",
       description: "তাৎক্ষণিক শান্তির কৌশল",
-      poster: "/demos/app-1-poster.webp",
+      poster: "/demos/app-1-poster.svg",
       alt:
         "মুহূর্ত ব্রেথ অ্যাপ পোস্টার — ২১ সেকেন্ডের শ্বাস-প্রশ্বাস ব্যায়াম, যখন তলব আসে তখন ব্যবহারের জন্য।",
     },
     {
       title: "ধোঁয়া-মুক্ত পথ: পদক্ষেপ",
       description: "৪১ দিনের যাত্রা",
-      poster: "/demos/app-2-poster.webp",
+      poster: "/demos/app-2-poster.svg",
       alt:
         "পদক্ষেপ অ্যাপ পোস্টার — ৪১ দিনের সূর্যোদয় পথ, দৈনিক চ্যালেঞ্জ ও প্রগতি ট্র্যাকার।",
     },
     {
       title: "ধোঁয়া-মুক্ত পথ: ৩৬৯",
       description: "আধ্যাত্মিক রূপান্তর",
-      poster: "/demos/app-3-poster.webp",
+      poster: "/demos/app-3-poster.svg",
       alt:
         "৩৬৯ অ্যাপ পোস্টার — টেসলার ৩৬৯ মেথড অনুসারে ৩ বার সকালে, ৬ বার দুপুরে, ৯ বার রাতে জিকিরের ভিজ্যুয়াল।",
     },
@@ -77,10 +76,12 @@ export function LiveDemo() {
               <Image
                 src={demo.poster}
                 alt={demo.alt}
-                fill
+                width={1080}
+                height={1920}
                 sizes="(min-width: 768px) 33vw, 100vw"
-                className="object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
                 priority={index === 0}
+                unoptimized
               />
 
               {/* "Coming soon" ribbon — visible until real video ships */}

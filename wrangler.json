@@ -1,0 +1,10 @@
+{
+  "name": "smoke-free-path-website",
+  "compatibility_date": "2026-04-29",
+  "observability": {
+    "enabled": true
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}

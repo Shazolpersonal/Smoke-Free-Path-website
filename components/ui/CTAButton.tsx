@@ -28,6 +28,17 @@ const sizes = {
   lg: "px-8 py-4 text-lg",
 };
 
+// Create the motion-wrapped Link ONCE at module scope so it keeps a stable
+// component identity across renders (React Compiler / framer-motion require
+// this to preserve animation state and avoid unnecessary unmount/remount).
+const MotionLink = motion(Link);
+
+const motionProps = {
+  whileHover: { scale: 1.02, y: -2 },
+  whileTap: { scale: 0.98 },
+  transition: { duration: 0.2 },
+} as const;
+
 export function CTAButton({
   variant = "primary",
   href,
@@ -56,18 +67,22 @@ export function CTAButton({
     </>
   );
 
-  const MotionComponent = motion(href ? Link : "button");
+  if (href) {
+    return (
+      <MotionLink href={href} className={baseClasses} {...motionProps}>
+        {content}
+      </MotionLink>
+    );
+  }
 
   return (
-    <MotionComponent
-      href={href || ""}
+    <motion.button
+      type="button"
       onClick={onClick}
       className={baseClasses}
-      whileHover={{ scale: 1.02, y: -2 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.2 }}
+      {...motionProps}
     >
       {content}
-    </MotionComponent>
+    </motion.button>
   );
 }

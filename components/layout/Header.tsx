@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { cn } from "@/lib/utils";
 
@@ -43,7 +42,7 @@ export function Header() {
           {/* Logo — premium wordmark (logomark + Bengali text + English subscript) */}
           <Link
             href="/"
-            className="group flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-90"
+            className="group flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-90 font-hind-siliguri"
             aria-label="ধোঁয়া-মুক্ত পথ হোম"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -79,8 +78,6 @@ export function Header() {
 
           {/* Right Side */}
           <div className="flex items-center gap-4">
-            <LanguageToggle />
-
             {/* Desktop CTA */}
             <div className="hidden md:block">
               <CTAButton href="/checkout" size="sm">

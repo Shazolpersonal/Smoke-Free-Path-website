@@ -1,152 +1,70 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { CTAButton } from "@/components/ui/CTAButton";
-import { cn } from "@/lib/utils";
+import { useState, useEffect } from "reactœˆì)¥µÁ½ÉĞ1¥¹¬™É½´€‰¹•áĞ½±¥¹¬ˆì)¥µÁ½ÉĞìµ½Ñ¥½¸°¹¥µ…Ñ–u&W6Væ6RÒg&öÒ&g&ÖW"ÖÖ÷F–öâ#°¦–×÷'B²5D'WGFöâÒg&ùÛHØÛÛ\Û™[ËİZKĞÕP]ÛˆÂš[\ÜÈÛˆHœ›ÛHÛX‹çutils";
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, Í•Ñ%ÍMÉ½±±•‘t€ôÕÍ•MÑ…Ñ”¡™…±Í”¤ì(€½¹ÍĞm¥Í5½‰¥±•5•¹Õ=ÂvVâÂ6WD—4Öö&–ÆTÖVçT÷VåÒÒW6U7FFR†fÇ6R“° ¢W6TVffV7B‰Ê
+HOˆÂˆÛÛœİ[™TØÜ›ÛH
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+HOˆÂˆÙ]\ÔØÜ›Û'led(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Absolute paths (with leading "/") so in-page anchors also work when
-  // the user is currently on a sub-page like /checkout or /story.
-  const navLinks = [
-    { href: "/#hero", label: "à¦¹à§‹à¦®" },
-    { href: "/#story", label: "à¦—à¦²à§à¦ª" },
-    { href: "/#faq", label: "FAQ" },
-    { href: "/contact", label: "à¦¯à§‹à¦—à¦¾à¦¯à§‹à¦—" },
-  ];
-
-  return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-white-pure/95 backdrop-blur-md shadow-md"
-          : "bg-transparent"
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo â€” premium wordmark (logomark + Bengali text + English subscript) */}
-          <Link
-            href="/"
-            className="group flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-90 font-hind-siliguri"
-            aria-label="à¦§à§‹à¦à¦¯à¦¼à¦¾-à¦®à§à¦•à§à¦¤ à¦ªà¦¥ à¦¹à§‹à¦®"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand/logomark.svg"
-              alt=""
-              width={36}
+    window.addEventList•¹•È ‰ÍÉ½±°ˆ°¡…¹‘±•MÉ½±°¤ì(€€€É•ÑÕÉ¸€ ¤€ôøİ¥¹‘½Ü¹É•¶v÷fTWfVçDÆ—7FVæW"‚'67&öÆÂ"Â†æFÆU67&öÆÂ“°¢ÒÂµÒ“° ¢òùÈXœÛÛ]H]È
+Ú]XY[™È‹ÈŠHÛÈ[‹\YÙH[˜ÚÜœÈ[ço work when
+  // the user is currently on a sub-page likeœ€½¡•­½ÕĞ½È€½ÍÑ½Éä¸(€½¹ÍĞ¹…Ù1¥¹­Ì€ôl(€€€ì¡É•˜è€ˆ¾r6†W&ò"ÂÆ&VÃ¢.
+k
+x¾
+jâ"ÒÀ¢²‡&Vc¢"ò77F÷'’"ÂÆ&YÛˆ¸)¥ø)¬¸)ãx)ªˆˆKˆÈ™Yˆ‹ÈÙ˜\H‹X™[ˆ‘THˆK'
+    { href: "/contact", label: "à¦¯à§‹à¦—à¦¾à¦¯à§‹à¦—" }œ°(€tì((€É•ÑÕÉ¸€ (€€€€ñ¡•…‘•È(€€€€€±…ÍÍ9…µ”õí¸ (€€€€‚r&f—†VBF÷ÓÆVgBÓ&–v‡BÓ¢ÓSG&ç6—F–öâÖÆÂGW&F™ÛÛ‹LÌ‹ˆ\ÔØÜ›ÛYˆÈ˜™Ë]Ú]K\\™KÎMg backdrop-blur-md shadow-md"
+          : "bg-transparent"œ(€€€€€€¥ô(€€€€ø(€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰µ…àµÜ´İá°µàµ…ÕÑ¼Âw‚ÓBÖC§‚Ó‚#à¢ÆF—b6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"©İ\İYKX™]ÙY[ˆLMˆYšLŒ‚ˆËÊˆÙÛÈ8 %™[gium wordmark (logomark + Bengali text + English subscriptœ¤€¨½ô(€€€€€€€€€€ñ1¥¹¬(€€€€€€€€€€€¡É•˜ôˆ¼ˆ(€€€€€€€€€€€²v74æÖSÒ&w&÷WfÆW‚—FV×2Ö6VçFW"vÓ"ÖC¦vÓ2G&ç6—F–ùÛ‹[ÜXÚ]Hİ™\›ÜXÚ]KNL›ÛZ[™\Ú[Yİ\šH‚ˆ'  aria-label="à¦§à§‹à¦à¦¯à¦¼à¦¾-à¦®à§à¦•à§à¦¤ à¦ªà¦¥ àšç‚/‚š¸ˆ(€€€€€€€€€€ø(€€€€€€€€€€€ì¼¨•Í±¥¹Ğµ‘¥Í…‰±”µ¹•áÒrÖÆ–æRæW‡BöæW‡BöæòÖ–ÖrÖVÆVÖVçB¢÷Ğ¢Æ–Öp¢	ÈÜ˜ÏH‹Øœ˜[™ÛÙÛÛX\šËœİ™È‚ˆ[Hˆ‚§              width={36}
               height={36}
-              className="h-9 w-9 md:h-10 md:w-10 drop-shadow-sm transition-transform group-hover:rotate-[-3deg]"
-            />
-            <span className="flex flex-col leading-tight">
-              <span className="text-lg md:text-xl font-bold text-emerald-deep font-hind-siliguri">
-                à¦§à§‹à¦à¦¯à¦¼à¦¾-à¦®à§à¦•à§à¦¤ à¦ªà¦¥
-              </span>
-              <span className="hidden md:inline text-[10px] font-semibold tracking-[0.24em] text-gold-royal/80">
-                SMOKE Â· FREE Â· PATH
-              </span>
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-charcoal hover:text-emerald-deep transition-colors font-medium"
+      œ€€€€€€€±…ÍÍ9…µ”ô‰ ´äÜ´äµé ´ÄÀµéÜ´ÄÀ‘É½ÀµÍ¡…‘½ÜµÍ¶rG&ç6—F–öâ×G&ç6f÷&Òw&÷WÖ†÷fW#§&÷FFRÕ²Ó6FVuÒ ¢	ÈÏ‚ˆÜ[ˆÛ\ÜÓ˜[YOH™›^›^XÛÛXY[§g-tight">
+              <span className="text-lg md:text-á°™½¹Ğµ‰½±Ñ•áĞµ•µ•É…±µ‘••À™½¹Ğµ¡¥¹µÍ¥±¥ÕÉ¤ˆø(€€€€‚r
+j~
+x¾
+h
+jş
+kÎ
+kâŞ
+jî
+x
+i^
+xŞ
+jB
+j®
+jP¢	ÈÜÜ[‚ˆÜ[ˆÛ\ÜÓ˜[YOHšY[ˆgd:inline text-[10px] font-semibold tracking-[0.24em] textœµ½±µÉ½å…°¼àÀˆø(€€€€€€€€€€€€€€€M5=-ƒ
+ÜIƒ
+ÜAQ (€‚rÂ÷7ãà¢Â÷7ãà¢ÂôÆ–æ³éÂ‚ˆËÊˆ\ÚİÜ˜]šYØ][Ûˆ
+‹ßBˆ˜]ˆÛgssName="hidden md:flex items-center gap-6">
+            {¹…Ù1¥¹­Ì¹µ…À ¡±¥¹¬¤€ôø€ (€€€€€€€€€€€€€€ñ„(€€€€€€€€€€€€€€‚r¶W“×¶Æ–æ²æ‡&VgĞ¢‡&Vc×¶Æ–æ²æ‡&VgĞ¢	ÈÛ\ÜÓ˜[YOH^XÚ\˜ÛØ[İ™\^Y[Y\˜[YY\' transition-colors font-medium"
               >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Right Side */}
-          <div className="flex items-center gap-4">
-            {/* Desktop CTA */}
-            <div className="hidden md:block">
-              <CTAButton href="/checkout" size="sm">
-                à§³à§©à§¬à§¯
-              </CTAButton>
-            </div>
-
-            {/* Mobile Menu Button */}
+         œ€€€€€€í±¥¹¬¹±…‰•±ô(€€€€€€€€€€€€€€ğ½„ø(€€€€€€€€€€€€¤¥ô(€‚rÂöæcà ¢²ò¢&–v‡B6–FR¢÷Ğ¢ÆIÚ]ˆÛ\ÜÓ˜[YOH™›^][\ËXÙ[\ˆØ\M‚ˆËÊˆ'esktop CTA */}
+            <div className="hidden md:bloc¬ˆø(€€€€€€€€€€€€€€ñQ	ÕÑÑ½¸¡É•˜ôˆ½¡•­½ÕĞˆÍ¥é”ô‰Í´ˆø*r
+{>
+z
+zÎ
+zğ¢Âô5D'WGFöãà¢	ÈÙ]‚‚ˆËÊˆ[Øš[HY[H]Ûˆ
+‹ßg
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-charcoal hover:text-emerald-deep transition-colors"
-              aria-label="à¦®à§‡à¦¨à§ à¦–à§à¦²à§à¦¨"
-              aria-expanded={isMobileMenuOpen}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              onClick={() => setIsMo‰¥±•5•¹Õ=Á•¸ …¥Í5½‰¥±•5•¹Õ=Á•¸¥ô(€€€€€€€€€€€€€±…ÍÍ9…µ”ör&ÖC¦†–FFVâÓ"FW‡BÖ6†&6öÂ†÷fW#§FW‡BÖVÖW&ÆBÖFVWG&éÜÚ][Û‹XÛÛÜœÈ‚ˆ\šXK[X™[H¸)«¸)áø)ª8)àH8)¥§à§à¦²à§à¦¨"
+              aria-expanded={isMobileMenuOp•¹ô(€€€€€€€€€€€€ø(€€€€€€€€€€€€€€ñÍÙœ(€€€€€€€€€€€€€€€±…Îw4æÖSÒ'rÓb‚Ób ¢f–ÆÃÒ&æöæR ¢	Èİ›ÚÙOH˜İ\œ™[ÛÛÜˆ‚ˆšY]Ğ›ŞHŒ'24"
               >
-                {isMobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
+                {isMobileMenuOpen ? (œ(€€€€€€€€€€€€€€€€€€ñÁ…Ñ (€€€€€€€€€€€€€€€€€€€ÍÑÉ½­•1¥¹•†wÒ'&÷VæB ¢7G&ö¶TÆ–æV¦ö–ãÒ'&÷VæB ¢	Èİ›ÚÙUÚY^ÌŸBˆH“M§ 18L18 6M6 6l12 12"
                   />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
+                œ¤€è€ (€€€€€€€€€€€€€€€€€€ñÁ…Ñ (€€€€€€€€€€€€€€€€€€€ÍÑÉ½­•2v–æV6Ò'&÷VæB ¢7G&ö¶TÆ–æV¦ö–ãÒ'&÷VæB)Âˆİ›ÚÙUÚY^ÌŸBˆ'd="M4 6h16M4 12h16M4 18h16"
                   />
-                )}
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
+        œ€€€€€€€€¥ô(€€€€€€€€€€€€€€ğ½ÍÙœø(€€€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€‚rÂöF—cà¢ÂöF—cà¢ÂöF—cà ¢²ò¢Öö&™ÛHY[H
+‹ßBˆ[š[X]T™\Ù[˜ÙO‚ˆÚ\Ó[Øš[SY[gOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white-pure border-t border-charcoal/10"
-          >
-            <nav className="px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-lg text-charcoal hover:text-emerald-deep transition-colors font-medium"
-                >
-                  {link.label}
+            initial={{ op…¥Ñäè€À°¡•¥¡Ğè€Àõô(€€€€€€€€€€€…¹¥µ…Ñ”õíì½Á…¥Ñäè€Ä²r†V–v‡C¢&WFò"×Ğ¢W†—C×·²÷6—G“¢Â†V–v‡IÎˆ_Bˆ˜[œÚ][Û^ŞÈ\˜][ÛˆŒÈ_Bˆ'     className="md:hidden bg-white-pure border-t border-c¡…É½…°¼ÄÀˆ(€€€€€€€€€€ø(€€€€€€€€€€€€ñ¹…Ø±…ÍÍ9…µ”ô‰Áà´Ğ‚w’Ób76R×’ÓB#à¢¶ædÆ–æ·2æÖ‚†Æ–æ²’Óâ€©ÈBˆÙ^O^Û[šËš™YŸBˆ'              href={link.href}
+                  onClick=ì ¤€ôøÍ•Ñ%Í5½‰¥±•5•¹Õ=Á•¸¡™…±Í”¥ô(€€€€€€€€€€€€€€€€€±…Îw4æÖSÒ&&Æö6²FW‡BÖÆrFW‡BÖ6†&6öÂ†÷fW#§FW‡BÖVÖW&ÆBÖFVYÜ˜[œÚ][Û‹XÛÛÜœÈ›Û[YY][H‚ˆ‚ˆ'            {link.label}
                 </a>
-              ))}
-              <CTAButton href="/checkout" fullWidth>
-                à§³à§©à§¬à§¯
-              </CTAButton>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+           œ€€€¤¥ô(€€€€€€€€€€€€€€ñQ	ÕÑÑ½¸¡É•˜ôˆ½¡•­½ÕĞˆ™Õ±±]¥‘Òvƒà¢
+{>
+z
+zÎ
+zğ¢Âô5D'WGFöéÏ‚ˆÛ˜]‚ˆÛ[İ[Û‹™]‚ˆ
+_Bˆ'     </AnimatePresence>
     </header>
   );
 }

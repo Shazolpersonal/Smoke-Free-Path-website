@@ -4,77 +4,79 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { SectionWrapper, ShareBar } from "@/components/ui";
 import { copyBn } from "@/content";
+import { SITE_URL } from "@/lib/config";
 
 export function FinalCTA() {
   return (
-    <SectionWrapper id="final-cta" bgVariant="emerald" className="border-t border-emerald-deep/10">
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.h2
-          className="text-3xl md:text-5xl font-bold text-charcoal mb-8 font-hind-siliguri"
-          initial={{ opacity: 0, y: 30 }}
+    <SectionWrapper className="bg-emerald-deep text-white-pure relative overflow-hidden">
+      {/* Decorative patterns */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-gold-royal/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-white-pure/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+
+      <div className="max-w-4xl mx-auto text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {copyBn.finalCta.heading}
-        </motion.h2>
-
-        <motion.div
-          className="bg-white-pure p-8 md:p-12 rounded-2xl shadow-lg border border-gold-royal/20 mb-12 text-left"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <p className="text-lg md:text-xl text-charcoal/90 leading-relaxed font-noto-sans-bengali whitespace-pre-line">
-            {copyBn.finalCta.body}
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 font-hind-siliguri leading-tight">
+            আজই আপনার ধোঁয়া-মুক্ত যাত্রা শুরু করুন
+          </h2>
+          <p className="text-xl md:text-2xl text-white-pure/90 mb-10 font-noto-sans-bengali">
+            মাত্র ৳৩৬৯ বিনিয়োগ করুন নিজের এবং আপনার পরিবারের সুস্থ ভবিষ্যতের জন্য
           </p>
         </motion.div>
 
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+        >
+          <Link
+            href="/checkout"
+            className="w-full sm:w-auto px-8 py-4 bg-gold-royal text-charcoal font-bold rounded-lg hover:bg-gold-royal/90 hover:scale-105 transition-all text-lg shadow-lg"
+          >
+            অ্যাপগুলো ডাউনলোড করুন
+          </Link>
+          <p className="text-white-pure/80 font-noto-sans-bengali">
+            ৪১ দিনের মানি-ব্যাক গ্যারান্টি
+          </p>
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
+          className="pt-12 border-t border-white-pure/10"
         >
+          <p className="text-lg text-white-pure/80 mb-6 font-noto-sans-bengali">
+            পরিচিত কাউকে উপহার দিতে চান?
+          </p>
           <Link
-            href="/checkout"
-            className="w-full sm:w-auto px-8 py-4 bg-red-alert text-white-pure rounded-xl font-bold text-lg shadow-lg hover:-translate-y-1 hover:shadow-red-alert/30 transition-all duration-300 font-noto-sans-bengali"
+            href="/gift"
+            className="inline-flex items-center gap-2 text-gold-royal hover:text-white-pure transition-colors font-medium text-lg border border-gold-royal/30 px-6 py-2 rounded-full hover:bg-gold-royal/10"
           >
-            {copyBn.finalCta.primaryCta}
-          </Link>
-          <Link
-            href="/checkout?gift=true"
-            className="w-full sm:w-auto px-8 py-4 bg-white-pure text-charcoal border-2 border-charcoal/10 rounded-xl font-bold text-lg hover:-translate-y-1 hover:border-gold-royal hover:text-gold-royal transition-all duration-300 font-noto-sans-bengali"
-          >
-            {copyBn.finalCta.secondaryCta}
+            <span>🎁</span> উপহার হিসেবে কিনুন
           </Link>
         </motion.div>
 
         <motion.div
-          className="flex justify-center mb-8"
+          className="mt-16 pt-8 border-t border-white-pure/10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <ShareBar 
-            url="https://dhoyamuktopoth.com" 
+          <ShareBar
+            url={SITE_URL}
             message={copyBn.hero.headline}
             className="justify-center"
           />
         </motion.div>
-
-        <motion.p
-          className="text-sm text-charcoal/60 font-noto-sans-bengali"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          {copyBn.finalCta.microtext}
-        </motion.p>
       </div>
     </SectionWrapper>
   );

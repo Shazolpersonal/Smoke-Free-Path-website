@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { cn } from "@/lib/utils";
 
@@ -43,7 +42,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-xl md:text-2xl font-bold text-emerald-deep hover:text-emerald-deep/80 transition-colors"
+            className="text-xl md:text-2xl font-bold text-emerald-deep hover:text-emerald-deep/80 transition-colors font-hind-siliguri"
           >
             ধোঁয়া-মুক্ত পথ
           </Link>
@@ -63,8 +62,6 @@ export function Header() {
 
           {/* Right Side */}
           <div className="flex items-center gap-4">
-            <LanguageToggle />
-
             {/* Desktop CTA */}
             <div className="hidden md:block">
               <CTAButton href="/checkout" size="sm">

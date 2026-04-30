@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { SectionWrapper, ShareBar } from "@/components/ui";
 import { copyBn } from "@/content";
+import { SITE_URL } from "@/lib/config";
 
 export function FinalCTA() {
   return (
@@ -59,8 +60,8 @@ export function FinalCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <ShareBar 
-            url="https://dhoyamuktopoth.com" 
+          <ShareBar
+            url={SITE_URL}
             message={copyBn.hero.headline}
             className="justify-center"
           />

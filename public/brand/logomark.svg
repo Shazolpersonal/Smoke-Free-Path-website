@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 64 64" width="64" height="64"
+     role="img" aria-label="ধোঁয়া-মুক্ত পথ">
+  <defs>
+    <linearGradient id="mk-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E7C878"/>
+      <stop offset="55%" stop-color="#C9A96E"/>
+      <stop offset="100%" stop-color="#A6894F"/>
+    </linearGradient>
+    <linearGradient id="mk-emerald" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F5132"/>
+      <stop offset="100%" stop-color="#0A3B25"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#mk-emerald)"/>
+  <!-- Gold outline ring -->
+  <circle cx="32" cy="32" r="22" fill="none" stroke="url(#mk-gold)" stroke-opacity="0.55" stroke-width="1.4"/>
+  <!-- Gold plus -->
+  <rect x="18" y="30.25" width="28" height="3.5" rx="1.7" fill="url(#mk-gold)"/>
+  <rect x="30.25" y="18" width="3.5" height="28" rx="1.7" fill="url(#mk-gold)"/>
+</svg>

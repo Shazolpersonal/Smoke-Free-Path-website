@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 280 56" width="280" height="56"
+     role="img" aria-label="ধোঁয়া-মুক্ত পথ — Smoke-Free Path">
+  <defs>
+    <linearGradient id="wm-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E7C878"/>
+      <stop offset="55%" stop-color="#C9A96E"/>
+      <stop offset="100%" stop-color="#A6894F"/>
+    </linearGradient>
+    <linearGradient id="wm-emerald" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F5132"/>
+      <stop offset="100%" stop-color="#0A3B25"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Logomark — emerald disc with gold plus + outer ring -->
+  <g transform="translate(4 4)">
+    <!-- Outer decorative ring (subtle) -->
+    <circle cx="24" cy="24" r="23" fill="none" stroke="url(#wm-gold)" stroke-opacity="0.3" stroke-width="1"/>
+    <!-- Filled emerald disc -->
+    <circle cx="24" cy="24" r="20" fill="url(#wm-emerald)"/>
+    <!-- Inner gold ring -->
+    <circle cx="24" cy="24" r="16" fill="none" stroke="url(#wm-gold)" stroke-opacity="0.55" stroke-width="1"/>
+    <!-- Gold plus mark -->
+    <rect x="14" y="22.5" width="20" height="3" rx="1.5" fill="url(#wm-gold)"/>
+    <rect x="22.5" y="14" width="3" height="20" rx="1.5" fill="url(#wm-gold)"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(64 0)" font-family="Hind Siliguri, Noto Sans Bengali, Lohit Bengali, sans-serif">
+    <text x="0" y="26" font-size="22" font-weight="700" fill="#0F5132" letter-spacing="0.2">
+      ধোঁয়া-মুক্ত পথ
+    </text>
+    <text x="0" y="45" font-size="10.5" font-weight="500" fill="#A6894F" letter-spacing="3.4">
+      SMOKE · FREE · PATH
+    </text>
+  </g>
+</svg>

@@ -40,12 +40,28 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+          {/* Logo — premium wordmark (logomark + Bengali text + English subscript) */}
           <Link
             href="/"
-            className="text-xl md:text-2xl font-bold text-emerald-deep hover:text-emerald-deep/80 transition-colors"
+            className="group flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-90"
+            aria-label="ধোঁয়া-মুক্ত পথ হোম"
           >
-            ধোঁয়া-মুক্ত পথ
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/logomark.svg"
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 md:h-10 md:w-10 drop-shadow-sm transition-transform group-hover:rotate-[-3deg]"
+            />
+            <span className="flex flex-col leading-tight">
+              <span className="text-lg md:text-xl font-bold text-emerald-deep font-hind-siliguri">
+                ধোঁয়া-মুক্ত পথ
+              </span>
+              <span className="hidden md:inline text-[10px] font-semibold tracking-[0.24em] text-gold-royal/80">
+                SMOKE · FREE · PATH
+              </span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

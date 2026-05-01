@@ -1,27 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { SectionWrapper, StoryLetter } from "@/components/ui";
 import { copyBn } from "@/content";
 
 export function FounderStory() {
+  const s = copyBn.story;
   return (
     <SectionWrapper id="founder-story" bgVariant="sepia">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-      >
-        <StoryLetter
-          heading={copyBn.story.heading}
-          paragraphs={copyBn.story.paragraphs}
-          signature={copyBn.story.signature}
-          role={copyBn.story.role}
-          note={copyBn.story.note}
-          className="font-noto-sans-bengali"
-        />
-      </motion.div>
+      <StoryLetter
+        heading={s.heading}
+        paragraphs={s.paragraphs}
+        signature={s.signature}
+        role={s.role}
+        note={s.note}
+        kicker={s.kicker}
+        chapterLabel={s.chapterLabel}
+        chapters={s.chapters}
+        emphasisParagraphIndices={s.emphasisParagraphIndices}
+        diaryIntroIndex={s.diaryIntroIndex}
+        diaryParagraphIndex={s.diaryParagraphIndex}
+        factParagraphIndices={s.factParagraphIndices}
+        promiseParagraphIndices={s.promiseParagraphIndices}
+        closingBlessingIndex={s.closingBlessingIndex}
+        noteTitle={s.noteTitle}
+        closingCta={s.closingCta}
+        className="font-noto-sans-bengali"
+      />
     </SectionWrapper>
   );
 }

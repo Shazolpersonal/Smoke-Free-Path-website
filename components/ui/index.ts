@@ -10,6 +10,8 @@ export { PriceBadge } from "./PriceBadge";
 export { AppCard } from "./AppCard";
 export { FAQAccordion } from "./FAQAccordion";
 export { IslamicQuote } from "./IslamicQuote";
-export { LanguageToggle } from "./LanguageToggle";
+// LanguageToggle.tsx was removed in `f671b12` but the export here was
+// accidentally left dangling, which broke `next build`. Line removed so
+// production builds succeed; nothing else references LanguageToggle.
 export { StoryLetter } from "./StoryLetter";
 export { ShareBar } from "./ShareBar";

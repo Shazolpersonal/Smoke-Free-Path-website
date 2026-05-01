@@ -63,14 +63,30 @@ export const copyEn = {
   },
 
   threePillars: {
+    kicker: "The Solution",
     heading: "The Three Pillars of Solution",
+    subheading: "One goal, three tools. Whatever you need — exactly when you need it.",
+    bundleLabel: "Included in bundle",
+    bundleHook: "All three apps together — in one complete bundle.",
+    bundlePrice: "Only ৳369",
+    bundleCta: "Get all three — ৳369",
+    pillarLabel: "Pillar",
+    useCaseLabel: "Use when",
     cards: [
       {
         emoji: "🧘",
         name: "Muhurto Breath",
         tagline: "Instant Weapon",
         description: "Peace in 3 minutes when cravings strike.\n12 scientific techniques.",
+        features: [
+          "3-minute scientific breathing protocol",
+          "12 proven techniques — for any moment",
+          "Works offline, no internet needed",
+        ],
+        useCase: "A sudden craving hits",
         demoLink: "View Demo",
+        demoAnchor: "#live-demo?app=breath",
+        screenshotSrc: "/demos/app-1-poster.svg",
         theme: "blue",
       },
       {
@@ -78,7 +94,15 @@ export const copyEn = {
         name: "Smoke-Free Path: Steps",
         tagline: "Long Road Map",
         description: "Step-by-step journey in 41 days.\nBehavioral science & Islamic inspiration.",
+        features: [
+          "Structured 41-day program",
+          "Behavioral science + Islamic inspiration",
+          "Daily dua, ayat & challenges",
+        ],
+        useCase: "You want lasting change",
         demoLink: "View Demo",
+        demoAnchor: "#live-demo?app=steps",
+        screenshotSrc: "/demos/app-2-poster.svg",
         theme: "emerald",
       },
       {
@@ -86,7 +110,15 @@ export const copyEn = {
         name: "Smoke-Free Path: 369",
         tagline: "Inner Transformation",
         description: "Tesla's 369 Method.\nSpiritual power of thought transformation.",
+        features: [
+          "3 in morning, 6 at noon, 9 at night",
+          "Spiritual power of thought transformation",
+          "Niyyah + dhikr — a 21-day journey",
+        ],
+        useCase: "You seek inner change",
         demoLink: "View Demo",
+        demoAnchor: "#live-demo?app=369",
+        screenshotSrc: "/demos/app-3-poster.svg",
         theme: "gold",
       },
     ],

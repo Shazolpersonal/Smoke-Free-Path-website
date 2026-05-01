@@ -9,6 +9,8 @@ import {
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { AudioProvider } from "@/components/audio/AudioProvider";
+import { AudioMount } from "@/components/audio/AudioMount";
 import { SITE_URL, WHATSAPP_NUMBER, BUNDLE_PRICE } from "@/lib/config";
 
 // Bengali Headlines
@@ -57,8 +59,8 @@ export const metadata: Metadata = {
   description:
     "তিনটি অ্যাপ। ৪১ দিনের যাত্রা। সারাজীবনের স্বাধীনতা। টেসলার ৩৬৯ মেথড, আচরণগত বিজ্ঞান, এবং আধ্যাত্মিক শক্তি — একসাথে। বাংলায়। শুধু আপনার জন্য।",
   keywords: [
-    "ধূমপান ছাড়া",
-    "সিগারেট ছাড়া",
+    "ধূমপান ছাড়া",
+    "সিগারেট ছাড়া",
     "তামাক মুক্তি",
     "বাংলাদেশ",
     "ইসলামিক",
@@ -178,9 +180,21 @@ export default function RootLayout({
         )}
       </head>
       <body className="min-h-full flex flex-col font-noto-bengali">
-        <Header />
-        {children}
-        <Footer />
+        {/*
+         * <AudioProvider> wraps the entire app so the <audio> element
+         * lives above the route tree. Client-side navigation therefore
+         * does not interrupt the "আব্বার কথা" narration.
+         *
+         * <AudioMount> is rendered last so its floating UI surfaces
+         * (modal, mini-player, expanded player, toast) layer above
+         * everything else without affecting Header/Footer focus order.
+         */}
+        <AudioProvider>
+          <Header />
+          {children}
+          <Footer />
+          <AudioMount />
+        </AudioProvider>
       </body>
     </html>
   );

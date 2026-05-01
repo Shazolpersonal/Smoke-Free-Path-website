@@ -15,5 +15,25 @@
 /*.png
   Cache-Control: public, max-age=31536000, immutable
 
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
 /og-image.svg
+  Cache-Control: public, max-age=86400
+
+# ---------- Audio narration — "আব্বার কথা" ----------
+# Long cache because the filename acts as a version; explicit Accept-Ranges
+# so the browser can seek (HTMLAudioElement.currentTime = ...) without
+# re-downloading the whole file on Cloudflare.
+/audio/*.mp3
+  Content-Type: audio/mpeg
+  Accept-Ranges: bytes
+  Cache-Control: public, max-age=31536000, immutable
+
+/audio/*.webp
+  Content-Type: image/webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/audio/*.json
+  Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=86400

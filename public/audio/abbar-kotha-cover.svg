@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  "আব্বার কথা" (Abbar Kotha) — memorial cover art.
+  Geometric-only Islamic tribute. No living beings (per adab).
+  Emerald (#0F5132) + Royal Gold (#D4A017) on deep ink (#0a0f1c).
+  In loving memory of আব্দুল করিম (رحمه الله).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img"
+     aria-labelledby="sfp-cover-title sfp-cover-desc">
+  <title id="sfp-cover-title">আব্বার কথা — Spoken Memoir</title>
+  <desc id="sfp-cover-desc">
+    Minimalist Islamic memorial album cover. An eight-pointed star
+    (Rub el Hizb) surrounded by concentric geometric rings in emerald
+    and gold against a deep navy background.
+  </desc>
+
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#121a2e"/>
+      <stop offset="60%" stop-color="#0a0f1c"/>
+      <stop offset="100%" stop-color="#05070f"/>
+    </radialGradient>
+
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0C961"/>
+      <stop offset="50%" stop-color="#D4A017"/>
+      <stop offset="100%" stop-color="#8A6610"/>
+    </linearGradient>
+
+    <linearGradient id="emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a8a5e"/>
+      <stop offset="100%" stop-color="#0F5132"/>
+    </linearGradient>
+
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#10b981" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Subtle grain (tiled) -->
+    <pattern id="grain" width="120" height="120" patternUnits="userSpaceOnUse">
+      <g fill="#D4A017" opacity="0.03">
+        <circle cx="10" cy="20" r="0.6"/>
+        <circle cx="55" cy="10" r="0.5"/>
+        <circle cx="95" cy="45" r="0.6"/>
+        <circle cx="30" cy="70" r="0.5"/>
+        <circle cx="80" cy="90" r="0.6"/>
+        <circle cx="15" cy="105" r="0.5"/>
+        <circle cx="70" cy="30" r="0.5"/>
+      </g>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <rect width="1024" height="1024" fill="url(#grain)"/>
+  <rect width="1024" height="1024" fill="url(#glow)"/>
+
+  <!-- Outer ring -->
+  <circle cx="512" cy="512" r="440" fill="none" stroke="url(#gold)" stroke-opacity="0.25" stroke-width="1.2"/>
+  <circle cx="512" cy="512" r="420" fill="none" stroke="url(#gold)" stroke-opacity="0.35" stroke-width="0.8"/>
+
+  <!-- Eight-pointed star (Rub el Hizb) — two offset squares -->
+  <g transform="translate(512 512)">
+    <g stroke="url(#gold)" stroke-width="1.6" fill="none" opacity="0.85">
+      <rect x="-260" y="-260" width="520" height="520" transform="rotate(0)"/>
+      <rect x="-260" y="-260" width="520" height="520" transform="rotate(45)"/>
+    </g>
+    <g stroke="url(#emerald)" stroke-width="1.2" fill="none" opacity="0.75">
+      <rect x="-210" y="-210" width="420" height="420" transform="rotate(22.5)"/>
+    </g>
+
+    <!-- Inner concentric octagons -->
+    <g fill="none" stroke="url(#gold)" opacity="0.55">
+      <polygon points="-180,0 -127,-127 0,-180 127,-127 180,0 127,127 0,180 -127,127"
+               stroke-width="1"/>
+      <polygon points="-120,0 -85,-85 0,-120 85,-85 120,0 85,85 0,120 -85,85"
+               stroke-width="0.8"/>
+      <polygon points="-60,0 -42,-42 0,-60 42,-42 60,0 42,42 0,60 -42,42"
+               stroke-width="0.6"/>
+    </g>
+
+    <!-- Centre emerald disc -->
+    <circle r="40" fill="url(#emerald)" opacity="0.9"/>
+    <circle r="40" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity="0.9"/>
+    <circle r="28" fill="none" stroke="#D4A017" stroke-width="0.6" opacity="0.6"/>
+
+    <!-- Radiating spokes -->
+    <g stroke="url(#gold)" stroke-width="0.5" opacity="0.35">
+      <line x1="0" y1="-180" x2="0" y2="-400"/>
+      <line x1="0" y1="180" x2="0" y2="400"/>
+      <line x1="-180" y1="0" x2="-400" y2="0"/>
+      <line x1="180" y1="0" x2="400" y2="0"/>
+      <line x1="-127" y1="-127" x2="-283" y2="-283"/>
+      <line x1="127" y1="-127" x2="283" y2="-283"/>
+      <line x1="-127" y1="127" x2="-283" y2="283"/>
+      <line x1="127" y1="127" x2="283" y2="283"/>
+    </g>
+
+    <!-- Tiny gold dot at centre -->
+    <circle r="3" fill="#F0C961"/>
+  </g>
+
+  <!-- Arabic calligraphy silhouette: "رحمه الله" (rahimahu Allah) — faint, small -->
+  <text x="512" y="870" text-anchor="middle"
+        font-family="'Amiri', 'Scheherazade New', 'Noto Naskh Arabic', serif"
+        font-size="56" fill="url(#gold)" opacity="0.55"
+        direction="rtl">رحمه الله</text>
+
+  <!-- Ribbon label -->
+  <text x="512" y="160" text-anchor="middle"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="22" letter-spacing="8" fill="#D4A017" opacity="0.75">
+    IN LOVING MEMORY
+  </text>
+
+  <!-- Decorative diamond row below ribbon -->
+  <g transform="translate(512 195)" fill="#D4A017" opacity="0.45">
+    <polygon points="-40,0 -35,-6 -30,0 -35,6"/>
+    <polygon points="-10,0 -5,-6 0,0 -5,6"/>
+    <polygon points="20,0 25,-6 30,0 25,6"/>
+  </g>
+</svg>

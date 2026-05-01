@@ -8,7 +8,7 @@
 export const AUDIO_CONFIG = {
   /** Main compressed file (mono 96kbps, ~2.5 MB). */
   src: "/audio/abbar-kotha.mp3",
-  coverImage: "/audio/abbar-kotha-cover.webp",
+  coverImage: "/audio/abbar-kotha-cover.svg",
   transcriptUrl: "/audio/abbar-kotha-transcript.json",
 
   /** Exact duration from ffprobe: 207.647347s ≈ 3:27.6 */

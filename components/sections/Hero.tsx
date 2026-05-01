@@ -29,10 +29,10 @@ export function Hero() {
 
       {/* Main Content */}
       <div className="relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Text Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Column - Text Content (order-2 on mobile so animation shows first) */}
           <motion.div
-            className="text-center lg:text-left"
+            className="text-center lg:text-left order-2 lg:order-1"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -83,37 +83,60 @@ export function Hero() {
             </motion.p>
           </motion.div>
 
-          {/* Right Column - Hero Image: animated sunrise over village road */}
+          {/*
+            Right Column — 9-second animated presentation of the bundle.
+            Shown on ALL devices:
+              • mobile  : order-1 (above text), aspect [4/3] banner
+              • tablet  : aspect-square, max-width constrained
+              • desktop : order-2 (right of text), aspect-square
+
+            The SVG tells a 7-scene story in 9 seconds:
+              1. Brand reveal       (0.0–1.5s)
+              2. The promise        (1.5–2.5s)
+              3. App 1: মুহূর্ত ব্রেথ    (2.5–4.0s)
+              4. App 2: পদক্ষেপ     (4.0–5.5s)
+              5. App 3: ৩৬৯         (5.5–7.0s)
+              6. Price: ৳৩৬৯         (7.0–8.3s)
+              7. Call to action     (8.3–9.0s)
+            Islamic adab: no living beings. Respects prefers-reduced-motion.
+          */}
           <motion.div
-            className="hidden lg:block"
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="order-1 lg:order-2 w-full mx-auto max-w-md lg:max-w-none"
+            initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white-pure/20 shadow-2xl ring-1 ring-gold-royal/20">
+            <div
+              className={[
+                "relative mx-auto overflow-hidden",
+                "aspect-[4/3] sm:aspect-square",
+                "rounded-2xl sm:rounded-3xl",
+                "border border-white-pure/20 lg:border-2",
+                "shadow-2xl ring-1 ring-gold-royal/25",
+              ].join(" ")}
+            >
               {/*
-                9-second looping SVG animation: dawn → sunrise → morning.
-                Islamic adab: no living beings. Respects prefers-reduced-motion
-                (internal SVG @media query renders a static morning scene).
-
-                Using native <img> (not next/image) on purpose: the SVG contains
-                internal <style> + CSS keyframe animations that must run in the
-                browser; next/image optimization can strip or inline the SVG in
-                ways that break the animation.
+                Native <img> (not next/image) is intentional: the SVG has
+                internal <style> + CSS keyframes that drive the animation.
+                next/image optimization can strip/inline SVGs in ways that
+                break the animation.
               */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/brand/hero-sunrise.svg"
-                alt="গ্রামের পথে সূর্যোদয় — নতুন দিনের সূচনা"
-                width={800}
-                height={800}
+                alt="ধোঁয়া-মুক্ত পথ — তিনটি অ্যাপ (মুহূর্ত ব্রেথ, পদক্ষেপ, ৩৬৯), ৪১ দিনের যাত্রা, ৳৩৬৯ লঞ্চ মূল্য"
+                width={1000}
+                height={1000}
                 loading="eager"
                 decoding="async"
                 className="w-full h-full object-cover select-none"
                 draggable={false}
               />
               {/* Subtle top highlight to blend with hero gradient */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white-pure/5" />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white-pure/5"
+              />
             </div>
           </motion.div>
         </div>

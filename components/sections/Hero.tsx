@@ -83,33 +83,37 @@ export function Hero() {
             </motion.p>
           </motion.div>
 
-          {/* Right Column - Hero Image Placeholder */}
+          {/* Right Column - Hero Image: animated sunrise over village road */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-white-pure/10 backdrop-blur-sm border-2 border-white-pure/20 shadow-2xl">
-              {/* Placeholder for hero image - sunrise over village road */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-white-pure/50">
-                  <svg
-                    className="w-32 h-32 mx-auto mb-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                    />
-                  </svg>
-                  <p className="text-sm">Hero Image: Sunrise over village road</p>
-                </div>
-              </div>
+            <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white-pure/20 shadow-2xl ring-1 ring-gold-royal/20">
+              {/*
+                9-second looping SVG animation: dawn → sunrise → morning.
+                Islamic adab: no living beings. Respects prefers-reduced-motion
+                (internal SVG @media query renders a static morning scene).
+
+                Using native <img> (not next/image) on purpose: the SVG contains
+                internal <style> + CSS keyframe animations that must run in the
+                browser; next/image optimization can strip or inline the SVG in
+                ways that break the animation.
+              */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand/hero-sunrise.svg"
+                alt="গ্রামের পথে সূর্যোদয় — নতুন দিনের সূচনা"
+                width={800}
+                height={800}
+                loading="eager"
+                decoding="async"
+                className="w-full h-full object-cover select-none"
+                draggable={false}
+              />
+              {/* Subtle top highlight to blend with hero gradient */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white-pure/5" />
             </div>
           </motion.div>
         </div>

@@ -4,384 +4,485 @@
      preserveAspectRatio="xMidYMid meet"
      font-family="'Hind Siliguri','Noto Sans Bengali','Kohinoor Bangla','Kalpurush','SolaimanLipi','Shonar Bangla',system-ui,sans-serif">
   <title id="sunrise-title">ধোঁয়া-মুক্ত পথ — তিনটি অ্যাপ, ৪১ দিন, সারাজীবনের স্বাধীনতা</title>
-  <desc id="sunrise-desc">A 9-second animated presentation of the ধোঁয়া-মুক্ত পথ bundle: three apps (মুহূর্ত ব্রেথ, পদক্ষেপ, ৩৬৯), the ৪১-day journey, and the ৳৩৬৯ launch price. A memorial to Abdul Karim (raḥimahullāh).</desc>
+  <desc id="sunrise-desc">১৪ সেকেন্ডের একটি অ্যানিমেটেড উপস্থাপনা: ধোঁয়া-মুক্ত পথ বান্ডেলের তিনটি অ্যাপ (মুহূর্ত ব্রেথ, পদক্ষেপ, ৩৬৯), ৪১ দিনের যাত্রা, এবং ৳৩৬৯ লঞ্চ মূল্য। আব্দুল করিম (রহিমাহুল্লাহ)-এর স্মৃতিতে উৎসর্গ।</desc>
 
   <defs>
-    <!-- Skies -->
+    <!-- ═══════════ SKIES — dawn → sunrise → morning ═══════════ -->
     <linearGradient id="sky-dawn" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0a1628"/>
-      <stop offset="50%" stop-color="#1b2744"/>
-      <stop offset="100%" stop-color="#3a2e52"/>
+      <stop offset="0%" stop-color="#061812"/>
+      <stop offset="45%" stop-color="#0F1410"/>
+      <stop offset="100%" stop-color="#1B2430"/>
     </linearGradient>
     <linearGradient id="sky-sunrise" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2a3b5f"/>
-      <stop offset="40%" stop-color="#b56a4a"/>
-      <stop offset="75%" stop-color="#e89c5a"/>
-      <stop offset="100%" stop-color="#ffd99a"/>
+      <stop offset="0%" stop-color="#1f2b44"/>
+      <stop offset="38%" stop-color="#9d5b3e"/>
+      <stop offset="72%" stop-color="#E07A3B"/>
+      <stop offset="100%" stop-color="#F5C947"/>
     </linearGradient>
     <linearGradient id="sky-morning" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#6fa8cf"/>
-      <stop offset="55%" stop-color="#f4d49a"/>
-      <stop offset="100%" stop-color="#ffe9bf"/>
+      <stop offset="0%" stop-color="#4f8cb8"/>
+      <stop offset="50%" stop-color="#F5C947"/>
+      <stop offset="100%" stop-color="#F8F2E2"/>
     </linearGradient>
 
     <!-- Sun -->
     <radialGradient id="sun-halo-grad" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0%" stop-color="#fff5d9" stop-opacity="0.95"/>
-      <stop offset="30%" stop-color="#ffe08a" stop-opacity="0.55"/>
-      <stop offset="70%" stop-color="#f5a623" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#d4a017" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#FAFAF7" stop-opacity="0.95"/>
+      <stop offset="28%" stop-color="#F5C947" stop-opacity="0.6"/>
+      <stop offset="65%" stop-color="#D4A017" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#D4A017" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="sun-body-grad" cx="0.5" cy="0.4" r="0.6">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="60%" stop-color="#fff5d9"/>
-      <stop offset="100%" stop-color="#ffe08a"/>
+      <stop offset="0%" stop-color="#FAFAF7"/>
+      <stop offset="55%" stop-color="#F8F2E2"/>
+      <stop offset="100%" stop-color="#F5C947"/>
+    </radialGradient>
+
+    <!-- Horizon hot glow -->
+    <radialGradient id="horizon-glow" cx="0.5" cy="1" r="0.6">
+      <stop offset="0%" stop-color="#F5C947" stop-opacity="0.85"/>
+      <stop offset="55%" stop-color="#D4A017" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#D4A017" stop-opacity="0"/>
     </radialGradient>
 
     <!-- Mountains & ground -->
     <linearGradient id="mountain-far-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1a3a4a" stop-opacity="0.75"/>
-      <stop offset="100%" stop-color="#0f2838" stop-opacity="0.9"/>
+      <stop offset="0%" stop-color="#0A2A1F" stop-opacity="0.78"/>
+      <stop offset="100%" stop-color="#061812" stop-opacity="0.92"/>
     </linearGradient>
     <linearGradient id="mountain-mid-grad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#0F5132"/>
-      <stop offset="100%" stop-color="#0a2a1a"/>
+      <stop offset="100%" stop-color="#061812"/>
     </linearGradient>
     <linearGradient id="ground-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1a3d22"/>
-      <stop offset="100%" stop-color="#050d07"/>
+      <stop offset="0%" stop-color="#0F5132"/>
+      <stop offset="100%" stop-color="#030906"/>
     </linearGradient>
     <linearGradient id="road-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#d4b890" stop-opacity="0.85"/>
+      <stop offset="0%" stop-color="#EAB730" stop-opacity="0.88"/>
       <stop offset="100%" stop-color="#4a3d2a" stop-opacity="0.9"/>
     </linearGradient>
 
-    <!-- Horizon hot glow -->
-    <radialGradient id="horizon-glow" cx="0.5" cy="1" r="0.6">
-      <stop offset="0%" stop-color="#ffd99a" stop-opacity="0.85"/>
-      <stop offset="55%" stop-color="#f5a623" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#f5a623" stop-opacity="0"/>
-    </radialGradient>
-
     <!-- Mist -->
     <linearGradient id="mist-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#FAFAF7" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#FAFAF7" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#FAFAF7" stop-opacity="0"/>
     </linearGradient>
 
-    <!-- Scene card background (dark translucent vignette so text reads on any backdrop) -->
-    <radialGradient id="scene-card" cx="0.5" cy="0.5" r="0.7">
-      <stop offset="0%" stop-color="#000000" stop-opacity="0.55"/>
-      <stop offset="70%" stop-color="#000000" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    <!-- Scene card — dark translucent radial so text reads on any backdrop -->
+    <radialGradient id="scene-card" cx="0.5" cy="0.5" r="0.72">
+      <stop offset="0%"  stop-color="#061812" stop-opacity="0.66"/>
+      <stop offset="55%" stop-color="#061812" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#061812" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Tree silhouette -->
+    <!-- Gold hairline gradient for scene card borders -->
+    <linearGradient id="card-hairline" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#D4A017" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#F5C947" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#D4A017" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Price gradient text -->
+    <linearGradient id="price-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#F5C947"/>
+      <stop offset="50%" stop-color="#FAFAF7"/>
+      <stop offset="100%" stop-color="#D4A017"/>
+    </linearGradient>
+
+    <!-- Cigarette silhouette fading (Scene 2) -->
+    <linearGradient id="cig-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FAFAF7" stop-opacity="0.08"/>
+      <stop offset="60%" stop-color="#FAFAF7" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#E07A3B" stop-opacity="0.45"/>
+    </linearGradient>
+
+    <!-- Tree silhouettes -->
     <symbol id="tree-a" viewBox="0 0 60 90">
-      <rect x="27" y="55" width="6" height="35" fill="#0a1e10"/>
-      <ellipse cx="30" cy="35" rx="28" ry="35" fill="#0a1e10"/>
+      <rect x="27" y="55" width="6" height="35" fill="#030906"/>
+      <ellipse cx="30" cy="35" rx="28" ry="35" fill="#030906"/>
     </symbol>
     <symbol id="tree-b" viewBox="0 0 50 100">
-      <rect x="23" y="60" width="4" height="40" fill="#0a1e10"/>
-      <path d="M25,5 L5,55 L18,55 L2,85 L48,85 L32,55 L45,55 Z" fill="#0a1e10"/>
+      <rect x="23" y="60" width="4" height="40" fill="#030906"/>
+      <path d="M25,5 L5,55 L18,55 L2,85 L48,85 L32,55 L45,55 Z" fill="#030906"/>
     </symbol>
 
-    <!-- Brand logomark (inlined from /brand/logomark.svg, simplified for scale) -->
+    <!-- Brand logomark — emerald square + gold cross (matches /brand/logomark.svg) -->
     <symbol id="brand-mark" viewBox="0 0 64 64">
-      <rect width="64" height="64" rx="12" fill="#0F5132"/>
-      <circle cx="32" cy="32" r="22" fill="none" stroke="#E7C878" stroke-opacity="0.5" stroke-width="1.4"/>
-      <rect x="18" y="30.25" width="28" height="3.5" rx="1.7" fill="#E7C878"/>
-      <rect x="30.25" y="18" width="3.5" height="28" rx="1.7" fill="#E7C878"/>
+      <rect width="64" height="64" rx="13" fill="#0F5132"/>
+      <rect width="64" height="64" rx="13" fill="none" stroke="#D4A017" stroke-opacity="0.7" stroke-width="1.2"/>
+      <circle cx="32" cy="32" r="22" fill="none" stroke="#F5C947" stroke-opacity="0.55" stroke-width="1.3"/>
+      <rect x="18" y="30.25" width="28" height="3.5" rx="1.7" fill="#F5C947"/>
+      <rect x="30.25" y="18" width="3.5" height="28" rx="1.7" fill="#F5C947"/>
     </symbol>
 
-    <!-- App 1 icon: breathing circles (মুহূর্ত ব্রেথ) -->
+    <!-- App 1 icon: breathing rings (মুহূর্ত ব্রেথ) -->
     <symbol id="icon-breath" viewBox="0 0 120 120">
-      <circle cx="60" cy="60" r="52" fill="none" stroke="#7ec8e3" stroke-width="2" opacity="0.35"/>
-      <circle cx="60" cy="60" r="38" fill="none" stroke="#7ec8e3" stroke-width="2.5" opacity="0.55"/>
-      <circle cx="60" cy="60" r="24" fill="#7ec8e3" opacity="0.25"/>
+      <circle cx="60" cy="60" r="52" fill="none" stroke="#7ec8e3" stroke-width="2" opacity="0.32"/>
+      <circle cx="60" cy="60" r="38" fill="none" stroke="#7ec8e3" stroke-width="2.5" opacity="0.58"/>
+      <circle cx="60" cy="60" r="24" fill="#7ec8e3" opacity="0.28"/>
       <circle cx="60" cy="60" r="12" fill="#bfe4f3"/>
+      <circle cx="60" cy="60" r="4" fill="#FAFAF7"/>
     </symbol>
 
-    <!-- App 2 icon: path to sun (পদক্ষেপ) -->
+    <!-- App 2 icon: ascending path with footprints (পদক্ষেপ) -->
     <symbol id="icon-path" viewBox="0 0 120 120">
-      <!-- sun target -->
-      <circle cx="60" cy="24" r="10" fill="#E7C878"/>
-      <circle cx="60" cy="24" r="18" fill="none" stroke="#E7C878" stroke-width="1.5" opacity="0.45"/>
-      <!-- dashed ascending path -->
+      <circle cx="60" cy="24" r="10" fill="#F5C947"/>
+      <circle cx="60" cy="24" r="18" fill="none" stroke="#F5C947" stroke-width="1.5" opacity="0.5"/>
       <path d="M20,105 Q 40,80 60,70 Q 78,60 90,45" fill="none"
-            stroke="#E7C878" stroke-width="5" stroke-linecap="round"
+            stroke="#F5C947" stroke-width="5" stroke-linecap="round"
             stroke-dasharray="2 11"/>
-      <!-- footprints -->
-      <ellipse cx="24" cy="100" rx="4" ry="6" fill="#E7C878" opacity="0.8"/>
-      <ellipse cx="38" cy="90"  rx="4" ry="6" fill="#E7C878" opacity="0.65"/>
-      <ellipse cx="52" cy="80"  rx="4" ry="6" fill="#E7C878" opacity="0.5"/>
+      <ellipse cx="24" cy="100" rx="4" ry="6" fill="#F5C947" opacity="0.82"/>
+      <ellipse cx="38" cy="90"  rx="4" ry="6" fill="#F5C947" opacity="0.66"/>
+      <ellipse cx="52" cy="80"  rx="4" ry="6" fill="#F5C947" opacity="0.5"/>
     </symbol>
 
     <!-- App 3 icon: 3-6-9 triangle (৩৬৯ মেথড) -->
     <symbol id="icon-369" viewBox="0 0 120 120">
-      <!-- triangle frame -->
-      <polygon points="60,18 102,92 18,92" fill="none" stroke="#E7C878" stroke-width="2.5" opacity="0.6"/>
-      <!-- Bengali numerals ৩, ৬, ৯ at vertices -->
-      <text x="60" y="26" font-size="22" font-weight="700" text-anchor="middle"
-            dominant-baseline="central" fill="#E7C878">৩</text>
-      <text x="104" y="95" font-size="22" font-weight="700" text-anchor="middle"
-            dominant-baseline="central" fill="#E7C878">৬</text>
-      <text x="16" y="95" font-size="22" font-weight="700" text-anchor="middle"
-            dominant-baseline="central" fill="#E7C878">৯</text>
-      <!-- center dot -->
+      <polygon points="60,18 102,92 18,92" fill="none" stroke="#F5C947" stroke-width="2.6" opacity="0.7"/>
+      <text x="60" y="30" font-size="22" font-weight="700" text-anchor="middle"
+            dominant-baseline="central" fill="#F5C947">৩</text>
+      <text x="104" y="94" font-size="22" font-weight="700" text-anchor="middle"
+            dominant-baseline="central" fill="#F5C947">৬</text>
+      <text x="16" y="94" font-size="22" font-weight="700" text-anchor="middle"
+            dominant-baseline="central" fill="#F5C947">৯</text>
       <circle cx="60" cy="68" r="4" fill="#FAFAF7"/>
     </symbol>
 
     <!-- Vignette -->
-    <radialGradient id="vignette" cx="0.5" cy="0.55" r="0.8">
-      <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.4"/>
+    <radialGradient id="vignette" cx="0.5" cy="0.55" r="0.85">
+      <stop offset="58%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.45"/>
     </radialGradient>
   </defs>
 
   <!-- ════════════════════════════════════════════════════════════════
-       INLINE CSS — 9-second looping animations
+       INLINE CSS — 14-second looping animations
+       Timeline (14s = 100%)
+         s1 : 0.0 – 2.0s  →   0.0%– 14.3%   Brand reveal
+         s2 : 2.0 – 4.0s  →  14.3%– 28.6%   Promise
+         s3 : 4.0 – 6.0s  →  28.6%– 42.9%   App 1 — মুহূর্ত ব্রেথ
+         s4 : 6.0 – 8.0s  →  42.9%– 57.1%   App 2 — পদক্ষেপ
+         s5 : 8.0 –10.0s  →  57.1%– 71.4%   App 3 — ৩৬৯
+         s6 :10.0 –12.5s  →  71.4%– 89.3%   Bundle + Price
+         s7 :12.5 –14.0s  →  89.3%–100.0%   CTA
        ════════════════════════════════════════════════════════════════ -->
   <style type="text/css"><![CDATA[
     text { font-family: inherit; }
 
-    /* Background layers */
-    .sky-dawn    { animation: dawn     9s ease-in-out infinite; }
-    .sky-sunrise { animation: sunrise  9s ease-in-out infinite; opacity: 0; }
-    .sky-morning { animation: morning  9s ease-in-out infinite; opacity: 0; }
-    .horizon-glow-layer { animation: glow 9s ease-in-out infinite; opacity: 0; }
-    .sun-group   { animation: sun-rise 9s ease-in-out infinite; transform-origin: 500px 680px; }
-    .sun-halo    { animation: halo 9s ease-in-out infinite; transform-origin: 500px 680px; }
-    .stars       { animation: stars-fade 9s ease-in-out infinite; }
+    /* Background layers (continuous 14s dawn → sunrise → morning loop) */
+    .sky-dawn    { animation: dawn     14s cubic-bezier(0.22,1,0.36,1) infinite; }
+    .sky-sunrise { animation: sunrise  14s cubic-bezier(0.22,1,0.36,1) infinite; opacity: 0; }
+    .sky-morning { animation: morning  14s cubic-bezier(0.22,1,0.36,1) infinite; opacity: 0; }
+    .horizon-glow-layer { animation: glow 14s cubic-bezier(0.22,1,0.36,1) infinite; opacity: 0; transform-origin: 500px 680px; }
+    .sun-group   { animation: sun-rise 14s cubic-bezier(0.22,1,0.36,1) infinite; transform-origin: 500px 680px; }
+    .sun-halo    { animation: halo 14s cubic-bezier(0.22,1,0.36,1) infinite; transform-origin: 500px 680px; }
+
+    /* Stars + twinkle */
+    .stars       { animation: stars-fade 14s cubic-bezier(0.22,1,0.36,1) infinite; }
     .twinkle     { animation: twinkle 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
     .t2 { animation-delay: -0.6s; } .t3 { animation-delay: -1.4s; }
     .t4 { animation-delay: -2.1s; } .t5 { animation-delay: -0.9s; }
     .t6 { animation-delay: -2.6s; } .t7 { animation-delay: -1.8s; }
-    .mist-layer { animation: mist 9s ease-in-out infinite; }
-    .mist-a { animation: mist-a 20s ease-in-out infinite; }
-    .mist-b { animation: mist-b 24s ease-in-out infinite; }
-    .ground-layer { animation: ground-warm 9s ease-in-out infinite; }
-    .road-layer   { animation: road-warm   9s ease-in-out infinite; }
+
+    /* Shooting star — subtle, once per loop */
+    .shooter { animation: shoot 14s linear infinite; opacity: 0; transform-box: fill-box; }
+
+    .mist-layer { animation: mist 14s ease-in-out infinite; }
+    .mist-a { animation: mist-a 22s ease-in-out infinite; }
+    .mist-b { animation: mist-b 26s ease-in-out infinite; }
+
+    .ground-layer { animation: ground-warm 14s cubic-bezier(0.22,1,0.36,1) infinite; }
+    .road-layer   { animation: road-warm   14s cubic-bezier(0.22,1,0.36,1) infinite; }
 
     /* Scene overlays */
-    .scene { animation-duration: 9s; animation-timing-function: ease-in-out; animation-iteration-count: infinite; opacity: 0; }
-    .s1 { animation-name: scene-1; } /* 0.0–1.5s  opening */
-    .s2 { animation-name: scene-2; } /* 1.5–2.5s  promise */
-    .s3 { animation-name: scene-3; } /* 2.5–4.0s  app 1 */
-    .s4 { animation-name: scene-4; } /* 4.0–5.5s  app 2 */
-    .s5 { animation-name: scene-5; } /* 5.5–7.0s  app 3 */
-    .s6 { animation-name: scene-6; } /* 7.0–8.3s  price */
-    .s7 { animation-name: scene-7; } /* 8.3–9.0s  cta */
+    .scene { animation-duration: 14s; animation-timing-function: cubic-bezier(0.22,1,0.36,1); animation-iteration-count: infinite; opacity: 0; }
+    .s1 { animation-name: scene-1; }
+    .s2 { animation-name: scene-2; }
+    .s3 { animation-name: scene-3; }
+    .s4 { animation-name: scene-4; }
+    .s5 { animation-name: scene-5; }
+    .s6 { animation-name: scene-6; }
+    .s7 { animation-name: scene-7; }
 
-    /* Per-element accents within scenes */
-    .price-big { animation: price-pop 9s ease-in-out infinite; transform-origin: 500px 560px; }
-    .price-strike { animation: price-strike 9s ease-in-out infinite; }
-    .brand-pulse  { animation: brand-pulse 9s ease-in-out infinite; transform-origin: 500px 500px; }
+    /* Per-element accents */
+    .price-big    { animation: price-pop 14s cubic-bezier(0.22,1,0.36,1) infinite; transform-origin: 500px 560px; }
+    .price-glow   { animation: price-glow-pulse 14s ease-in-out infinite; transform-origin: 500px 560px; }
+    .price-strike { animation: price-strike 14s cubic-bezier(0.22,1,0.36,1) infinite; }
+    .brand-pulse  { animation: brand-pulse 14s ease-in-out infinite; transform-origin: 500px 390px; }
+    .cig-fade     { animation: cig-fade 14s cubic-bezier(0.22,1,0.36,1) infinite; transform-origin: 500px 340px; }
+    .cig-smoke    { animation: smoke-drift 14s ease-in-out infinite; transform-origin: 500px 340px; opacity: 0; }
+
+    /* Progress dots */
+    .dot  { opacity: 0.25; transition: none; }
+    .d1 { animation: dot-active 14s linear infinite; animation-delay:  0s; }
+    .d2 { animation: dot-active 14s linear infinite; animation-delay: -12s; }
+    .d3 { animation: dot-active 14s linear infinite; animation-delay: -10s; }
+    .d4 { animation: dot-active 14s linear infinite; animation-delay:  -8s; }
+    .d5 { animation: dot-active 14s linear infinite; animation-delay:  -6s; }
+    .d6 { animation: dot-active 14s linear infinite; animation-delay: -3.5s; }
+    .d7 { animation: dot-active 14s linear infinite; animation-delay: -1.5s; }
+
+    /* 41-day journey milestones (scene 4) */
+    .milestone { animation: milestone-lit 14s linear infinite; opacity: 0; }
 
     /* ─── Keyframes ───────────────────────────────────────────────── */
     @keyframes dawn {
-      0%, 10%   { opacity: 1; }
-      25%       { opacity: 0.5; }
-      42%, 58%  { opacity: 0; }
-      78%       { opacity: 0.4; }
+      0%, 8%    { opacity: 1; }
+      20%       { opacity: 0.55; }
+      40%, 60%  { opacity: 0; }
+      80%       { opacity: 0.45; }
       94%, 100% { opacity: 1; }
     }
     @keyframes sunrise {
-      0%, 6%    { opacity: 0; }
-      25%       { opacity: 0.7; }
-      38%, 55%  { opacity: 1; }
+      0%, 5%    { opacity: 0; }
+      22%       { opacity: 0.65; }
+      38%, 58%  { opacity: 1; }
       72%       { opacity: 0.55; }
       90%, 100% { opacity: 0; }
     }
     @keyframes morning {
-      0%, 45%   { opacity: 0; }
-      58%       { opacity: 0.75; }
-      65%, 75%  { opacity: 1; }
-      85%, 100% { opacity: 0; }
+      0%, 48%   { opacity: 0; }
+      60%       { opacity: 0.7; }
+      68%, 78%  { opacity: 1; }
+      88%, 100% { opacity: 0; }
     }
     @keyframes glow {
-      0%, 12%   { opacity: 0; transform: scale(0.6); transform-origin: 500px 680px; }
-      35%       { opacity: 0.6; transform: scale(1); transform-origin: 500px 680px; }
-      50%, 70%  { opacity: 0.9; transform: scale(1.15); transform-origin: 500px 680px; }
-      85%       { opacity: 0.4; transform: scale(1); transform-origin: 500px 680px; }
-      95%, 100% { opacity: 0; transform: scale(0.6); transform-origin: 500px 680px; }
+      0%, 10%   { opacity: 0; transform: scale(0.6); }
+      32%       { opacity: 0.55; transform: scale(1); }
+      50%, 70%  { opacity: 0.9; transform: scale(1.18); }
+      86%       { opacity: 0.38; transform: scale(1); }
+      95%, 100% { opacity: 0; transform: scale(0.6); }
     }
     @keyframes sun-rise {
-      0%, 10%   { transform: translateY(100px) scale(0.85); }
-      38%       { transform: translateY(20px) scale(0.95); }
-      55%, 70%  { transform: translateY(-90px) scale(1); }
-      85%       { transform: translateY(-30px) scale(0.9); }
-      95%, 100% { transform: translateY(100px) scale(0.85); }
+      0%, 8%    { transform: translateY(110px) scale(0.82); }
+      38%       { transform: translateY(20px) scale(0.94); }
+      55%, 72%  { transform: translateY(-95px) scale(1); }
+      86%       { transform: translateY(-30px) scale(0.9); }
+      95%, 100% { transform: translateY(110px) scale(0.82); }
     }
     @keyframes halo {
-      0%, 10%   { opacity: 0; transform: scale(0.7); }
-      30%       { opacity: 0.5; transform: scale(1); }
-      50%, 70%  { opacity: 1; transform: scale(1.2); }
-      85%       { opacity: 0.45; transform: scale(0.95); }
+      0%, 8%    { opacity: 0; transform: scale(0.7); }
+      30%       { opacity: 0.48; transform: scale(1); }
+      50%, 70%  { opacity: 1; transform: scale(1.22); }
+      86%       { opacity: 0.42; transform: scale(0.95); }
       95%, 100% { opacity: 0; transform: scale(0.7); }
     }
     @keyframes stars-fade {
-      0%, 10%   { opacity: 0.9; }
-      25%       { opacity: 0.3; }
-      40%, 72%  { opacity: 0; }
-      88%       { opacity: 0.3; }
+      0%, 8%    { opacity: 0.9; }
+      22%       { opacity: 0.32; }
+      40%, 75%  { opacity: 0; }
+      90%       { opacity: 0.35; }
       100%      { opacity: 0.9; }
     }
     @keyframes twinkle {
       0%, 100% { opacity: 0.95; transform: scale(1); }
-      50%      { opacity: 0.3; transform: scale(0.6); }
+      50%      { opacity: 0.3; transform: scale(0.55); }
+    }
+    @keyframes shoot {
+      0%, 3%     { opacity: 0; transform: translate(0,0); }
+      4%         { opacity: 1; transform: translate(0,0); }
+      9%         { opacity: 0; transform: translate(220px, 90px); }
+      100%       { opacity: 0; transform: translate(220px, 90px); }
     }
     @keyframes mist {
-      0%, 10%   { opacity: 0.15; }
-      40%, 60%  { opacity: 0.7; }
-      90%, 100% { opacity: 0.15; }
+      0%, 8%    { opacity: 0.12; }
+      40%, 60%  { opacity: 0.68; }
+      90%, 100% { opacity: 0.12; }
     }
     @keyframes mist-a {
       0%, 100% { transform: translateX(-40px); }
-      50%      { transform: translateX(40px); }
+      50%      { transform: translateX(42px); }
     }
     @keyframes mist-b {
-      0%, 100% { transform: translateX(30px); }
+      0%, 100% { transform: translateX(32px); }
       50%      { transform: translateX(-50px); }
     }
     @keyframes ground-warm {
-      0%, 15%   { filter: brightness(0.5) saturate(0.7); }
-      50%       { filter: brightness(1) saturate(1.05); }
-      85%, 100% { filter: brightness(0.5) saturate(0.7); }
+      0%, 12%   { filter: brightness(0.5) saturate(0.7); }
+      50%       { filter: brightness(1.02) saturate(1.08); }
+      86%, 100% { filter: brightness(0.5) saturate(0.7); }
     }
     @keyframes road-warm {
-      0%, 15%   { filter: brightness(0.35); }
+      0%, 12%   { filter: brightness(0.35); }
       50%       { filter: brightness(1.1); }
-      85%, 100% { filter: brightness(0.35); }
+      86%, 100% { filter: brightness(0.35); }
     }
 
-    /* Scenes — timings (9s total = 100%)
-       s1 : 0.0–1.5s  →   0% –16.7%
-       s2 : 1.5–2.5s  →  16.7%–27.8%
-       s3 : 2.5–4.0s  →  27.8%–44.4%
-       s4 : 4.0–5.5s  →  44.4%–61.1%
-       s5 : 5.5–7.0s  →  61.1%–77.8%
-       s6 : 7.0–8.3s  →  77.8%–92.2%
-       s7 : 8.3–9.0s  →  92.2%–100%
-    */
+    /* Scene keyframes — each scene: enter 2.5%, stable 9%, exit 2.5%,
+       plus soft crossfade tail into next scene. All percentages are of 14s. */
+
+    /* Scene 1: 0.0s – 2.0s  →  0% – 14.3% */
     @keyframes scene-1 {
-      0%           { opacity: 0; transform: translateY(30px) scale(0.95); }
-      2%, 3%       { opacity: 1; transform: translateY(0) scale(1); }
-      14%          { opacity: 1; transform: translateY(0) scale(1); }
-      17%          { opacity: 0; transform: translateY(-20px) scale(0.98); }
-      100%         { opacity: 0; }
+      0%            { opacity: 0; transform: translateY(24px) scale(0.96); }
+      2%, 3%        { opacity: 1; transform: translateY(0) scale(1); }
+      12%           { opacity: 1; transform: translateY(0) scale(1); }
+      14.3%         { opacity: 0; transform: translateY(-16px) scale(0.99); }
+      100%          { opacity: 0; }
     }
+    /* Scene 2: 2.0s – 4.0s  →  14.3% – 28.6% */
     @keyframes scene-2 {
-      0%, 15%      { opacity: 0; transform: translateY(30px); }
-      19%          { opacity: 1; transform: translateY(0); }
-      25%          { opacity: 1; transform: translateY(0); }
-      28%          { opacity: 0; transform: translateY(-20px); }
-      100%         { opacity: 0; }
+      0%, 13%       { opacity: 0; transform: translateY(24px); }
+      16%           { opacity: 1; transform: translateY(0); }
+      26%           { opacity: 1; transform: translateY(0); }
+      28.6%         { opacity: 0; transform: translateY(-16px); }
+      100%          { opacity: 0; }
     }
+    /* Scene 3: 4.0s – 6.0s  →  28.6% – 42.9% */
     @keyframes scene-3 {
-      0%, 26%      { opacity: 0; transform: translateX(30px); }
-      30%          { opacity: 1; transform: translateX(0); }
-      42%          { opacity: 1; transform: translateX(0); }
-      45%          { opacity: 0; transform: translateX(-20px); }
-      100%         { opacity: 0; }
+      0%, 27%       { opacity: 0; transform: translateX(24px); }
+      30%           { opacity: 1; transform: translateX(0); }
+      40%           { opacity: 1; transform: translateX(0); }
+      42.9%         { opacity: 0; transform: translateX(-16px); }
+      100%          { opacity: 0; }
     }
+    /* Scene 4: 6.0s – 8.0s  →  42.9% – 57.1% */
     @keyframes scene-4 {
-      0%, 43%      { opacity: 0; transform: translateX(30px); }
-      46%          { opacity: 1; transform: translateX(0); }
-      59%          { opacity: 1; transform: translateX(0); }
-      62%          { opacity: 0; transform: translateX(-20px); }
-      100%         { opacity: 0; }
+      0%, 41%       { opacity: 0; transform: translateX(24px); }
+      44%           { opacity: 1; transform: translateX(0); }
+      54%           { opacity: 1; transform: translateX(0); }
+      57.1%         { opacity: 0; transform: translateX(-16px); }
+      100%          { opacity: 0; }
     }
+    /* Scene 5: 8.0s – 10.0s → 57.1% – 71.4% */
     @keyframes scene-5 {
-      0%, 60%      { opacity: 0; transform: translateX(30px); }
-      63%          { opacity: 1; transform: translateX(0); }
-      76%          { opacity: 1; transform: translateX(0); }
-      79%          { opacity: 0; transform: translateX(-20px); }
-      100%         { opacity: 0; }
+      0%, 55%       { opacity: 0; transform: translateX(24px); }
+      58%           { opacity: 1; transform: translateX(0); }
+      68%           { opacity: 1; transform: translateX(0); }
+      71.4%         { opacity: 0; transform: translateX(-16px); }
+      100%          { opacity: 0; }
     }
+    /* Scene 6: 10.0s – 12.5s → 71.4% – 89.3% */
     @keyframes scene-6 {
-      0%, 77%      { opacity: 0; transform: scale(0.95); }
-      80%          { opacity: 1; transform: scale(1); }
-      91%          { opacity: 1; transform: scale(1); }
-      93%          { opacity: 0; transform: scale(1.02); }
-      100%         { opacity: 0; }
+      0%, 70%       { opacity: 0; transform: scale(0.95); }
+      73%           { opacity: 1; transform: scale(1); }
+      86%           { opacity: 1; transform: scale(1); }
+      89.3%         { opacity: 0; transform: scale(1.02); }
+      100%          { opacity: 0; }
     }
+    /* Scene 7: 12.5s – 14.0s → 89.3% – 100% */
     @keyframes scene-7 {
-      0%, 91%      { opacity: 0; transform: translateY(20px); }
-      94%          { opacity: 1; transform: translateY(0); }
-      99%          { opacity: 1; transform: translateY(0); }
-      100%         { opacity: 0; }
+      0%, 88%       { opacity: 0; transform: translateY(16px); }
+      91%           { opacity: 1; transform: translateY(0); }
+      99%           { opacity: 1; transform: translateY(0); }
+      100%          { opacity: 0; }
     }
 
-    /* Price accent */
+    /* Price: appears in s6 window (71.4%–89.3%) */
     @keyframes price-pop {
-      0%, 78%       { transform: scale(0.6); opacity: 0; }
-      83%           { transform: scale(1.15); opacity: 1; }
-      86%, 91%      { transform: scale(1); opacity: 1; }
-      93%, 100%     { transform: scale(0.95); opacity: 0; }
+      0%, 70%       { transform: scale(0.72); opacity: 0; }
+      76%           { transform: scale(1.12); opacity: 1; }
+      80%, 86%      { transform: scale(1); opacity: 1; }
+      89.3%, 100%   { transform: scale(0.96); opacity: 0; }
+    }
+    @keyframes price-glow-pulse {
+      0%, 72%       { filter: drop-shadow(0 0 0px rgba(245,201,71,0)); }
+      78%, 84%      { filter: drop-shadow(0 0 22px rgba(245,201,71,0.7)); }
+      89.3%, 100%   { filter: drop-shadow(0 0 0px rgba(245,201,71,0)); }
     }
     @keyframes price-strike {
-      0%, 82%       { stroke-dashoffset: 200; }
-      86%           { stroke-dashoffset: 0; }
-      93%, 100%     { stroke-dashoffset: 0; }
+      0%, 74%       { stroke-dashoffset: 200; }
+      78%           { stroke-dashoffset: 0; }
+      89.3%, 100%   { stroke-dashoffset: 0; }
     }
     @keyframes brand-pulse {
-      0%, 100%      { transform: scale(1); }
-      4%            { transform: scale(1.05); }
-      8%            { transform: scale(1); }
+      0%, 2%, 14.3%, 100% { transform: scale(1); }
+      4%                  { transform: scale(1.06); }
+      8%                  { transform: scale(1); }
     }
 
-    /* prefers-reduced-motion → static bundle shot */
+    /* Scene 2 cigarette fading out — symbol of addiction being left behind */
+    @keyframes cig-fade {
+      0%, 14%       { opacity: 0; transform: translateX(0) scale(1); }
+      17%           { opacity: 0.55; transform: translateX(0) scale(1); }
+      22%           { opacity: 0.4; transform: translateX(-40px) scale(0.92); }
+      27%, 28.6%    { opacity: 0; transform: translateX(-90px) scale(0.8); }
+      100%          { opacity: 0; }
+    }
+    @keyframes smoke-drift {
+      0%, 14%       { opacity: 0; transform: translateY(0) scale(0.8); }
+      18%           { opacity: 0.4; transform: translateY(-20px) scale(1); }
+      26%           { opacity: 0.1; transform: translateY(-60px) scale(1.4); }
+      28.6%, 100%   { opacity: 0; transform: translateY(-80px) scale(1.6); }
+    }
+
+    /* Progress dots — each dot lights up during its scene */
+    @keyframes dot-active {
+      0%, 1%        { opacity: 0.25; r: 5; }
+      2%            { opacity: 1; r: 6.5; }
+      12%           { opacity: 1; r: 6.5; }
+      14.3%, 100%   { opacity: 0.25; r: 5; }
+    }
+
+    /* 41-day milestones — light up sequentially during scene 4 */
+    @keyframes milestone-lit {
+      0%, 43%       { opacity: 0; }
+      45%           { opacity: 0.3; }
+      52%           { opacity: 1; }
+      56%, 100%     { opacity: 0.75; }
+    }
+
+    /* ─── Reduced-motion fallback ──────────────────────────────────
+       Preference: show SCENE 1 (brand reveal) — informative, not ad-like */
     @media (prefers-reduced-motion: reduce) {
-      .sky-dawn, .sky-sunrise, .horizon-glow-layer, .sun-group, .sun-halo, .stars, .twinkle,
+      .sky-dawn, .sky-sunrise, .sky-morning, .horizon-glow-layer,
+      .sun-group, .sun-halo, .stars, .twinkle, .shooter,
       .mist-layer, .mist-a, .mist-b, .ground-layer, .road-layer,
-      .scene, .price-big, .price-strike, .brand-pulse {
+      .scene, .price-big, .price-glow, .price-strike, .brand-pulse,
+      .cig-fade, .cig-smoke, .milestone,
+      .d1, .d2, .d3, .d4, .d5, .d6, .d7 {
         animation: none !important;
       }
       .sky-dawn    { opacity: 0; }
-      .sky-sunrise { opacity: 0; }
-      .sky-morning { opacity: 1; }
-      .stars       { opacity: 0; }
-      .horizon-glow-layer { opacity: 1; transform: scale(1.15); transform-origin: 500px 680px; }
-      .sun-group   { transform: translateY(-80px); }
-      .sun-halo    { opacity: 0.9; transform: scale(1.2); }
-      .mist-layer  { opacity: 0.45; }
-      /* Show the most-informative scene (price) as the static fallback */
-      .s6          { opacity: 1 !important; }
-      .price-big   { opacity: 1; transform: scale(1); }
-      .price-strike{ stroke-dashoffset: 0; }
+      .sky-sunrise { opacity: 1; }
+      .sky-morning { opacity: 0; }
+      .stars       { opacity: 0.35; }
+      .horizon-glow-layer { opacity: 0.7; transform: scale(1.1); transform-origin: 500px 680px; }
+      .sun-group   { transform: translateY(-40px); }
+      .sun-halo    { opacity: 0.75; transform: scale(1.1); }
+      .mist-layer  { opacity: 0.4; }
+      /* Show brand-reveal scene (S1) as static fallback */
+      .s1          { opacity: 1 !important; }
+      .d1          { opacity: 1; r: 6.5; }
     }
   ]]></style>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       BACKGROUND — continuous sunrise (runs throughout all 9 seconds)
+       BACKGROUND — continuous 14-second sunrise cycle
        ═══════════════════════════════════════════════════════════════ -->
   <rect class="sky-dawn"    x="0" y="0" width="1000" height="1000" fill="url(#sky-dawn)"/>
   <rect class="sky-sunrise" x="0" y="0" width="1000" height="1000" fill="url(#sky-sunrise)"/>
   <rect class="sky-morning" x="0" y="0" width="1000" height="1000" fill="url(#sky-morning)"/>
 
   <g class="stars">
-    <circle class="twinkle t1" cx="100" cy="110" r="2"   fill="#ffffff"/>
-    <circle class="twinkle t2" cx="220" cy="70"  r="1.5" fill="#ffffff"/>
-    <circle class="twinkle t3" cx="340" cy="150" r="2.2" fill="#ffffff"/>
-    <circle class="twinkle t4" cx="470" cy="80"  r="1.7" fill="#ffffff"/>
-    <circle class="twinkle t5" cx="600" cy="170" r="1.9" fill="#ffffff"/>
-    <circle class="twinkle t6" cx="720" cy="75"  r="1.4" fill="#ffffff"/>
-    <circle class="twinkle t7" cx="850" cy="130" r="2"   fill="#ffffff"/>
-    <circle class="twinkle t3" cx="930" cy="85"  r="1.6" fill="#ffffff"/>
-    <circle class="twinkle t5" cx="170" cy="220" r="1.3" fill="#ffffff"/>
-    <circle class="twinkle t7" cx="400" cy="240" r="1.2" fill="#ffffff"/>
-    <circle class="twinkle t2" cx="640" cy="260" r="1.4" fill="#ffffff"/>
-    <circle class="twinkle t4" cx="800" cy="245" r="1.6" fill="#ffffff"/>
+    <circle class="twinkle t1" cx="100" cy="110" r="2"   fill="#FAFAF7"/>
+    <circle class="twinkle t2" cx="220" cy="70"  r="1.5" fill="#FAFAF7"/>
+    <circle class="twinkle t3" cx="340" cy="150" r="2.2" fill="#FAFAF7"/>
+    <circle class="twinkle t4" cx="470" cy="80"  r="1.7" fill="#FAFAF7"/>
+    <circle class="twinkle t5" cx="600" cy="170" r="1.9" fill="#FAFAF7"/>
+    <circle class="twinkle t6" cx="720" cy="75"  r="1.4" fill="#FAFAF7"/>
+    <circle class="twinkle t7" cx="850" cy="130" r="2"   fill="#FAFAF7"/>
+    <circle class="twinkle t3" cx="930" cy="85"  r="1.6" fill="#FAFAF7"/>
+    <circle class="twinkle t5" cx="170" cy="220" r="1.3" fill="#FAFAF7"/>
+    <circle class="twinkle t7" cx="400" cy="240" r="1.2" fill="#FAFAF7"/>
+    <circle class="twinkle t2" cx="640" cy="260" r="1.4" fill="#FAFAF7"/>
+    <circle class="twinkle t4" cx="800" cy="245" r="1.6" fill="#FAFAF7"/>
+  </g>
+
+  <!-- Shooting star — subtle 'hope rising' metaphor -->
+  <g class="shooter">
+    <line x1="120" y1="160" x2="160" y2="185" stroke="#F5C947" stroke-width="2"
+          stroke-linecap="round" opacity="0.85"/>
+    <circle cx="160" cy="185" r="2.2" fill="#FAFAF7"/>
   </g>
 
   <ellipse class="horizon-glow-layer" cx="500" cy="680" rx="600" ry="260" fill="url(#horizon-glow)"/>
 
   <g class="sun-group">
     <circle class="sun-halo" cx="500" cy="680" r="340" fill="url(#sun-halo-grad)"/>
-    <circle cx="500" cy="680" r="75" fill="url(#sun-body-grad)"/>
-    <circle cx="500" cy="680" r="75" fill="none" stroke="#fff5d9" stroke-width="1.2" opacity="0.55"/>
+    <circle cx="500" cy="680" r="76" fill="url(#sun-body-grad)"/>
+    <circle cx="500" cy="680" r="76" fill="none" stroke="#F8F2E2" stroke-width="1.2" opacity="0.6"/>
   </g>
 
   <!-- Distant & mid mountains -->
@@ -394,13 +495,13 @@
   <g class="mist-layer">
     <ellipse class="mist-a" cx="280" cy="680" rx="360" ry="28" fill="url(#mist-grad)"/>
     <ellipse class="mist-b" cx="720" cy="700" rx="320" ry="22" fill="url(#mist-grad)"/>
-    <ellipse class="mist-a" cx="500" cy="720" rx="420" ry="16" fill="url(#mist-grad)" opacity="0.7"/>
+    <ellipse class="mist-a" cx="500" cy="720" rx="420" ry="16" fill="url(#mist-grad)" opacity="0.72"/>
   </g>
 
   <!-- Ground, road, trees -->
   <g class="ground-layer">
     <path fill="url(#ground-grad)" d="M0,730 L1000,730 L1000,1000 L0,1000 Z"/>
-    <g opacity="0.3" stroke="#0a2a1a" stroke-width="1.3" stroke-linecap="round" fill="none">
+    <g opacity="0.32" stroke="#061812" stroke-width="1.3" stroke-linecap="round" fill="none">
       <path d="M40,800 L40,780 M80,810 L80,788 M130,805 L130,782 M190,820 L190,795 M250,830 L250,805"/>
       <path d="M750,830 L750,805 M810,820 L810,795 M870,810 L870,788 M920,805 L920,782 M960,800 L960,780"/>
     </g>
@@ -408,9 +509,9 @@
 
   <g class="road-layer">
     <path fill="url(#road-grad)" d="M500,730 L600,1000 L400,1000 Z"/>
-    <path stroke="#c9b48d" stroke-width="2.5" fill="none" opacity="0.5" d="M500,730 L600,1000"/>
-    <path stroke="#c9b48d" stroke-width="2.5" fill="none" opacity="0.5" d="M500,730 L400,1000"/>
-    <g fill="#f4e8c8" opacity="0.85">
+    <path stroke="#F8F2E2" stroke-width="2.4" fill="none" opacity="0.45" d="M500,730 L600,1000"/>
+    <path stroke="#F8F2E2" stroke-width="2.4" fill="none" opacity="0.45" d="M500,730 L400,1000"/>
+    <g fill="#F8F2E2" opacity="0.85">
       <rect x="499" y="750" width="2"  height="7"   rx="1"/>
       <rect x="498" y="775" width="4"  height="11"  rx="1"/>
       <rect x="497" y="810" width="6"  height="16"  rx="1.5"/>
@@ -435,38 +536,57 @@
   <rect x="0" y="0" width="1000" height="1000" fill="url(#vignette)" pointer-events="none"/>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       SCENE OVERLAYS — each scene is a group, animated via CSS
+       SCENE OVERLAYS
        ═══════════════════════════════════════════════════════════════ -->
 
-  <!-- SCENE 1 — Opening brand reveal (0.0–1.5s) -->
+  <!-- ── SCENE 1 — Opening brand reveal (0.0–2.0s) ── -->
   <g class="scene s1">
     <ellipse cx="500" cy="500" rx="520" ry="360" fill="url(#scene-card)"/>
+    <ellipse cx="500" cy="500" rx="510" ry="352" fill="none" stroke="url(#card-hairline)" stroke-width="1"/>
     <g class="brand-pulse">
       <use href="#brand-mark" x="420" y="310" width="160" height="160"/>
     </g>
-    <text x="500" y="560" text-anchor="middle" font-size="88" font-weight="800"
+    <text x="500" y="555" text-anchor="middle" font-size="92" font-weight="800"
           fill="#FAFAF7" letter-spacing="1">ধোঁয়া-মুক্ত পথ</text>
-    <text x="500" y="625" text-anchor="middle" font-size="42" font-weight="500"
-          fill="#E7C878" opacity="0.95">তিনটি অ্যাপ · ৪১ দিন · সারাজীবনের স্বাধীনতা</text>
-    <text x="500" y="695" text-anchor="middle" font-size="32" font-weight="400"
-          fill="#FAFAF7" opacity="0.75" font-style="italic">আব্বাজানের স্মৃতিতে — আবদুল করিম (রহ.)</text>
+    <text x="500" y="618" text-anchor="middle" font-size="38" font-weight="500"
+          fill="#F5C947" opacity="0.95">তিনটি অ্যাপ · ৪১ দিন · সারাজীবনের স্বাধীনতা</text>
+    <g opacity="0.78">
+      <line x1="340" y1="660" x2="420" y2="660" stroke="#D4A017" stroke-width="1"/>
+      <circle cx="500" cy="660" r="3" fill="#D4A017"/>
+      <line x1="580" y1="660" x2="660" y2="660" stroke="#D4A017" stroke-width="1"/>
+    </g>
+    <text x="500" y="700" text-anchor="middle" font-size="28" font-weight="400"
+          fill="#FAFAF7" opacity="0.72" font-style="italic">আব্বাজানের স্মৃতিতে — আব্দুল করিম (রহিমাহুল্লাহ)</text>
   </g>
 
-  <!-- SCENE 2 — The Promise (1.5–2.5s) -->
+  <!-- ── SCENE 2 — The Promise (2.0–4.0s) ── -->
   <g class="scene s2">
-    <ellipse cx="500" cy="500" rx="520" ry="340" fill="url(#scene-card)"/>
-    <text x="500" y="420" text-anchor="middle" font-size="90" font-weight="800"
+    <ellipse cx="500" cy="500" rx="520" ry="360" fill="url(#scene-card)"/>
+    <ellipse cx="500" cy="500" rx="510" ry="352" fill="none" stroke="url(#card-hairline)" stroke-width="1"/>
+
+    <!-- Cigarette silhouette + smoke (fading out as promise is made) -->
+    <g class="cig-smoke">
+      <ellipse cx="500" cy="310" rx="14" ry="8" fill="#FAFAF7" opacity="0.3"/>
+      <ellipse cx="510" cy="290" rx="10" ry="6" fill="#FAFAF7" opacity="0.22"/>
+    </g>
+    <g class="cig-fade">
+      <rect x="440" y="335" width="100" height="10" rx="2" fill="url(#cig-fade)"/>
+      <rect x="536" y="336" width="8" height="8" fill="#E07A3B" opacity="0.7"/>
+    </g>
+
+    <text x="500" y="430" text-anchor="middle" font-size="84" font-weight="800"
           fill="#FAFAF7">শেষ সিগারেট</text>
-    <text x="500" y="510" text-anchor="middle" font-size="110" font-weight="900"
-          fill="#E7C878" letter-spacing="2">আজই হোকখ4</text>
-    <line x1="300" y1="570" x2="700" y2="570" stroke="#E7C878" stroke-width="2" opacity="0.5"/>
-    <text x="500" y="635" text-anchor="middle" font-size="44" font-weight="500"
-          fill="#FAFAF7" opacity="0.9">নতুন জীবন আগামীকাল শুরু হোকখ4</text>
+    <text x="500" y="520" text-anchor="middle" font-size="104" font-weight="900"
+          fill="#F5C947" letter-spacing="2">আজই হোক।</text>
+    <line x1="310" y1="570" x2="690" y2="570" stroke="#D4A017" stroke-width="1.4" opacity="0.55"/>
+    <text x="500" y="640" text-anchor="middle" font-size="42" font-weight="500"
+          fill="#FAFAF7" opacity="0.92">নতুন জীবন আগামীকাল শুরু হোক।</text>
   </g>
 
-  <!-- SCENE 3 — App 1: মুহূর্ত ব্রেথ (2.5–4.0s) -->
+  <!-- ── SCENE 3 — App 1: মুহূর্ত ব্রেথ (4.0–6.0s) ── -->
   <g class="scene s3">
     <ellipse cx="500" cy="500" rx="520" ry="360" fill="url(#scene-card)"/>
+    <ellipse cx="500" cy="500" rx="510" ry="352" fill="none" stroke="url(#card-hairline)" stroke-width="1"/>
     <!-- app badge -->
     <rect x="410" y="220" width="180" height="42" rx="21" fill="#7ec8e3" fill-opacity="0.18" stroke="#7ec8e3" stroke-width="1.5"/>
     <text x="500" y="250" text-anchor="middle" font-size="26" font-weight="700" fill="#bfe4f3">অ্যাপ ১ / ৩</text>
@@ -478,86 +598,128 @@
     <text x="500" y="615" text-anchor="middle" font-size="40" font-weight="600" fill="#7ec8e3">তাৎক্ষণিক অস্ত্র</text>
     <!-- description -->
     <text x="500" y="680" text-anchor="middle" font-size="34" font-weight="400" fill="#FAFAF7" opacity="0.85">যখন তলব আসে — ৩ মিনিটে শান্তি</text>
-    <text x="500" y="728" text-anchor="middle" font-size="30" font-weight="400" fill="#FAFAF7" opacity="0.7">১২টি বৈজ্ঞানিক শ্বাস-কৌশল</text>
+    <text x="500" y="728" text-anchor="middle" font-size="30" font-weight="400" fill="#FAFAF7" opacity="0.72">১২টি প্রমাণিত শ্বাস-কৌশল</text>
   </g>
 
-  <!-- SCENE 4 — App 2: ধোঁয়া-মুক্ত পথ: পদক্ষেপ (4.0–5.5s) -->
+  <!-- ── SCENE 4 — App 2: পদক্ষেপ (6.0–8.0s) ── -->
   <g class="scene s4">
     <ellipse cx="500" cy="500" rx="520" ry="360" fill="url(#scene-card)"/>
-    <rect x="410" y="220" width="180" height="42" rx="21" fill="#0F5132" fill-opacity="0.35" stroke="#5aaa7f" stroke-width="1.5"/>
-    <text x="500" y="250" text-anchor="middle" font-size="26" font-weight="700" fill="#bfe4d0">অ্যাপ ২ / ৩</text>
+    <ellipse cx="500" cy="500" rx="510" ry="352" fill="none" stroke="url(#card-hairline)" stroke-width="1"/>
+    <rect x="410" y="220" width="180" height="42" rx="21" fill="#0F5132" fill-opacity="0.4" stroke="#1B7A4F" stroke-width="1.5"/>
+    <text x="500" y="250" text-anchor="middle" font-size="26" font-weight="700" fill="#6FB897">অ্যাপ ২ / ৩</text>
     <use href="#icon-path" x="400" y="295" width="200" height="200"/>
-    <text x="500" y="555" text-anchor="middle" font-size="66" font-weight="800" fill="#FAFAF7">পদক্ষেপ</text>
-    <text x="500" y="615" text-anchor="middle" font-size="40" font-weight="600" fill="#5aaa7f">দীর্ঘ রাস্তার ম্যাপ</text>
-    <text x="500" y="680" text-anchor="middle" font-size="34" font-weight="400" fill="#FAFAF7" opacity="0.85">৪১ দিনে ধাপে ধাপে যাত্রা</text>
-    <text x="500" y="728" text-anchor="middle" font-size="30" font-weight="400" fill="#FAFAF7" opacity="0.7">আচরণ বিজ্ঞান · ইসলামি অনুপ্রেরণা</text>
+    <text x="500" y="548" text-anchor="middle" font-size="26" font-weight="500" fill="#F5C947" opacity="0.78" letter-spacing="1">ধোঁয়া-মুক্ত পথ</text>
+    <text x="500" y="605" text-anchor="middle" font-size="78" font-weight="800" fill="#FAFAF7">পদক্ষেপ</text>
+    <text x="500" y="660" text-anchor="middle" font-size="38" font-weight="600" fill="#6FB897">দীর্ঘ রাস্তার ম্যাপ</text>
+
+    <!-- 41-day journey milestones (subtle, lights up mid-scene) -->
+    <g class="milestone" fill="#F5C947" opacity="0">
+      <circle cx="220" cy="760" r="3"/><circle cx="240" cy="760" r="3"/><circle cx="260" cy="760" r="3"/>
+      <circle cx="280" cy="760" r="3"/><circle cx="300" cy="760" r="3"/><circle cx="320" cy="760" r="3"/>
+      <circle cx="340" cy="760" r="3"/><circle cx="360" cy="760" r="3"/><circle cx="380" cy="760" r="3"/>
+      <circle cx="400" cy="760" r="3"/><circle cx="420" cy="760" r="3"/><circle cx="440" cy="760" r="3"/>
+      <circle cx="460" cy="760" r="3"/><circle cx="480" cy="760" r="3"/>
+      <circle cx="500" cy="760" r="5" fill="#F5C947"/>
+      <circle cx="520" cy="760" r="3"/><circle cx="540" cy="760" r="3"/>
+      <circle cx="560" cy="760" r="3"/><circle cx="580" cy="760" r="3"/><circle cx="600" cy="760" r="3"/>
+      <circle cx="620" cy="760" r="3"/><circle cx="640" cy="760" r="3"/><circle cx="660" cy="760" r="3"/>
+      <circle cx="680" cy="760" r="3"/><circle cx="700" cy="760" r="3"/><circle cx="720" cy="760" r="3"/>
+      <circle cx="740" cy="760" r="3"/><circle cx="760" cy="760" r="3"/><circle cx="780" cy="760" r="3"/>
+    </g>
+    <text x="500" y="720" text-anchor="middle" font-size="28" font-weight="400" fill="#FAFAF7" opacity="0.78">৪১ দিনে ধাপে ধাপে · আচরণ বিজ্ঞান + ইসলামি অনুপ্রেরণা</text>
   </g>
 
-  <!-- SCENE 5 — App 3: ৩৬৯ (5.5–7.0s) -->
+  <!-- ── SCENE 5 — App 3: ৩৬৯ (8.0–10.0s) ── -->
   <g class="scene s5">
     <ellipse cx="500" cy="500" rx="520" ry="360" fill="url(#scene-card)"/>
-    <rect x="410" y="220" width="180" height="42" rx="21" fill="#D4A017" fill-opacity="0.22" stroke="#E7C878" stroke-width="1.5"/>
-    <text x="500" y="250" text-anchor="middle" font-size="26" font-weight="700" fill="#f0dca0">অ্যাপ ৩ / ৩</text>
+    <ellipse cx="500" cy="500" rx="510" ry="352" fill="none" stroke="url(#card-hairline)" stroke-width="1"/>
+    <rect x="410" y="220" width="180" height="42" rx="21" fill="#D4A017" fill-opacity="0.22" stroke="#F5C947" stroke-width="1.5"/>
+    <text x="500" y="250" text-anchor="middle" font-size="26" font-weight="700" fill="#F5C947">অ্যাপ ৩ / ৩</text>
     <use href="#icon-369" x="400" y="295" width="200" height="200"/>
-    <text x="500" y="555" text-anchor="middle" font-size="78" font-weight="800" fill="#FAFAF7">৩৬৯</text>
-    <text x="500" y="615" text-anchor="middle" font-size="40" font-weight="600" fill="#E7C878">ভেতরের পরিবর্তন</text>
-    <text x="500" y="680" text-anchor="middle" font-size="34" font-weight="400" fill="#FAFAF7" opacity="0.85">টেসলার ৩-৬-৯ মেথড</text>
-    <text x="500" y="728" text-anchor="middle" font-size="30" font-weight="400" fill="#FAFAF7" opacity="0.7">চিন্তা রূপান্তরের আধ্যাত্মিক শক্তি</text>
+    <text x="500" y="548" text-anchor="middle" font-size="26" font-weight="500" fill="#F5C947" opacity="0.78" letter-spacing="1">ধোঁয়া-মুক্ত পথ</text>
+    <text x="500" y="612" text-anchor="middle" font-size="88" font-weight="900" fill="#FAFAF7" letter-spacing="3">৩৬৯</text>
+    <text x="500" y="665" text-anchor="middle" font-size="38" font-weight="600" fill="#F5C947">ভেতরের পরিবর্তন</text>
+    <text x="500" y="710" text-anchor="middle" font-size="30" font-weight="400" fill="#FAFAF7" opacity="0.85">টেসলার ৩৬৯ মেথড</text>
+    <text x="500" y="748" text-anchor="middle" font-size="26" font-weight="400" fill="#FAFAF7" opacity="0.7">চিন্তা রূপান্তরের আধ্যাত্মিক শক্তি</text>
   </g>
 
-  <!-- SCENE 6 — Price reveal (7.0–8.3s) -->
+  <!-- ── SCENE 6 — Bundle + Price (10.0–12.5s) ── -->
   <g class="scene s6">
     <ellipse cx="500" cy="500" rx="560" ry="400" fill="url(#scene-card)"/>
-    <text x="500" y="330" text-anchor="middle" font-size="44" font-weight="600"
-          fill="#FAFAF7" opacity="0.9">তিনটি অ্যাপ — একসাথে</text>
+    <ellipse cx="500" cy="500" rx="548" ry="390" fill="none" stroke="url(#card-hairline)" stroke-width="1"/>
+    <text x="500" y="315" text-anchor="middle" font-size="42" font-weight="600"
+          fill="#FAFAF7" opacity="0.92">তিনটি অ্যাপ — একসাথে</text>
 
-    <!-- three small app-dots -->
-    <g opacity="0.95">
-      <circle cx="410" cy="405" r="22" fill="#7ec8e3" stroke="#FAFAF7" stroke-width="2"/>
-      <circle cx="500" cy="405" r="22" fill="#5aaa7f" stroke="#FAFAF7" stroke-width="2"/>
-      <circle cx="590" cy="405" r="22" fill="#E7C878" stroke="#FAFAF7" stroke-width="2"/>
+    <!-- three app dots with gold connectors -->
+    <g>
+      <line x1="430" y1="395" x2="468" y2="395" stroke="#D4A017" stroke-width="1.5" opacity="0.6"/>
+      <line x1="532" y1="395" x2="570" y2="395" stroke="#D4A017" stroke-width="1.5" opacity="0.6"/>
+      <circle cx="410" cy="395" r="22" fill="#7ec8e3" stroke="#FAFAF7" stroke-width="2"/>
+      <circle cx="500" cy="395" r="22" fill="#1B7A4F" stroke="#FAFAF7" stroke-width="2"/>
+      <circle cx="590" cy="395" r="22" fill="#F5C947" stroke="#FAFAF7" stroke-width="2"/>
     </g>
 
     <!-- Original price (struck through) -->
-    <g transform="translate(500 495)">
+    <g transform="translate(500 485)">
       <text x="0" y="0" text-anchor="middle" font-size="44" font-weight="500"
-            fill="#FAFAF7" opacity="0.55">৳৯৬৩</text>
+            fill="#FAFAF7" opacity="0.6">৳৯৬৩</text>
       <line class="price-strike" x1="-70" y1="-12" x2="70" y2="-12"
-            stroke="#ff6b6b" stroke-width="4" stroke-linecap="round"
+            stroke="#E07A3B" stroke-width="4" stroke-linecap="round"
             stroke-dasharray="200" stroke-dashoffset="200"/>
     </g>
 
-    <!-- Price big -->
-    <g class="price-big">
-      <text x="500" y="620" text-anchor="middle" font-size="150" font-weight="900"
-            fill="#E7C878" letter-spacing="2">৳৩৬৯</text>
+    <!-- Hero price — gradient + pulsing glow -->
+    <g class="price-glow">
+      <g class="price-big">
+        <text x="500" y="615" text-anchor="middle" font-size="154" font-weight="900"
+              fill="url(#price-gradient)" letter-spacing="2">৳৩৬৯</text>
+      </g>
     </g>
 
-    <!-- Pills row -->
-    <g font-size="26" font-weight="700" text-anchor="middle">
-      <rect x="230" y="680" width="160" height="48" rx="24" fill="#0F5132" fill-opacity="0.6" stroke="#E7C878" stroke-width="1.2"/>
-      <text x="310" y="712" fill="#E7C878">৬২% ছাড়</text>
+    <!-- Trust pills — consistent gold hairline, tighter spacing -->
+    <g font-size="24" font-weight="700" text-anchor="middle">
+      <rect x="228" y="678" width="166" height="46" rx="23" fill="#061812" fill-opacity="0.7" stroke="#D4A017" stroke-width="1.2"/>
+      <text x="311" y="708" fill="#F5C947">৬২% ছাড়</text>
 
-      <rect x="410" y="680" width="180" height="48" rx="24" fill="#0F5132" fill-opacity="0.6" stroke="#E7C878" stroke-width="1.2"/>
-      <text x="500" y="712" fill="#FAFAF7">একবার পেমেন্ট</text>
+      <rect x="410" y="678" width="180" height="46" rx="23" fill="#061812" fill-opacity="0.7" stroke="#D4A017" stroke-width="1.2"/>
+      <text x="500" y="708" fill="#FAFAF7">একবার পেমেন্ট</text>
 
-      <rect x="610" y="680" width="160" height="48" rx="24" fill="#0F5132" fill-opacity="0.6" stroke="#E7C878" stroke-width="1.2"/>
-      <text x="690" y="712" fill="#FAFAF7">সারাজীবন</text>
+      <rect x="606" y="678" width="166" height="46" rx="23" fill="#061812" fill-opacity="0.7" stroke="#D4A017" stroke-width="1.2"/>
+      <text x="689" y="708" fill="#FAFAF7">সারাজীবন</text>
     </g>
 
-    <text x="500" y="775" text-anchor="middle" font-size="26" font-weight="500"
-          fill="#FAFAF7" opacity="0.75">প্রথম ৯৬৩ জন গ্রাহকের জন্য</text>
+    <text x="500" y="770" text-anchor="middle" font-size="24" font-weight="500"
+          fill="#FAFAF7" opacity="0.72">৪১ দিন প্রতিশ্রুতি · কোনো সাবস্ক্রিপশন নেই</text>
   </g>
 
-  <!-- SCENE 7 — CTA (8.3–9.0s) -->
+  <!-- ── SCENE 7 — CTA (12.5–14.0s) ── -->
   <g class="scene s7">
     <ellipse cx="500" cy="500" rx="500" ry="340" fill="url(#scene-card)"/>
-    <use href="#brand-mark" x="450" y="330" width="100" height="100"/>
-    <text x="500" y="490" text-anchor="middle" font-size="52" font-weight="600"
-          fill="#FAFAF7" opacity="0.9">আপনার যাত্রা শুরু হোক</text>
-    <text x="500" y="575" text-anchor="middle" font-size="96" font-weight="900"
-          fill="#E7C878">আজইখ4</text>
-    <text x="500" y="650" text-anchor="middle" font-size="30" font-weight="500"
-          fill="#FAFAF7" opacity="0.7" letter-spacing="1">dhoya-mukto-poth.com</text>
+    <ellipse cx="500" cy="500" rx="492" ry="333" fill="none" stroke="url(#card-hairline)" stroke-width="1"/>
+    <use href="#brand-mark" x="450" y="320" width="100" height="100"/>
+    <text x="500" y="490" text-anchor="middle" font-size="48" font-weight="600"
+          fill="#FAFAF7" opacity="0.92">আপনার যাত্রা শুরু হোক</text>
+    <text x="500" y="585" text-anchor="middle" font-size="110" font-weight="900"
+          fill="#F5C947" letter-spacing="3">আজই।</text>
+    <g opacity="0.65">
+      <line x1="380" y1="635" x2="460" y2="635" stroke="#D4A017" stroke-width="1"/>
+      <circle cx="500" cy="635" r="3" fill="#D4A017"/>
+      <line x1="540" y1="635" x2="620" y2="635" stroke="#D4A017" stroke-width="1"/>
+    </g>
+    <text x="500" y="678" text-anchor="middle" font-size="26" font-weight="500"
+          fill="#FAFAF7" opacity="0.75" letter-spacing="1">ধোঁয়া-মুক্ত পথ · স্বাধীনতার প্রথম কদম</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       PROGRESS DOTS — subtle scene indicator at bottom
+       ═══════════════════════════════════════════════════════════════ -->
+  <g aria-hidden="true">
+    <circle class="dot d1" cx="440" cy="945" r="5" fill="#F5C947"/>
+    <circle class="dot d2" cx="460" cy="945" r="5" fill="#F5C947"/>
+    <circle class="dot d3" cx="480" cy="945" r="5" fill="#F5C947"/>
+    <circle class="dot d4" cx="500" cy="945" r="5" fill="#F5C947"/>
+    <circle class="dot d5" cx="520" cy="945" r="5" fill="#F5C947"/>
+    <circle class="dot d6" cx="540" cy="945" r="5" fill="#F5C947"/>
+    <circle class="dot d7" cx="560" cy="945" r="5" fill="#F5C947"/>
   </g>
 </svg>

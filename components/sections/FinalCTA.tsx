@@ -1,80 +1,150 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { SectionWrapper, ShareBar } from "@/components/ui";
+import { Shield, Gift } from "lucide-react";
+import {
+  SectionWrapper,
+  ShareBar,
+  CTAButton,
+  LuxeBackground,
+} from "@/components/ui";
 import { copyBn } from "@/content";
 import { SITE_URL } from "@/lib/config";
+import { EASE_LUXE } from "@/lib/motion";
 
 export function FinalCTA() {
   return (
-    <SectionWrapper className="bg-emerald-deep text-white-pure relative overflow-hidden">
-      {/* Decorative patterns */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-gold-royal/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-white-pure/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+    <SectionWrapper
+      id="final-cta"
+      bgVariant="transparent"
+      className="relative overflow-hidden"
+    >
+      <LuxeBackground variant="final-cta" />
 
-      <div className="max-w-4xl mx-auto text-center relative z-10">
+      <div className="relative z-10 max-w-4xl mx-auto text-center text-white-pure">
+        {/* Kicker */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="flex justify-center mb-6"
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: EASE_LUXE }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 font-hind-siliguri leading-tight">
-            আজই আপনার ধোঁয়া-মুক্ত যাত্রা শুরু করুন
-          </h2>
-          <p className="text-xl md:text-2xl text-white-pure/90 mb-10 font-noto-sans-bengali">
-            মাত্র ৳৩৬৯ বিনিয়োগ করুন নিজের এবং আপনার পরিবারের সুস্থ ভবিষ্যতের জন্য
-          </p>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full luxe-glass border border-gold-royal/30">
+            <span
+              aria-hidden="true"
+              className="w-1.5 h-1.5 rounded-full bg-gold-royal"
+            />
+            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-gold-glow font-inter">
+              আজই শুরু
+            </span>
+          </span>
         </motion.div>
 
-        <motion.div
+        <motion.h2
+          className="text-3xl md:text-5xl lg:text-[3.4rem] font-bold mb-6 font-hind-siliguri leading-[1.2] text-gold-gradient tracking-tight"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          transition={{ duration: 0.8, ease: EASE_LUXE }}
         >
-          <Link
-            href="/checkout"
-            className="w-full sm:w-auto px-8 py-4 bg-gold-royal text-charcoal font-bold rounded-lg hover:bg-gold-royal/90 hover:scale-105 transition-all text-lg shadow-lg"
-          >
-            অ্যাপগুলো ডাউনলোড করুন
-          </Link>
-          <p className="text-white-pure/80 font-noto-sans-bengali">
-            ৪১ দিনের মানি-ব্যাক গ্যারান্টি
-          </p>
-        </motion.div>
+          আজই আপনার ধোঁয়া-মুক্ত যাত্রা শুরু করুন
+        </motion.h2>
+
+        <motion.p
+          className="text-xl md:text-2xl text-white-pure/80 mb-12 font-noto-bengali leading-relaxed max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.15, ease: EASE_LUXE }}
+        >
+          মাত্র ৳৩৬৯ বিনিযোগ করুন নিজের এবং আপনার পরিবারের সুস্থ ভবিষ্যতের জন্য
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="pt-12 border-t border-white-pure/10"
+          transition={{ duration: 0.7, delay: 0.3, ease: EASE_LUXE }}
+          className="flex flex-col items-center gap-5 mb-14"
         >
-          <p className="text-lg text-white-pure/80 mb-6 font-noto-sans-bengali">
+          <div className="luxe-float">
+            <CTAButton
+              variant="luxe"
+              href="/checkout"
+              size="xl"
+              pulse
+              ariaLabel="৳৩৬৯ দিয়ে সম্পূর্ণ যাত্রা কিনুন"
+            >
+              <span>অ্যাপগুলো ডাউনলোড করুন</span>
+              <span aria-hidden="true" className="ml-1">
+                →
+              </span>
+            </CTAButton>
+          </div>
+
+          <div className="flex items-center gap-2 text-gold-glow/80 font-noto-bengali text-sm md:text-base">
+            <Shield className="w-4 h-4" aria-hidden="true" />
+            <span>৪১ দিনের মানি-ব্যাক গ্যারান্টি</span>
+          </div>
+        </motion.div>
+
+        {/* Gift section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.45, ease: EASE_LUXE }}
+          className="pt-12 border-t border-gold-royal/20"
+        >
+          <p className="text-lg text-white-pure/75 mb-6 font-noto-bengali">
             পরিচিত কাউকে উপহার দিতে চান?
           </p>
-          <Link
+
+          <CTAButton
+            variant="luxe-outline"
             href="/gift"
-            className="inline-flex items-center gap-2 text-gold-royal hover:text-white-pure transition-colors font-medium text-lg border border-gold-royal/30 px-6 py-2 rounded-full hover:bg-gold-royal/10"
+            size="md"
+            icon={<Gift className="w-4 h-4" aria-hidden="true" />}
+            className="text-gold-glow border-gold-royal/45"
           >
-            <span>🎁</span> উপহার হিসেবে কিনুন
-          </Link>
+            উপহার হিসেবে কিনুন
+          </CTAButton>
         </motion.div>
 
+        {/* Share bar */}
         <motion.div
-          className="mt-16 pt-8 border-t border-white-pure/10"
+          className="mt-16 pt-10 border-t border-gold-royal/20"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
         >
           <ShareBar
             url={SITE_URL}
             message={copyBn.hero.headline}
             className="justify-center"
+          />
+        </motion.div>
+
+        {/* Bookended sincerity line */}
+        <motion.div
+          className="mt-14 flex items-center justify-center gap-3 text-white-pure/45"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.85 }}
+        >
+          <span
+            aria-hidden="true"
+            className="w-1 h-1 rounded-full bg-gold-royal/60"
+          />
+          <span className="text-xs md:text-sm italic font-playfair tracking-wide">
+            With sincerity and compassion
+          </span>
+          <span
+            aria-hidden="true"
+            className="w-1 h-1 rounded-full bg-gold-royal/60"
           />
         </motion.div>
       </div>

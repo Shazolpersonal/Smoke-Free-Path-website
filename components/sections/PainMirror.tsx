@@ -20,13 +20,13 @@ export function PainMirror() {
     <SectionWrapper
       id="pain-mirror"
       bgVariant="transparent"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden !py-24 md:!py-32 lg:!py-36"
     >
       <LuxeBackground variant="pain" />
 
       {/* Kicker / Eyebrow */}
       <motion.p
-        className="relative z-10 text-center text-xs md:text-sm font-semibold tracking-[0.25em] uppercase text-gold-royal/80 font-hind-siliguri mb-3"
+        className="relative z-10 text-center text-xs md:text-sm font-semibold tracking-[0.25em] uppercase text-gold-royal/80 font-hind-siliguri mt-2 mb-5"
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
@@ -37,7 +37,7 @@ export function PainMirror() {
 
       {/* Section Heading */}
       <motion.h2
-        className="relative z-10 text-3xl md:text-4xl lg:text-5xl font-bold text-white-pure text-center mb-4 font-hind-siliguri leading-tight tracking-tight"
+        className="relative z-10 text-3xl md:text-4xl lg:text-5xl font-bold text-white-pure text-center mb-5 font-hind-siliguri leading-tight tracking-tight"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -48,7 +48,7 @@ export function PainMirror() {
 
       {/* Social proof / reassurance */}
       <motion.p
-        className="relative z-10 text-center text-base md:text-lg text-white-pure/60 font-noto-bengali mb-12 max-w-xl mx-auto leading-relaxed"
+        className="relative z-10 text-center text-base md:text-lg text-white-pure/60 font-noto-bengali mb-14 md:mb-16 max-w-xl mx-auto leading-relaxed"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-80px" }}
@@ -59,7 +59,7 @@ export function PainMirror() {
 
       {/* Floating Thought Cards */}
       <motion.div
-        className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-16"
+        className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-20 md:mb-24"
         variants={staggerContainer(0.1, 0.05)}
         initial="hidden"
         whileInView="visible"
@@ -129,7 +129,7 @@ export function PainMirror() {
 
       {/* Closing Line — gold gradient with down-arrow cue */}
       <motion.div
-        className="relative z-10 flex flex-col items-center"
+        className="relative z-10 flex flex-col items-center px-4 pb-4"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -142,7 +142,7 @@ export function PainMirror() {
         {/* Down-arrow cue to next section */}
         <motion.span
           aria-hidden="true"
-          className="mt-8 text-gold-royal/70 text-2xl"
+          className="mt-12 md:mt-14 mb-2 text-gold-royal/70 text-2xl"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >

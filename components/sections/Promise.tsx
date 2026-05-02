@@ -5,67 +5,129 @@ import { Shield, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { SectionWrapper } from "@/components/ui";
 import { copyBn } from "@/content";
+import { EASE_LUXE, SPRING_SOFT } from "@/lib/motion";
 
 export function Promise() {
   return (
-    <SectionWrapper id="promise" bgVariant="emerald">
-      <div className="max-w-3xl mx-auto text-center">
+    <SectionWrapper
+      id="promise"
+      bgVariant="transparent"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,var(--color-cream-parchment)_0%,#F0E8D0_100%)]"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 luxe-noise-light pointer-events-none"
+      />
+
+      <div className="relative z-10 max-w-3xl mx-auto text-center">
+        {/* Shield with gold glow aura */}
         <motion.div
           className="flex justify-center mb-8"
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          transition={SPRING_SOFT}
         >
-          <div className="p-5 bg-gold-royal/20 rounded-full border border-gold-royal/30 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
-            <Shield className="w-16 h-16 text-gold-royal" />
+          <div className="relative">
+            {/* Glow halo */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 -m-4 rounded-full bg-gold-royal/30 blur-2xl"
+            />
+            <div className="relative p-6 bg-[linear-gradient(135deg,var(--color-gold-glow)_0%,var(--color-gold-royal)_100%)] rounded-full border-2 border-gold-soft shadow-gold-glow">
+              <Shield className="w-14 h-14 text-white-pure" strokeWidth={2} />
+            </div>
           </div>
         </motion.div>
 
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-charcoal mb-4 font-hind-siliguri"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-emerald-deep mb-4 font-hind-siliguri tracking-tight leading-tight"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: EASE_LUXE }}
         >
           {copyBn.promise.heading.replace("🛡️ ", "")}
         </motion.h2>
 
         <motion.h3
-          className="text-xl md:text-2xl text-emerald-deep font-semibold mb-10 font-noto-sans-bengali"
+          className="text-xl md:text-2xl text-gold-royal font-semibold mb-12 font-noto-bengali"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: EASE_LUXE }}
         >
           {copyBn.promise.subHeading}
         </motion.h3>
 
+        {/* Main content card */}
         <motion.div
-          className="bg-white-pure p-8 md:p-10 rounded-2xl shadow-xl border border-gold-royal/20 mb-10 text-left relative"
+          className={[
+            "relative bg-white-pure/95 backdrop-blur-sm",
+            "p-8 md:p-12 rounded-3xl",
+            "shadow-luxe-lg border border-gold-royal/25",
+            "mb-10 text-left",
+            "overflow-hidden",
+          ].join(" ")}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: EASE_LUXE }}
         >
-          <p className="text-lg text-charcoal/80 mb-8 whitespace-pre-line font-noto-sans-bengali leading-relaxed">
+          {/* Top accent bar */}
+          <span
+            aria-hidden="true"
+            className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-gold-royal to-transparent"
+          />
+
+          <p className="text-lg text-charcoal/80 mb-8 whitespace-pre-line font-noto-bengali leading-relaxed">
             {copyBn.promise.intro}
           </p>
 
-          <h4 className="font-bold text-xl text-charcoal mb-6 font-hind-siliguri">{copyBn.promise.thenHeading}</h4>
-          
+          <h4 className="font-bold text-xl text-emerald-deep mb-6 font-hind-siliguri flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="inline-block w-8 h-px bg-gold-royal"
+            />
+            {copyBn.promise.thenHeading}
+          </h4>
+
           <ul className="space-y-4 mb-10">
             {copyBn.promise.benefits.map((benefit, index) => (
-              <li key={index} className="flex items-start gap-4">
-                <CheckCircle2 className="w-6 h-6 text-emerald-deep shrink-0 mt-0.5" />
-                <span className="text-lg text-charcoal/90 font-noto-sans-bengali">{benefit.replace("✓ ", "")}</span>
-              </li>
+              <motion.li
+                key={index}
+                className="flex items-start gap-4"
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.45,
+                  delay: 0.4 + index * 0.08,
+                  ease: EASE_LUXE,
+                }}
+              >
+                <span className="flex-shrink-0 mt-1">
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-deep text-white-pure">
+                    <CheckCircle2 className="w-4 h-4" strokeWidth={2.4} />
+                  </span>
+                </span>
+                <span className="text-lg text-charcoal/90 font-noto-bengali leading-relaxed">
+                  {benefit.replace("✓ ", "")}
+                </span>
+              </motion.li>
             ))}
           </ul>
 
-          <div className="bg-emerald-deep/5 p-6 md:p-8 rounded-xl border border-emerald-deep/10">
-            <h4 className="font-bold text-lg text-emerald-deep mb-4 font-hind-siliguri">{copyBn.promise.whyHeading}</h4>
-            <p className="text-charcoal/80 whitespace-pre-line text-base leading-relaxed font-noto-sans-bengali">
+          {/* Why card — glass-morphism */}
+          <div className="relative bg-emerald-deep/5 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-emerald-deep/15 overflow-hidden">
+            <span
+              aria-hidden="true"
+              className="absolute top-0 left-0 bottom-0 w-1 bg-gradient-to-b from-emerald-bright/60 via-emerald-deep to-emerald-bright/60"
+            />
+            <h4 className="font-bold text-lg text-emerald-deep mb-4 font-hind-siliguri pl-2">
+              {copyBn.promise.whyHeading}
+            </h4>
+            <p className="text-charcoal/80 whitespace-pre-line text-base leading-relaxed font-noto-bengali pl-2">
               {copyBn.promise.whyBody}
             </p>
           </div>
@@ -75,13 +137,19 @@ export function Promise() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
         >
           <Link
             href="/policy/refund"
-            className="inline-flex items-center justify-center text-emerald-deep hover:text-gold-royal underline underline-offset-4 font-semibold transition-colors font-noto-sans-bengali text-lg"
+            className={[
+              "inline-flex items-center justify-center gap-2",
+              "text-emerald-deep hover:text-gold-royal",
+              "underline underline-offset-4 decoration-gold-royal/40 hover:decoration-gold-royal",
+              "font-semibold transition-colors font-noto-bengali text-lg",
+            ].join(" ")}
           >
             {copyBn.promise.cta}
+            <span aria-hidden="true">→</span>
           </Link>
         </motion.div>
       </div>

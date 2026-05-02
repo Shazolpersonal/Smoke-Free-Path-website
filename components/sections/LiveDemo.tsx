@@ -4,17 +4,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/ui";
 import { copyBn } from "@/content";
+import { EASE_LUXE } from "@/lib/motion";
 
 /**
  * LiveDemo — showcases the three apps with static posters.
  *
- * NOTE (2026 refactor): Previously rendered <video> with 0-byte demo .mp4
- * files which broke playback on all devices. We now ship editable SVG
- * posters that render crisply at every DPI and are tiny (~5KB each).
- *
- * To bring videos back later, replace <Image ... /> with <video poster={...}>
- * and add the .mp4 files to /public/demos/. The poster SVGs remain useful
- * as the `poster` attribute.
+ * NOTE: Previously rendered <video> with 0-byte demo .mp4 files which broke
+ * playback. We ship editable SVG posters that render crisply at every DPI
+ * and are tiny (~5KB each). PRESERVED EXACTLY — only the surrounding visual
+ * styling is elevated.
  */
 export function LiveDemo() {
   const demos = [
@@ -42,36 +40,56 @@ export function LiveDemo() {
   ];
 
   return (
-    <SectionWrapper id="live-demo" bgVariant="emerald">
+    <SectionWrapper
+      id="live-demo"
+      bgVariant="transparent"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,var(--color-cream-deep)_0%,var(--color-cream-parchment)_100%)]"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 luxe-noise-light pointer-events-none"
+      />
+
       {/* Section Heading */}
       <motion.div
-        className="text-center mb-12"
+        className="relative z-10 text-center mb-14"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.75, ease: EASE_LUXE }}
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4 font-hind-siliguri">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-emerald-deep mb-4 font-hind-siliguri tracking-tight">
           {copyBn.liveDemo.heading}
         </h2>
-        <p className="text-lg md:text-xl text-charcoal/70 font-noto-sans-bengali">
+        <p className="text-lg md:text-xl text-charcoal/70 font-noto-bengali">
           {copyBn.liveDemo.subtext}
         </p>
       </motion.div>
 
       {/* Demo Posters Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         {demos.map((demo, index) => (
           <motion.div
             key={demo.title}
-            className="relative rounded-xl overflow-hidden bg-white-pure shadow-lg"
+            className={[
+              "relative rounded-2xl overflow-hidden",
+              "bg-white-pure",
+              "border border-gold-royal/25",
+              "shadow-luxe-md",
+              "transition-all duration-500",
+              "hover:-translate-y-1 hover:shadow-luxe-lg hover:border-gold-royal/45",
+            ].join(" ")}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            whileHover={{ scale: 1.02, boxShadow: "0 12px 24px rgba(0,0,0,0.15)" }}
+            transition={{ duration: 0.65, delay: index * 0.1, ease: EASE_LUXE }}
           >
-            {/* Poster container — 9:16 aspect */}
+            {/* Gold top bar */}
+            <span
+              aria-hidden="true"
+              className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-gold-soft/0 via-gold-royal to-gold-soft/0 z-20"
+            />
+
             <div className="relative aspect-[9/16] bg-charcoal/5">
               <Image
                 src={demo.poster}
@@ -84,21 +102,25 @@ export function LiveDemo() {
                 unoptimized
               />
 
-              {/* "Coming soon" ribbon — visible until real video ships */}
+              {/* Ribbon */}
               <div
-                className="absolute top-3 right-3 bg-gold-royal text-charcoal text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider font-noto-sans-bengali shadow-md"
+                className={[
+                  "absolute top-3 right-3 z-10",
+                  "bg-[linear-gradient(135deg,var(--color-gold-glow)_0%,var(--color-gold-royal)_100%)]",
+                  "text-charcoal text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider",
+                  "font-noto-bengali shadow-gold-glow-soft",
+                ].join(" ")}
                 aria-hidden="true"
               >
                 ভিডিও শীঘ্রই
               </div>
             </div>
 
-            {/* Info */}
-            <div className="p-4 bg-white-pure">
-              <h3 className="text-lg font-bold text-charcoal mb-1 font-hind-siliguri">
+            <div className="p-5 bg-white-pure relative">
+              <h3 className="text-lg font-bold text-emerald-deep mb-1.5 font-hind-siliguri">
                 {demo.title}
               </h3>
-              <p className="text-sm text-charcoal/70 font-noto-sans-bengali">
+              <p className="text-sm text-charcoal/70 font-noto-bengali">
                 {demo.description}
               </p>
             </div>
@@ -106,7 +128,7 @@ export function LiveDemo() {
         ))}
       </div>
 
-      <p className="text-center text-sm text-charcoal/60 mt-8 font-noto-sans-bengali">
+      <p className="relative z-10 text-center text-sm text-charcoal/60 mt-10 font-noto-bengali italic">
         ডেমো ভিডিও শীঘ্রই যুক্ত হবে। আপাতত প্রতিটি অ্যাপের পূর্ণাঙ্গ বিবরণ উপরের পোস্টারে।
       </p>
     </SectionWrapper>

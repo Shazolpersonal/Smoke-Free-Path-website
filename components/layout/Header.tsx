@@ -31,18 +31,28 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
         isScrolled
-          ? "bg-white-pure/95 backdrop-blur-md shadow-md"
-          : "bg-transparent"
+          ? "bg-white-pure/90 backdrop-blur-md shadow-luxe-md"
+          : "bg-transparent",
       )}
     >
+      {/* Gold hairline under the header when scrolled */}
+      <span
+        aria-hidden="true"
+        className={cn(
+          "absolute left-0 right-0 bottom-0 h-px transition-opacity duration-500",
+          "bg-gradient-to-r from-transparent via-gold-royal/60 to-transparent",
+          isScrolled ? "opacity-100" : "opacity-0",
+        )}
+      />
+
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo — premium wordmark (logomark + Bengali text + English subscript) */}
+          {/* Logo */}
           <Link
             href="/"
-            className="group flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-90 font-hind-siliguri"
+            className="group flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-95 font-hind-siliguri"
             aria-label="ধোঁয়া-মুক্ত পথ হোম"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -51,27 +61,54 @@ export function Header() {
               alt=""
               width={36}
               height={36}
-              className="h-9 w-9 md:h-10 md:w-10 drop-shadow-sm transition-transform group-hover:rotate-[-3deg]"
+              className="h-9 w-9 md:h-10 md:w-10 drop-shadow-sm transition-transform duration-500 group-hover:rotate-[-3deg]"
             />
             <span className="flex flex-col leading-tight">
-              <span className="text-lg md:text-xl font-bold text-emerald-deep font-hind-siliguri">
+              <span
+                className={cn(
+                  "text-lg md:text-xl font-bold font-hind-siliguri relative inline-block",
+                  isScrolled ? "text-emerald-deep" : "text-white-pure",
+                  "transition-colors duration-500",
+                )}
+              >
                 ধোঁয়া-মুক্ত পথ
+                {/* Animated gold underline on hover */}
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 -bottom-0.5 h-px w-0 bg-gold-royal group-hover:w-full transition-[width] duration-500"
+                />
               </span>
-              <span className="hidden md:inline text-[10px] font-semibold tracking-[0.24em] text-gold-royal/80">
+              <span
+                className={cn(
+                  "hidden md:inline text-[10px] font-semibold tracking-[0.26em] transition-colors duration-500",
+                  isScrolled ? "text-gold-royal/80" : "text-gold-glow/80",
+                )}
+              >
                 SMOKE · FREE · PATH
               </span>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-charcoal hover:text-emerald-deep transition-colors font-medium"
+                className={cn(
+                  "relative font-medium transition-colors duration-300 font-noto-bengali",
+                  isScrolled
+                    ? "text-charcoal hover:text-emerald-deep"
+                    : "text-white-pure/85 hover:text-white-pure",
+                )}
               >
-                {link.label}
+                <span className="relative inline-block group">
+                  {link.label}
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 -bottom-1 h-px w-0 bg-gold-royal group-hover:w-full transition-[width] duration-400"
+                  />
+                </span>
               </a>
             ))}
           </nav>
@@ -80,7 +117,7 @@ export function Header() {
           <div className="flex items-center gap-4">
             {/* Desktop CTA */}
             <div className="hidden md:block">
-              <CTAButton href="/checkout" size="sm">
+              <CTAButton href="/checkout" variant="luxe" size="sm">
                 ৳৩৬৯
               </CTAButton>
             </div>
@@ -88,7 +125,12 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-charcoal hover:text-emerald-deep transition-colors"
+              className={cn(
+                "md:hidden p-2 transition-colors",
+                isScrolled
+                  ? "text-charcoal hover:text-emerald-deep"
+                  : "text-white-pure hover:text-gold-glow",
+              )}
               aria-label="মেনু খুলুন"
               aria-expanded={isMobileMenuOpen}
             >
@@ -126,23 +168,28 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white-pure border-t border-charcoal/10"
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden bg-emerald-abyss/98 backdrop-blur-lg border-t border-gold-royal/20 overflow-hidden"
           >
             <nav className="px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
+              {navLinks.map((link, i) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-lg text-charcoal hover:text-emerald-deep transition-colors font-medium"
+                  className="block text-lg text-white-pure/90 hover:text-gold-glow transition-colors font-medium font-noto-bengali py-1"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06 }}
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
-              <CTAButton href="/checkout" fullWidth>
-                ৳৩৬৯
-              </CTAButton>
+              <div className="pt-3">
+                <CTAButton href="/checkout" variant="luxe" fullWidth>
+                  ৳৩৬৯ — এখনই শুরু করুন
+                </CTAButton>
+              </div>
             </nav>
           </motion.div>
         )}

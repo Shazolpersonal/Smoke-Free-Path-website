@@ -28,25 +28,37 @@ export function Footer() {
   const whatsappDisplay = formatBdPhoneDisplay(WHATSAPP_NUMBER);
 
   return (
-    <footer className="bg-charcoal text-white-pure">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
+    <footer className="relative bg-[linear-gradient(180deg,var(--color-charcoal)_0%,var(--color-emerald-abyss)_100%)] text-white-pure overflow-hidden">
+      {/* Top gold hairline */}
+      <span
+        aria-hidden="true"
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-royal/70 to-transparent"
+      />
+
+      {/* Subtle noise */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 luxe-noise pointer-events-none opacity-60"
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link
               href="/"
-              className="text-2xl font-bold text-emerald-deep hover:text-emerald-deep/80 transition-colors inline-block mb-4 font-hind-siliguri"
+              className="text-2xl font-bold inline-block mb-4 font-hind-siliguri text-luxe-gradient"
             >
               ধোঁয়া-মুক্ত পথ
             </Link>
-            <p className="text-white-pure/80 font-noto-sans-bengali">
-              ধূমপান ছাড়ার একটি ইসলামিক এবং বিজ্ঞানভিত্তিক গাইড।
+            <p className="text-white-pure/75 font-noto-bengali leading-relaxed text-sm md:text-base">
+              ধূমপান ছাড়ার একটি ইসলামিক এবং বিজ্ঞানভিত্তিক গাইড।
             </p>
           </div>
 
           {/* Product */}
           <div>
-            <h3 className="font-bold text-lg mb-6 font-hind-siliguri text-gold-royal">
+            <h3 className="font-bold text-base mb-6 font-hind-siliguri text-gold-royal uppercase tracking-[0.18em]">
               প্রোডাক্ট
             </h3>
             <ul className="space-y-3">
@@ -54,8 +66,12 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white-pure/80 hover:text-white-pure transition-colors"
+                    className="group text-white-pure/75 hover:text-gold-glow transition-colors font-noto-bengali inline-flex items-center gap-1.5"
                   >
+                    <span
+                      aria-hidden="true"
+                      className="w-0 h-px bg-gold-royal transition-[width] duration-300 group-hover:w-3"
+                    />
                     {link.label}
                   </Link>
                 </li>
@@ -65,7 +81,7 @@ export function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-bold text-lg mb-6 font-hind-siliguri text-gold-royal">
+            <h3 className="font-bold text-base mb-6 font-hind-siliguri text-gold-royal uppercase tracking-[0.18em]">
               রিসোর্স
             </h3>
             <ul className="space-y-3">
@@ -73,8 +89,12 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white-pure/80 hover:text-white-pure transition-colors"
+                    className="group text-white-pure/75 hover:text-gold-glow transition-colors font-noto-bengali inline-flex items-center gap-1.5"
                   >
+                    <span
+                      aria-hidden="true"
+                      className="w-0 h-px bg-gold-royal transition-[width] duration-300 group-hover:w-3"
+                    />
                     {link.label}
                   </Link>
                 </li>
@@ -84,7 +104,7 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="font-bold text-lg mb-6 font-hind-siliguri text-gold-royal">
+            <h3 className="font-bold text-base mb-6 font-hind-siliguri text-gold-royal uppercase tracking-[0.18em]">
               পলিসি
             </h3>
             <ul className="space-y-3">
@@ -92,8 +112,12 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white-pure/80 hover:text-white-pure transition-colors"
+                    className="group text-white-pure/75 hover:text-gold-glow transition-colors font-noto-bengali inline-flex items-center gap-1.5"
                   >
+                    <span
+                      aria-hidden="true"
+                      className="w-0 h-px bg-gold-royal transition-[width] duration-300 group-hover:w-3"
+                    />
                     {link.label}
                   </Link>
                 </li>
@@ -102,8 +126,8 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
-            <h3 className="font-bold text-lg mb-6 font-hind-siliguri text-gold-royal">
+          <div className="md:col-span-2 lg:col-span-1">
+            <h3 className="font-bold text-base mb-6 font-hind-siliguri text-gold-royal uppercase tracking-[0.18em]">
               যোগাযোগ
             </h3>
             <ul className="space-y-3">
@@ -112,11 +136,11 @@ export function Footer() {
                   href={`https://wa.me/${whatsappIntl}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white-pure/80 hover:text-white-pure transition-colors"
+                  className="group flex items-center gap-2 text-white-pure/75 hover:text-gold-glow transition-colors"
                   aria-label={`WhatsApp ${whatsappDisplay}`}
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-5 h-5 text-gold-royal/80 group-hover:text-gold-glow transition-colors"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -129,11 +153,11 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${SUPPORT_EMAIL}`}
-                  className="flex items-center gap-2 text-white-pure/80 hover:text-white-pure transition-colors"
+                  className="group flex items-center gap-2 text-white-pure/75 hover:text-gold-glow transition-colors"
                   aria-label={`ইমেইল ${SUPPORT_EMAIL}`}
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-5 h-5 text-gold-royal/80 group-hover:text-gold-glow transition-colors"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -154,10 +178,22 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white-pure/20 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white-pure/60">
-            <p>© {new Date().getFullYear()} ধোঁয়া-মুক্ত পথ | আবদুল করিমের স্মৃতিতে নিবেদিত</p>
-            <p className="italic">Built with sincerity and compassion</p>
+        <div className="pt-8 border-t border-gold-royal/20">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white-pure/55">
+            <p className="text-center md:text-left">
+              © {new Date().getFullYear()} ধোঁয়া-মুক্ত পথ | আবদুল করিমের স্মৃতিতে নিবেদিত
+            </p>
+            <p className="italic flex items-center gap-3 font-playfair">
+              <span
+                aria-hidden="true"
+                className="w-1 h-1 rounded-full bg-gold-royal/60"
+              />
+              Built with sincerity and compassion
+              <span
+                aria-hidden="true"
+                className="w-1 h-1 rounded-full bg-gold-royal/60"
+              />
+            </p>
           </div>
         </div>
       </div>

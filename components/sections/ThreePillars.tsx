@@ -1,8 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SectionWrapper, AppCard } from "@/components/ui";
+import {
+  SectionWrapper,
+  AppCard,
+  LuxeBackground,
+} from "@/components/ui";
 import { copyBn } from "@/content";
+import { EASE_LUXE } from "@/lib/motion";
 
 export function ThreePillars() {
   const { threePillars } = copyBn;
@@ -10,16 +15,29 @@ export function ThreePillars() {
   const total = cards.length;
 
   return (
-    <SectionWrapper id="three-pillars" bgVariant="sepia">
+    <SectionWrapper
+      id="three-pillars"
+      bgVariant="transparent"
+      className="relative overflow-hidden"
+    >
+      <LuxeBackground variant="parchment" withNoise />
+
       {/* Kicker pill */}
       <motion.div
-        className="flex justify-center mb-5"
+        className="relative z-10 flex justify-center mb-5"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.55, ease: EASE_LUXE }}
       >
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-royal/10 text-gold-royal text-[11px] font-bold uppercase tracking-[0.18em] font-inter">
+        <span
+          className={[
+            "inline-flex items-center gap-2 px-4 py-1.5 rounded-full",
+            "bg-white-pure/70 backdrop-blur-sm border border-gold-royal/35",
+            "text-gold-royal text-[11px] font-bold uppercase tracking-[0.18em] font-inter",
+            "shadow-luxe-sm",
+          ].join(" ")}
+        >
           <span
             className="w-1.5 h-1.5 rounded-full bg-gold-royal"
             aria-hidden="true"
@@ -30,28 +48,28 @@ export function ThreePillars() {
 
       {/* Heading */}
       <motion.h2
-        className="text-3xl md:text-5xl font-bold text-charcoal text-center mb-5 font-hind-siliguri leading-tight"
+        className="relative z-10 text-3xl md:text-5xl lg:text-[3.2rem] font-bold text-emerald-deep text-center mb-5 font-hind-siliguri leading-tight tracking-tight"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6, delay: 0.1 }}
+        transition={{ duration: 0.7, delay: 0.1, ease: EASE_LUXE }}
       >
         {threePillars.heading}
       </motion.h2>
 
       {/* Subheading */}
       <motion.p
-        className="text-base md:text-lg text-charcoal/75 text-center max-w-2xl mx-auto mb-14 md:mb-16 font-hind-siliguri leading-relaxed"
+        className="relative z-10 text-base md:text-lg text-charcoal/75 text-center max-w-2xl mx-auto mb-14 md:mb-16 font-hind-siliguri leading-relaxed"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: EASE_LUXE }}
       >
         {threePillars.subheading}
       </motion.p>
 
       {/* Cards grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {cards.map((card, index) => (
           <AppCard
             key={card.name}
@@ -74,24 +92,35 @@ export function ThreePillars() {
         ))}
       </div>
 
-      {/* Bundle reminder */}
+      {/* Bundle reminder — upgraded CTA */}
       <motion.div
-        className="mt-14 md:mt-16 flex flex-col items-center gap-3"
+        className="relative z-10 mt-14 md:mt-16 flex flex-col items-center gap-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6, delay: 0.3 }}
+        transition={{ duration: 0.7, delay: 0.3, ease: EASE_LUXE }}
       >
-        <p className="text-charcoal/75 text-center font-hind-siliguri">
+        <p className="text-charcoal/75 text-center font-hind-siliguri text-base md:text-lg">
           {threePillars.bundleHook}
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <span className="text-2xl md:text-3xl font-bold text-gold-royal font-hind-siliguri">
+        <div className="flex flex-wrap items-center justify-center gap-5">
+          <span className="text-3xl md:text-4xl font-bold text-gold-gradient font-hind-siliguri">
             {threePillars.bundlePrice}
           </span>
           <a
             href="#final-cta"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-royal text-white-pure font-semibold text-sm md:text-base shadow-[0_6px_18px_rgba(212,160,23,0.35)] hover:shadow-[0_10px_28px_rgba(212,160,23,0.5)] hover:-translate-y-0.5 transition-all duration-300 font-hind-siliguri focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-2"
+            className={[
+              "inline-flex items-center gap-2 px-7 py-3.5 rounded-xl",
+              "bg-[linear-gradient(135deg,var(--color-gold-glow)_0%,var(--color-gold-royal)_55%,var(--color-gold-soft)_100%)]",
+              "text-charcoal font-bold text-sm md:text-base",
+              "border border-gold-royal/50",
+              "shadow-gold-glow",
+              "hover:shadow-[0_0_50px_rgba(212,160,23,0.5),0_12px_32px_rgba(212,160,23,0.3)] hover:-translate-y-0.5",
+              "transition-all duration-300",
+              "font-hind-siliguri",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-2",
+              "luxe-cta-shimmer",
+            ].join(" ")}
           >
             {threePillars.bundleCta}
             <span aria-hidden="true">→</span>

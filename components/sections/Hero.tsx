@@ -116,9 +116,11 @@ export function Hero() {
           </motion.div>
 
           {/*
-            Right Column — 9-second animated presentation of the bundle.
-            Preserved as-is per brief: we only restyle the FRAME around the
-            SVG, never the SVG itself.
+            Right Column — 14-second animated presentation of the bundle.
+            The SVG itself owns all visual storytelling; this component only
+            provides the luxe frame (glow, border, ring, shadow). We avoid
+            next/image because the SVG ships its own inline <style> + CSS
+            keyframes that drive the animation.
           */}
           <motion.div
             className="order-1 lg:order-2 w-full mx-auto max-w-md lg:max-w-none"
@@ -133,11 +135,18 @@ export function Hero() {
                 className="absolute -inset-1 rounded-[1.5rem] sm:rounded-[2rem] bg-gradient-to-br from-gold-royal/30 via-gold-glow/15 to-emerald-bright/30 blur-xl opacity-70"
               />
 
-              {/* Frame */}
+              {/*
+                Frame — square across all breakpoints. The SVG has a 1:1
+                viewBox (1000×1000); a 4:3 container + object-cover used to
+                crop the top/bottom of scenes on mobile (cutting the memorial
+                line in Scene 1 and the trust pills in Scene 6). Using
+                aspect-square guarantees no scene content is clipped on any
+                viewport.
+              */}
               <div
                 className={[
                   "relative mx-auto overflow-hidden",
-                  "aspect-[4/3] sm:aspect-square",
+                  "aspect-square",
                   "rounded-2xl sm:rounded-3xl",
                   "border border-gold-royal/40 lg:border-2",
                   "shadow-[0_30px_60px_rgba(6,24,18,0.55),0_0_48px_rgba(212,160,23,0.25)]",
@@ -153,12 +162,12 @@ export function Hero() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/brand/hero-sunrise.svg"
-                  alt="ধোঁয়া-মুক্ত পথ — তিনটি অ্যাপ (মুহূর্ত ব্রেথ, পদক্ষেপ, ৩৬৯), ৪১ দিনের যাত্রা, ৳৩৬৯ লঞ্চ মূল্য"
+                  alt="ধোঁয়া-মুক্ত পথ — ১৪ সেকেন্ডের অ্যানিমেশন: রাত থেকে সূর্যোদয়ের পটভূমিতে ব্র্যান্ড পরিচিতি, ‘শেষ সিগারেট আজই হোক’ প্রতিশ্রুতি, তিনটি অ্যাপ (মুহূর্ত ব্রেথ, পদক্ষেপ, ৩৬৯), ৪১ দিনের যাত্রা, এবং ৳৩৬৯ লঞ্চ মূল্য"
                   width={1000}
                   height={1000}
                   loading="eager"
                   decoding="async"
-                  className="w-full h-full object-cover select-none"
+                  className="w-full h-full object-contain select-none"
                   draggable={false}
                 />
                 {/* Subtle top highlight to blend with hero gradient */}

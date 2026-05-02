@@ -28,22 +28,24 @@ export function Header() {
     { href: "/contact", label: "যোগাযোগ" },
   ];
 
+  // Header is ALWAYS rendered on a white-glass background so brand & menu
+  // icon remain visible regardless of the section underneath (dark hero,
+  // cream parchment, etc.). Elevation/shadow strengthens slightly on scroll.
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
-        isScrolled
-          ? "bg-white-pure/90 backdrop-blur-md shadow-luxe-md"
-          : "bg-transparent",
+        "bg-white-pure/90 backdrop-blur-md",
+        isScrolled ? "shadow-luxe-md" : "shadow-sm",
       )}
     >
-      {/* Gold hairline under the header when scrolled */}
+      {/* Gold hairline — always visible, subtle at top, stronger on scroll */}
       <span
         aria-hidden="true"
         className={cn(
           "absolute left-0 right-0 bottom-0 h-px transition-opacity duration-500",
           "bg-gradient-to-r from-transparent via-gold-royal/60 to-transparent",
-          isScrolled ? "opacity-100" : "opacity-0",
+          isScrolled ? "opacity-100" : "opacity-60",
         )}
       />
 
@@ -64,13 +66,7 @@ export function Header() {
               className="h-9 w-9 md:h-10 md:w-10 drop-shadow-sm transition-transform duration-500 group-hover:rotate-[-3deg]"
             />
             <span className="flex flex-col leading-tight">
-              <span
-                className={cn(
-                  "text-lg md:text-xl font-bold font-hind-siliguri relative inline-block",
-                  isScrolled ? "text-emerald-deep" : "text-white-pure",
-                  "transition-colors duration-500",
-                )}
-              >
+              <span className="text-lg md:text-xl font-bold font-hind-siliguri relative inline-block text-emerald-deep">
                 ধোঁয়া-মুক্ত পথ
                 {/* Animated gold underline on hover */}
                 <span
@@ -78,12 +74,7 @@ export function Header() {
                   className="absolute left-0 -bottom-0.5 h-px w-0 bg-gold-royal group-hover:w-full transition-[width] duration-500"
                 />
               </span>
-              <span
-                className={cn(
-                  "hidden md:inline text-[10px] font-semibold tracking-[0.26em] transition-colors duration-500",
-                  isScrolled ? "text-gold-royal/80" : "text-gold-glow/80",
-                )}
-              >
+              <span className="hidden md:inline text-[10px] font-semibold tracking-[0.26em] text-gold-royal/80">
                 SMOKE · FREE · PATH
               </span>
             </span>
@@ -95,12 +86,7 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className={cn(
-                  "relative font-medium transition-colors duration-300 font-noto-bengali",
-                  isScrolled
-                    ? "text-charcoal hover:text-emerald-deep"
-                    : "text-white-pure/85 hover:text-white-pure",
-                )}
+                className="relative font-medium transition-colors duration-300 font-noto-bengali text-charcoal hover:text-emerald-deep"
               >
                 <span className="relative inline-block group">
                   {link.label}
@@ -125,12 +111,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={cn(
-                "md:hidden p-2 transition-colors",
-                isScrolled
-                  ? "text-charcoal hover:text-emerald-deep"
-                  : "text-white-pure hover:text-gold-glow",
-              )}
+              className="md:hidden p-2 transition-colors text-charcoal hover:text-emerald-deep"
               aria-label="মেনু খুলুন"
               aria-expanded={isMobileMenuOpen}
             >

@@ -20,6 +20,7 @@ export function LiveDemo() {
       title: "মুহূর্ত ব্রেথ",
       description: "তাৎক্ষণিক শান্তির কৌশল",
       poster: "/demos/app-1-poster.svg",
+      video: "/demos/app-1.mp4",
       alt:
         "মুহূর্ত ব্রেথ অ্যাপ পোস্টার — ২১ সেকেন্ডের শ্বাস-প্রশ্বাস ব্যায়াম, যখন তলব আসে তখন ব্যবহারের জন্য।",
     },
@@ -27,6 +28,7 @@ export function LiveDemo() {
       title: "ধোঁয়া-মুক্ত পথ: পদক্ষেপ",
       description: "৪১ দিনের যাত্রা",
       poster: "/demos/app-2-poster.svg",
+      video: "/demos/app-2.mp4",
       alt:
         "পদক্ষেপ অ্যাপ পোস্টার — ৪১ দিনের সূর্যোদয় পথ, দৈনিক চ্যালেঞ্জ ও প্রগতি ট্র্যাকার।",
     },
@@ -34,6 +36,7 @@ export function LiveDemo() {
       title: "ধোঁয়া-মুক্ত পথ: ৩৬৯",
       description: "আধ্যাত্মিক রূপান্তর",
       poster: "/demos/app-3-poster.svg",
+      video: "/demos/app-3.mp4",
       alt:
         "৩৬৯ অ্যাপ পোস্টার — টেসলার ৩৬৯ মেথড অনুসারে ৩ বার সকালে, ৬ বার দুপুরে, ৯ বার রাতে জিকিরের ভিজ্যুয়াল।",
     },
@@ -91,29 +94,43 @@ export function LiveDemo() {
             />
 
             <div className="relative aspect-[9/16] bg-charcoal/5">
-              <Image
-                src={demo.poster}
-                alt={demo.alt}
-                width={1080}
-                height={1920}
-                sizes="(min-width: 768px) 33vw, 100vw"
-                className="absolute inset-0 w-full h-full object-cover"
-                priority={index === 0}
-                unoptimized
-              />
+              {demo.video ? (
+                <video
+                  src={demo.video}
+                  poster={demo.poster}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={demo.poster}
+                  alt={demo.alt}
+                  width={1080}
+                  height={1920}
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  priority={index === 0}
+                  unoptimized
+                />
+              )}
 
               {/* Ribbon */}
-              <div
-                className={[
-                  "absolute top-3 right-3 z-10",
-                  "bg-[linear-gradient(135deg,var(--color-gold-glow)_0%,var(--color-gold-royal)_100%)]",
-                  "text-charcoal text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider",
-                  "font-noto-bengali shadow-gold-glow-soft",
-                ].join(" ")}
-                aria-hidden="true"
-              >
-                ভিডিও শীঘ্রই
-              </div>
+              {!demo.video && (
+                <div
+                  className={[
+                    "absolute top-3 right-3 z-10",
+                    "bg-[linear-gradient(135deg,var(--color-gold-glow)_0%,var(--color-gold-royal)_100%)]",
+                    "text-charcoal text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider",
+                    "font-noto-bengali shadow-gold-glow-soft",
+                  ].join(" ")}
+                  aria-hidden="true"
+                >
+                  ভিডিও শীঘ্রই
+                </div>
+              )}
             </div>
 
             <div className="p-5 bg-white-pure relative">
@@ -128,9 +145,6 @@ export function LiveDemo() {
         ))}
       </div>
 
-      <p className="relative z-10 text-center text-sm text-charcoal/60 mt-10 font-noto-bengali italic">
-        ডেমো ভিডিও শীঘ্রই যুক্ত হবে। আপাতত প্রতিটি অ্যাপের পূর্ণাঙ্গ বিবরণ উপরের পোস্টারে।
-      </p>
     </SectionWrapper>
   );
 }

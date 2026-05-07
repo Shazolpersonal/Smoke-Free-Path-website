@@ -33,7 +33,7 @@ export default function PolicyPage({ params }: { params: { slug: string } }) {
   let content = "";
   try {
     content = fs.readFileSync(filePath, "utf-8");
-  } catch (e) {
+  } catch {
     notFound();
   }
 

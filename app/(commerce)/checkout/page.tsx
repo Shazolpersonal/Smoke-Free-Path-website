@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import Link from "next/link";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { submitOrder, OrderData } from "@/lib/order";
@@ -36,7 +37,7 @@ export default function CheckoutPage() {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<CheckoutFormValues>({
@@ -44,6 +45,12 @@ export default function CheckoutPage() {
     defaultValues: {
       purpose: "self",
     },
+  });
+
+  const purpose = useWatch({
+    control,
+    name: "purpose",
+    defaultValue: "self",
   });
 
   const onSubmit = async (data: CheckoutFormValues) => {
@@ -79,7 +86,7 @@ export default function CheckoutPage() {
     }
   };
 
-  const isGift = watch("purpose") === "gift";
+  const isGift = purpose === "gift";
   const activeNumber = paymentMethod === "bkash" ? BKASH_NUMBER : NAGAD_NUMBER;
   const busy = status.kind === "submitting" || isSubmitting;
   const locked = status.kind === "success";
@@ -127,18 +134,18 @@ export default function CheckoutPage() {
                 </p>
               )}
               <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6">
-                <a
+                <Link
                   href="/thank-you"
                   className="inline-block rounded-xl bg-emerald-deep px-6 py-3 font-bold text-white-pure transition-all hover:shadow-lg hover:shadow-emerald-deep/30 hover:-translate-y-0.5"
                 >
                   পরবর্তী ধাপ দেখুন →
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/"
                   className="inline-block rounded-xl border-2 border-charcoal/20 px-6 py-3 font-bold text-charcoal transition-all hover:border-emerald-deep hover:text-emerald-deep"
                 >
                   হোমে ফিরে যান
-                </a>
+                </Link>
               </div>
             </div>
           )}
@@ -165,7 +172,6 @@ export default function CheckoutPage() {
           <form
             onSubmit={handleSubmit(onSubmit)}
             className={`space-y-8 ${locked ? "opacity-50 pointer-events-none" : ""}`}
-            aria-disabled={locked}
           >
             {/* 1. Basic Info */}
             <div className="space-y-6">
@@ -266,9 +272,9 @@ export default function CheckoutPage() {
                 <div className="mt-4 p-4 bg-gold-royal/10 rounded-xl border border-gold-royal/30">
                   <p className="text-charcoal/80 font-noto-sans-bengali">
                     উপহার দেওয়ার জন্য অনুগ্রহ করে{" "}
-                    <a href="/gift" className="text-emerald-deep font-bold underline hover:text-gold-royal">
+                    <Link href="/gift" className="text-emerald-deep font-bold underline hover:text-gold-royal">
                       উপহার পেজে
-                    </a>{" "}
+                    </Link>{" "}
                     যান।
                   </p>
                 </div>

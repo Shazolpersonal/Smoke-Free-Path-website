@@ -1,0 +1,149 @@
+
+> dhoya-mukto-poth@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 551ms
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+○ Compiling /policy/[slug] ...
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at PolicyPage (app/(legal)/policy/[slug]/page.tsx:26:11)
+  24 |
+  25 | export default function PolicyPage({ params }: { params: { slug: string } }) {
+> 26 |   const { slug } = params;
+     |           ^
+  27 |
+  28 |   if (!["refund", "privacy", "terms"].includes(slug)) {
+  29 |     notFound();
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (app/(legal)/policy/[slug]/page.tsx:21:26)
+  19 |   };
+  20 |   return {
+> 21 |     title: titles[params.slug] || "পলিসি | ধোঁয়া-মুক্ত পথ",
+     |                          ^
+  22 |   };
+  23 | }
+  24 |
+motion() is deprecated. Use motion.create() instead.
+ GET /policy/refund/ 404 in 8.9s (next.js: 7.0s, generate-params: 1176ms, application-code: 1818ms)
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at PolicyPage (app/(legal)/policy/[slug]/page.tsx:26:11)
+  24 |
+  25 | export default function PolicyPage({ params }: { params: { slug: string } }) {
+> 26 |   const { slug } = params;
+     |           ^
+  27 |
+  28 |   if (!["refund", "privacy", "terms"].includes(slug)) {
+  29 |     notFound();
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (app/(legal)/policy/[slug]/page.tsx:21:26)
+  19 |   };
+  20 |   return {
+> 21 |     title: titles[params.slug] || "পলিসি | ধোঁয়া-মুক্ত পথ",
+     |                          ^
+  22 |   };
+  23 | }
+  24 |
+ GET /policy/refund/ 404 in 263ms (next.js: 32ms, generate-params: 24ms, application-code: 231ms)
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at PolicyPage (app/(legal)/policy/[slug]/page.tsx:26:11)
+  24 |
+  25 | export default function PolicyPage({ params }: { params: { slug: string } }) {
+> 26 |   const { slug } = params;
+     |           ^
+  27 |
+  28 |   if (!["refund", "privacy", "terms"].includes(slug)) {
+  29 |     notFound();
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (app/(legal)/policy/[slug]/page.tsx:21:26)
+  19 |   };
+  20 |   return {
+> 21 |     title: titles[params.slug] || "পলিসি | ধোঁয়া-মুক্ত পথ",
+     |                          ^
+  22 |   };
+  23 | }
+  24 |
+ GET /policy/refund/ 404 in 218ms (next.js: 27ms, generate-params: 22ms, application-code: 190ms)
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at PolicyPage (app/(legal)/policy/[slug]/page.tsx:26:11)
+  24 |
+  25 | export default function PolicyPage({ params }: { params: { slug: string } }) {
+> 26 |   const { slug } = params;
+     |           ^
+  27 |
+  28 |   if (!["refund", "privacy", "terms"].includes(slug)) {
+  29 |     notFound();
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (app/(legal)/policy/[slug]/page.tsx:21:26)
+  19 |   };
+  20 |   return {
+> 21 |     title: titles[params.slug] || "পলিসি | ধোঁয়া-মুক্ত পথ",
+     |                          ^
+  22 |   };
+  23 | }
+  24 |
+ HEAD /policy/refund/ 404 in 388ms (next.js: 42ms, generate-params: 30ms, application-code: 346ms)
+✓ Compiled in 960ms
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at PolicyPage (app/(legal)/policy/[slug]/page.tsx:28:11)
+  26 |
+  27 | export default function PolicyPage({ params }: { params: { slug: string } }) {
+> 28 |   const { slug } = params;
+     |           ^
+  29 |
+  30 |   if (!["refund", "privacy", "terms"].includes(slug)) {
+  31 |     notFound();
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (app/(legal)/policy/[slug]/page.tsx:23:26)
+  21 |   };
+  22 |   return {
+> 23 |     title: titles[params.slug] || "পলিসি | ধোঁয়া-মুক্ত পথ",
+     |                          ^
+  24 |   };
+  25 | }
+  26 |
+motion() is deprecated. Use motion.create() instead.
+ GET /policy/refund/ 404 in 1070ms (next.js: 339ms, generate-params: 28ms, application-code: 731ms)
+✓ Compiled in 82ms
+Error: Route "/policy/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (app/(legal)/policy/[slug]/page.tsx:23:26)
+  21 |   };
+  22 |   return {
+> 23 |     title: titles[params.slug] || "পলিসি | ধোঁয়া-মুক্ত পথ",
+     |                          ^
+  24 |   };
+  25 | }
+  26 |
+ GET /policy/refund/ 200 in 262ms (next.js: 34ms, generate-params: 25ms, application-code: 228ms)
+✓ Compiled in 73ms
+ GET /policy/refund/ 200 in 223ms (next.js: 33ms, generate-params: 22ms, application-code: 190ms)
+ HEAD /policy/refund/ 200 in 271ms (next.js: 52ms, generate-params: 40ms, application-code: 219ms)
+ GET / 200 in 1850ms (next.js: 1544ms, application-code: 305ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET / 200 in 194ms (next.js: 10ms, application-code: 184ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET / 200 in 208ms (next.js: 4ms, application-code: 204ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET /policy/refund/ 200 in 196ms (next.js: 35ms, generate-params: 29ms, application-code: 161ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET / 200 in 206ms (next.js: 4ms, application-code: 202ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET /policy/refund/ 200 in 230ms (next.js: 31ms, generate-params: 27ms, application-code: 200ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET / 200 in 177ms (next.js: 4ms, application-code: 174ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET /policy/refund/ 200 in 230ms (next.js: 30ms, generate-params: 26ms, application-code: 201ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET /policy/refund/ 200 in 178ms (next.js: 27ms, generate-params: 24ms, application-code: 151ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET / 200 in 193ms (next.js: 3ms, application-code: 190ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)
+ GET /policy/refund/ 200 in 212ms (next.js: 40ms, generate-params: 33ms, application-code: 172ms)
+[browser] motion() is deprecated. Use motion.create() instead. (components/ui/CTAButton.tsx:74:26)

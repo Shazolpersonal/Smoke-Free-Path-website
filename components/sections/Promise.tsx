@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Shield, CheckCircle2 } from "lucide-react";
-import Link from "next/link";
-import { SectionWrapper } from "@/components/ui";
+import { SectionWrapper, CTAButton } from "@/components/ui";
 import { copyBn } from "@/content";
 import { EASE_LUXE, SPRING_SOFT } from "@/lib/motion";
 
@@ -139,18 +138,13 @@ export function Promise() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <Link
+          <CTAButton
+            variant="luxe"
             href="/policy/refund"
-            className={[
-              "inline-flex items-center justify-center gap-2",
-              "text-emerald-deep hover:text-gold-royal",
-              "underline underline-offset-4 decoration-gold-royal/40 hover:decoration-gold-royal",
-              "font-semibold transition-colors font-noto-bengali text-lg",
-            ].join(" ")}
+            className="font-noto-bengali"
           >
             {copyBn.promise.cta}
-            <span aria-hidden="true">→</span>
-          </Link>
+          </CTAButton>
         </motion.div>
       </div>
     </SectionWrapper>

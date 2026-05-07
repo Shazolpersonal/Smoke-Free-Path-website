@@ -175,7 +175,7 @@ export default async function Image() {
               lineHeight: 1.1,
             }}
           >
-            শেষ সিগারেট আজই হোক।
+            শেষ ধূমপান আজই হোক।
           </span>
           <span
             style={{

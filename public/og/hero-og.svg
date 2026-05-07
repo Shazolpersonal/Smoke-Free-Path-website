@@ -15,7 +15,7 @@
     <g><circle cx="30" cy="30" r="28" fill="none" stroke="#C9A96E" stroke-width="3"/><path d="M14 30 L46 30 M30 14 L30 46" stroke="#C9A96E" stroke-width="3" stroke-linecap="round"/></g>
     <text x="78" y="25" fill="#F6F1E4" font-size="22" font-weight="500" opacity="0.9">SMOKE-FREE-PATH</text>
     <text x="78" y="52" fill="#C9A96E" font-size="20" font-weight="500">ধোঁয়া-মুক্ত পথ</text>
-    <text x="0" y="160" fill="#F6F1E4" font-size="58" font-weight="700">শেষ সিগারেট আজই হোক।</text>
+    <text x="0" y="160" fill="#F6F1E4" font-size="58" font-weight="700">শেষ ধূমপান আজই হোক।</text>
     <text x="0" y="225" fill="url(#goldLine)" font-size="58" font-weight="700">নতুন জীবন আগামীকাল।</text>
     <text x="0" y="290" fill="#F6F1E4" opacity="0.85" font-size="24" font-weight="500">তিনটি অ্যাপ • ৪১ দিনের যাত্রা • সারাজীবনের স্বাধীনতা</text>
     <g transform="translate(0 330)">

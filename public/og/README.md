@@ -16,7 +16,7 @@ Social sharing এবং homepage hero-এর জন্য ব্যানার
 ## Alt text (Bengali + English)
 
 **Hero OG:**
-- bn: "ধোঁয়া-মুক্ত পথ — শেষ সিগারেট আজই হোক, নতুন জীবন আগামীকাল শুরু হোক। তিনটি অ্যাপ, ৪১ দিনের যাত্রা, সারাজীবনের স্বাধীনতা। মাত্র ৳৩৬৯।"
+- bn: "ধোঁয়া-মুক্ত পথ — শেষ ধূমপান আজই হোক, নতুন জীবন আগামীকাল শুরু হোক। তিনটি অ্যাপ, ৪১ দিনের যাত্রা, সারাজীবনের স্বাধীনতা। মাত্র ৳৩৬৯।"
 - en: "Dhoya-Mukto Poth — End smoking today, start a new life tomorrow. Three apps, a 41-day journey, lifelong freedom. Only ৳369."
 
 Same message, same color palette as demo posters — for brand consistency.

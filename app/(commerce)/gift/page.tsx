@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import Link from "next/link";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { submitOrder, OrderData } from "@/lib/order";
@@ -37,7 +38,7 @@ export default function GiftPage() {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<GiftFormValues>({
@@ -45,6 +46,16 @@ export default function GiftPage() {
     defaultValues: {
       purpose: "gift",
     },
+  });
+
+  const watchedRecipientName = useWatch({
+    control,
+    name: "recipientName",
+  });
+
+  const watchedMessage = useWatch({
+    control,
+    name: "message",
   });
 
   const onSubmit = async (data: GiftFormValues) => {
@@ -79,9 +90,8 @@ export default function GiftPage() {
     }
   };
 
-  const recipientName = watch("recipientName") || "[প্রাপকের নাম]";
-  const customMessage =
-    watch("message") || "ধূমপান ছাড়ার এই যাত্রায় আমি তোমার পাশে আছি।";
+  const recipientName = watchedRecipientName || "[প্রাপকের নাম]";
+  const customMessage = watchedMessage || "ধূমপান ছাড়ার এই যাত্রায় আমি তোমার পাশে আছি।";
   const activeNumber = paymentMethod === "bkash" ? BKASH_NUMBER : NAGAD_NUMBER;
   const busy = status.kind === "submitting" || isSubmitting;
   const locked = status.kind === "success";
@@ -128,18 +138,18 @@ export default function GiftPage() {
                 </p>
               )}
               <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6">
-                <a
+                <Link
                   href="/thank-you"
                   className="inline-block rounded-xl bg-emerald-deep px-6 py-3 font-bold text-white-pure transition-all hover:shadow-lg hover:shadow-emerald-deep/30 hover:-translate-y-0.5"
                 >
                   পরবর্তী ধাপ দেখুন →
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/"
                   className="inline-block rounded-xl border-2 border-charcoal/20 px-6 py-3 font-bold text-charcoal transition-all hover:border-emerald-deep hover:text-emerald-deep"
                 >
                   হোমে ফিরে যান
-                </a>
+                </Link>
               </div>
             </div>
           )}
@@ -166,7 +176,6 @@ export default function GiftPage() {
           <form
             onSubmit={handleSubmit(onSubmit)}
             className={`space-y-12 ${locked ? "opacity-50 pointer-events-none" : ""}`}
-            aria-disabled={locked}
           >
             {/* 1. Basic Info */}
             <div className="space-y-6">

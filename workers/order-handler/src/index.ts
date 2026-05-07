@@ -139,7 +139,7 @@ async function sendViaResend(env: Env, d: OrderData, id: string) {
   }
 }
 
-export default {
+const handler = {
   async fetch(req: Request, env: Env): Promise<Response> {
     const url = new URL(req.url);
     const origin = req.headers.get("origin");
@@ -195,3 +195,5 @@ export default {
     return Response.json({ ok: true, id }, { headers: cors });
   },
 };
+
+export default handler;

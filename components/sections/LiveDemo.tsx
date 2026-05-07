@@ -20,6 +20,7 @@ export function LiveDemo() {
       title: "মুহূর্ত ব্রেথ",
       description: "তাৎক্ষণিক শান্তির কৌশল",
       poster: "/demos/app-1-poster.svg",
+      video: "/demos/app-1-demo.webm",
       alt:
         "মুহূর্ত ব্রেথ অ্যাপ পোস্টার — ২১ সেকেন্ডের শ্বাস-প্রশ্বাস ব্যায়াম, যখন তলব আসে তখন ব্যবহারের জন্য।",
     },
@@ -91,29 +92,44 @@ export function LiveDemo() {
             />
 
             <div className="relative aspect-[9/16] bg-charcoal/5">
-              <Image
-                src={demo.poster}
-                alt={demo.alt}
-                width={1080}
-                height={1920}
-                sizes="(min-width: 768px) 33vw, 100vw"
-                className="absolute inset-0 w-full h-full object-cover"
-                priority={index === 0}
-                unoptimized
-              />
+              {demo.video ? (
+                <video
+                  src={demo.video}
+                  poster={demo.poster}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                  aria-label={demo.alt}
+                />
+              ) : (
+                <>
+                  <Image
+                    src={demo.poster}
+                    alt={demo.alt}
+                    width={1080}
+                    height={1920}
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    priority={index === 0}
+                    unoptimized
+                  />
 
-              {/* Ribbon */}
-              <div
-                className={[
-                  "absolute top-3 right-3 z-10",
-                  "bg-[linear-gradient(135deg,var(--color-gold-glow)_0%,var(--color-gold-royal)_100%)]",
-                  "text-charcoal text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider",
-                  "font-noto-bengali shadow-gold-glow-soft",
-                ].join(" ")}
-                aria-hidden="true"
-              >
-                ভিডিও শীঘ্রই
-              </div>
+                  {/* Ribbon */}
+                  <div
+                    className={[
+                      "absolute top-3 right-3 z-10",
+                      "bg-[linear-gradient(135deg,var(--color-gold-glow)_0%,var(--color-gold-royal)_100%)]",
+                      "text-charcoal text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider",
+                      "font-noto-bengali shadow-gold-glow-soft",
+                    ].join(" ")}
+                    aria-hidden="true"
+                  >
+                    ভিডিও শীঘ্রই
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="p-5 bg-white-pure relative">

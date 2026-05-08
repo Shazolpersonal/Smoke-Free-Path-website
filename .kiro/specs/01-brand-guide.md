@@ -12,7 +12,7 @@
 ### Taglines
 
 **Bengali (Primary):**  
-"শেষ সিগারেট থেকে নতুন জীবনের পথে"
+"শেষ ধূমপান থেকে নতুন জীবনের পথে"
 
 **English (Secondary):**  
 "From Your Last Cigarette to a New Beginning"

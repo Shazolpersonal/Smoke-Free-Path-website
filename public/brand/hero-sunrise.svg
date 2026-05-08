@@ -575,7 +575,7 @@
     </g>
 
     <text x="500" y="430" text-anchor="middle" font-size="84" font-weight="800"
-          fill="#FAFAF7">শেষ সিগারেট</text>
+          fill="#FAFAF7">শেষ ধূমপান</text>
     <text x="500" y="520" text-anchor="middle" font-size="104" font-weight="900"
           fill="#F5C947" letter-spacing="2">আজই হোক।</text>
     <line x1="310" y1="570" x2="690" y2="570" stroke="#D4A017" stroke-width="1.4" opacity="0.55"/>

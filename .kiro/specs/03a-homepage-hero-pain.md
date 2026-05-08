@@ -9,7 +9,7 @@ Full-width background with emerald-to-gold gradient, subtle pattern of Islamic g
 
 **Headline (H1, 52px mobile / 72px desktop):**
 ```
-শেষ সিগারেট আজই হোক।
+শেষ ধূমপান আজই হোক।
 নতুন জীবন আগামীকাল শুরু হোক।
 ```
 
@@ -82,7 +82,7 @@ Dark, muted background. Short phrases appear as if overhearing inner thoughts.
 **Displayed as floating quote cards, fading in:**
 ```
 💭 "আগামীকাল থেকে ছেড়ে দেব।"
-💭 "এইটাই শেষ সিগারেট — কসম।"
+💭 "এইটাই শেষ ধূমপান — কসম।"
 💭 "আমার ইচ্ছাশক্তি দুর্বল।"
 💭 "আমি কি পারব?"
 💭 "পরিবার জানলে কী ভাববে?"

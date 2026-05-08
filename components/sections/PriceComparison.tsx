@@ -54,45 +54,108 @@ export function PriceComparison() {
           {copyBn.priceComparison.heading}
         </h2>
 
-        {/* Cost Breakdown Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-          {copyBn.priceComparison.items.map((item, index) => (
-            <motion.div
-              key={index}
-              className={[
-                "relative group p-6 rounded-2xl text-center",
-                "luxe-glass",
-                "border-white-pure/10 hover:border-gold-royal/30",
-                "transition-all duration-500 hover:-translate-y-1",
-                "hover:shadow-[0_18px_36px_rgba(6,24,18,0.55),0_0_20px_rgba(212,160,23,0.15)]",
-              ].join(" ")}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.08,
-                ease: EASE_LUXE,
-              }}
-            >
-              <span className="block text-white-pure/70 mb-3 font-noto-bengali text-sm md:text-base">
-                {item.label}
-              </span>
-              <span className="block text-2xl md:text-3xl font-bold text-red-alert font-hind-siliguri">
-                {item.value}
-              </span>
-              {/* Hover gold underline */}
-              <span
-                aria-hidden="true"
-                className="absolute left-1/2 -translate-x-1/2 bottom-3 h-px w-0 bg-gradient-to-r from-transparent via-gold-royal to-transparent transition-[width] duration-500 group-hover:w-16"
-              />
-            </motion.div>
-          ))}
-        </div>
+        {/* Cost Breakdown - Ascending Chart Layout */}
+        <div className="relative w-full max-w-5xl mx-auto mb-20 px-4">
+          <div className="flex flex-col md:flex-row items-end justify-between gap-4 md:gap-2 h-auto md:h-[400px] mt-12 mb-8">
+            {copyBn.priceComparison.items.map((item, index) => {
+              // Calculate height for desktop ascending bars (min 20%, max 100%)
+              const heightPercent = 25 + (index * (75 / (copyBn.priceComparison.items.length - 1)));
+              const isLast = index === copyBn.priceComparison.items.length - 1;
 
-        {/* Divider */}
-        <div className="text-center text-gold-royal/30 mb-12 select-none hidden md:block text-2xl font-amiri">
-          {copyBn.priceComparison.divider}
+              return (
+                <motion.div
+                  key={index}
+                  className={[
+                    "relative group w-full md:w-1/5 flex flex-col md:justify-end",
+                    "rounded-2xl md:rounded-t-2xl md:rounded-b-none",
+                    "transition-all duration-500",
+                  ].join(" ")}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.7,
+                    delay: index * 0.15,
+                    ease: EASE_LUXE,
+                  }}
+                >
+                  {/* Mobile Layout (Horizontal Card) */}
+                  <div className={[
+                    "md:hidden p-5 rounded-2xl flex items-center justify-between border",
+                    isLast
+                      ? "bg-red-alert/10 border-red-alert/30 shadow-[0_0_20px_rgba(239,68,68,0.15)]"
+                      : "luxe-glass border-white-pure/10"
+                  ].join(" ")}>
+                    <span className="text-white-pure/80 font-noto-bengali text-base">
+                      {item.label}
+                    </span>
+                    <span className={[
+                      "font-bold font-hind-siliguri text-xl",
+                      isLast ? "text-red-500 text-2xl" : "text-white-pure"
+                    ].join(" ")}>
+                      {item.value}
+                    </span>
+                  </div>
+
+                  {/* Desktop Layout (Ascending Bars) */}
+                  <div className="hidden md:flex flex-col items-center w-full h-full justify-end group-hover:-translate-y-2 transition-transform duration-500">
+                    <div className="text-center mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -top-12 w-[150%] left-1/2 -translate-x-1/2">
+                      <span className="block text-white-pure/60 text-sm font-noto-bengali">
+                        {item.label}
+                      </span>
+                    </div>
+
+                    <span className={[
+                      "block text-2xl lg:text-3xl font-bold font-hind-siliguri mb-4 z-10 transition-colors duration-300",
+                      isLast ? "text-red-alert scale-110" : "text-white-pure/90 group-hover:text-gold-royal"
+                    ].join(" ")}>
+                      {item.value}
+                    </span>
+
+                    <motion.div
+                      className={[
+                        "w-full rounded-t-2xl relative overflow-hidden",
+                        isLast
+                          ? "bg-gradient-to-t from-red-alert/5 to-red-alert/20 border-t border-x border-red-alert/40 shadow-[0_-10px_30px_rgba(239,68,68,0.15)]"
+                          : "bg-gradient-to-t from-white-pure/5 to-white-pure/10 border-t border-x border-white-pure/10 group-hover:border-gold-royal/30"
+                      ].join(" ")}
+                      style={{ height: `${heightPercent}%` }}
+                      initial={{ height: 0 }}
+                      whileInView={{ height: `${heightPercent}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
+                    >
+                      {/* Animated inner gradient for last item */}
+                      {isLast && (
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-t from-transparent via-red-alert/10 to-transparent"
+                          animate={{ y: ["100%", "-100%"] }}
+                          transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                        />
+                      )}
+                    </motion.div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Desktop base line */}
+          <div className="hidden md:block w-full h-px bg-gradient-to-r from-transparent via-white-pure/20 to-transparent" />
+
+          {/* Desktop Labels under the bars */}
+          <div className="hidden md:flex justify-between mt-4 px-2">
+             {copyBn.priceComparison.items.map((item, index) => (
+                <div key={`label-${index}`} className="w-1/5 text-center">
+                  <span className={[
+                    "font-noto-bengali text-sm",
+                    index === copyBn.priceComparison.items.length - 1 ? "text-red-400 font-medium" : "text-white-pure/60"
+                  ].join(" ")}>
+                    {item.label}
+                  </span>
+                </div>
+             ))}
+          </div>
         </div>
 
         {/* Bundle highlight card */}

@@ -184,8 +184,9 @@ export default function GiftPage() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">আপনার নাম</label>
+                  <label htmlFor="name" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">আপনার নাম</label>
                   <input
+                    id="name"
                     {...register("name")}
                     disabled={busy}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -196,8 +197,9 @@ export default function GiftPage() {
                   {errors.name && <p className="text-red-alert text-sm mt-1">{errors.name.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">ইমেইল ঠিকানা</label>
+                  <label htmlFor="email" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">ইমেইল ঠিকানা</label>
                   <input
+                    id="email"
                     {...register("email")}
                     disabled={busy}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -209,8 +211,9 @@ export default function GiftPage() {
                   {errors.email && <p className="text-red-alert text-sm mt-1">{errors.email.message}</p>}
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">মোবাইল নম্বর</label>
+                  <label htmlFor="phone" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">মোবাইল নম্বর</label>
                   <input
+                    id="phone"
                     {...register("phone")}
                     disabled={busy}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -231,8 +234,9 @@ export default function GiftPage() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">প্রাপকের নাম</label>
+                  <label htmlFor="recipientName" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">প্রাপকের নাম</label>
                   <input
+                    id="recipientName"
                     {...register("recipientName")}
                     disabled={busy}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -243,8 +247,9 @@ export default function GiftPage() {
                   {errors.recipientName && <p className="text-red-alert text-sm mt-1">{errors.recipientName.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">প্রাপকের ইমেইল</label>
+                  <label htmlFor="recipientEmail" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">প্রাপকের ইমেইল</label>
                   <input
+                    id="recipientEmail"
                     {...register("recipientEmail")}
                     disabled={busy}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -256,8 +261,9 @@ export default function GiftPage() {
                   {errors.recipientEmail && <p className="text-red-alert text-sm mt-1">{errors.recipientEmail.message}</p>}
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">বিশেষ বার্তা (ঐচ্ছিক)</label>
+                  <label htmlFor="message" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">বিশেষ বার্তা (ঐচ্ছিক)</label>
                   <textarea
+                    id="message"
                     {...register("message")}
                     disabled={busy}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -338,10 +344,11 @@ export default function GiftPage() {
                 </ol>
               </div>
               <div>
-                <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
+                <label htmlFor="trxId" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
                   Transaction ID (TrxID)
                 </label>
                 <input
+                  id="trxId"
                   {...register("trxId")}
                   disabled={busy}
                   className={`w-full px-4 py-3 rounded-xl border ${

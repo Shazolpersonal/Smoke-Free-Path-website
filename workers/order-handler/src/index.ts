@@ -70,7 +70,23 @@ function validateOrder(o: unknown): OrderData | string {
 
 function corsHeaders(origin: string | null, allowed: string[]) {
   const ok = origin
-    ? allowed.some((a) => origin === a || origin.endsWith(".pages.dev"))
+    ? allowed.some((a) => {
+        if (origin === a) return true;
+        try {
+          const aUrl = new URL(a);
+          const oUrl = new URL(origin);
+          // Only allow preview branches for .pages.dev hostnames that are explicitly allowed
+          if (aUrl.hostname.endsWith(".pages.dev")) {
+            return (
+              oUrl.hostname.endsWith("." + aUrl.hostname) &&
+              oUrl.protocol === aUrl.protocol
+            );
+          }
+        } catch {
+          // Ignore invalid URLs
+        }
+        return false;
+      })
     : false;
   return {
     "Access-Control-Allow-Origin": ok ? origin! : allowed[0] ?? "*",

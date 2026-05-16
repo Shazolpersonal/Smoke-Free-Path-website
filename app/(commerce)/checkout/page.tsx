@@ -181,10 +181,11 @@ export default function CheckoutPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
+                  <label htmlFor="name" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
                     আপনার নাম
                   </label>
                   <input
+                    id="name"
                     {...register("name")}
                     disabled={busy}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -200,10 +201,11 @@ export default function CheckoutPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
+                  <label htmlFor="email" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
                     ইমেইল ঠিকানা
                   </label>
                   <input
+                    id="email"
                     {...register("email")}
                     disabled={busy}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -220,10 +222,11 @@ export default function CheckoutPage() {
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
+                  <label htmlFor="phone" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
                     মোবাইল নম্বর (বাংলাদেশ)
                   </label>
                   <input
+                    id="phone"
                     {...register("phone")}
                     disabled={busy}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -241,31 +244,35 @@ export default function CheckoutPage() {
               </div>
 
               <div className="mt-4 p-4 bg-charcoal/5 rounded-xl border border-charcoal/10">
-                <label className="block text-sm font-bold text-charcoal mb-3 font-noto-sans-bengali">
-                  আপনি কার জন্য কিনছেন?
-                </label>
-                <div className="flex gap-6">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      value="self"
-                      {...register("purpose")}
-                      disabled={busy}
-                      className="w-5 h-5 text-emerald-deep focus:ring-emerald-deep"
-                    />
-                    <span className="font-noto-sans-bengali">নিজের জন্য</span>
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      value="gift"
-                      {...register("purpose")}
-                      disabled={busy}
-                      className="w-5 h-5 text-emerald-deep focus:ring-emerald-deep"
-                    />
-                    <span className="font-noto-sans-bengali">উপহার হিসেবে</span>
-                  </label>
-                </div>
+                <fieldset>
+                  <legend className="block text-sm font-bold text-charcoal mb-3 font-noto-sans-bengali">
+                    আপনি কার জন্য কিনছেন?
+                  </legend>
+                  <div className="flex gap-6">
+                    <label htmlFor="purpose-self" className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        id="purpose-self"
+                        type="radio"
+                        value="self"
+                        {...register("purpose")}
+                        disabled={busy}
+                        className="w-5 h-5 text-emerald-deep focus:ring-emerald-deep"
+                      />
+                      <span className="font-noto-sans-bengali">নিজের জন্য</span>
+                    </label>
+                    <label htmlFor="purpose-gift" className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        id="purpose-gift"
+                        type="radio"
+                        value="gift"
+                        {...register("purpose")}
+                        disabled={busy}
+                        className="w-5 h-5 text-emerald-deep focus:ring-emerald-deep"
+                      />
+                      <span className="font-noto-sans-bengali">উপহার হিসেবে</span>
+                    </label>
+                  </div>
+                </fieldset>
               </div>
 
               {isGift && (
@@ -348,10 +355,11 @@ export default function CheckoutPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
+                <label htmlFor="trxId" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
                   Transaction ID (TrxID)
                 </label>
                 <input
+                  id="trxId"
                   {...register("trxId")}
                   disabled={busy}
                   className={`w-full px-4 py-3 rounded-xl border ${

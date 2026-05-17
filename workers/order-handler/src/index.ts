@@ -192,7 +192,7 @@ const handler = {
       );
     }
 
-    const id = `ord_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+    const id = `ord_${crypto.randomUUID()}`;
 
     try {
       await sendViaResend(env, result, id);

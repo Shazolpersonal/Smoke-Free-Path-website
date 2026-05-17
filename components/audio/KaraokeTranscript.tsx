@@ -10,7 +10,7 @@
  * adab rules. Bengali lines use Hind Siliguri.
  */
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { useAudioPlayer } from "./AudioProvider";
 import { A11Y_TEXT } from "./audio-config";
@@ -52,13 +52,13 @@ export function KaraokeTranscript() {
     >
       <div className="space-y-2 py-4 max-w-xl mx-auto">
         {transcript.lines.map((line, idx) => (
-          <TranscriptLineRow
+          <MemoizedTranscriptLineRow
             key={idx}
             line={line}
             index={idx}
             active={idx === currentLineIndex}
             past={idx < currentLineIndex}
-            onClick={() => seek(line.t)}
+            onSeek={seek}
           />
         ))}
       </div>
@@ -66,18 +66,18 @@ export function KaraokeTranscript() {
   );
 }
 
-function TranscriptLineRow({
+const MemoizedTranscriptLineRow = React.memo(function TranscriptLineRow({
   line,
   index,
   active,
   past,
-  onClick,
+  onSeek,
 }: {
   line: TranscriptLine;
   index: number;
   active: boolean;
   past: boolean;
-  onClick: () => void;
+  onSeek: (t: number) => void;
 }) {
   const opacityClass = active ? "opacity-100" : past ? "opacity-40" : "opacity-60";
   const colorClass = active ? "text-[#10b981]" : "text-[#faf8f1]";
@@ -89,7 +89,7 @@ function TranscriptLineRow({
     <button
       type="button"
       data-line-index={index}
-      onClick={onClick}
+      onClick={() => onSeek(line.t)}
       dir={line.arabic ? "rtl" : "ltr"}
       className={`block w-full text-left px-3 py-2 rounded-lg transition-all duration-300 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] ${opacityClass} ${colorClass} ${fontClass}`}
       aria-current={active ? "true" : undefined}
@@ -97,4 +97,4 @@ function TranscriptLineRow({
       {line.text}
     </button>
   );
-}
+});

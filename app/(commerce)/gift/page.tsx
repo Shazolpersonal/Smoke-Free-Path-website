@@ -298,10 +298,11 @@ export default function GiftPage() {
                   type="button"
                   onClick={() => setPaymentMethod("bkash")}
                   disabled={busy}
-                  className={`flex-1 py-4 rounded-xl font-bold transition-all disabled:cursor-not-allowed ${
+                  aria-pressed={paymentMethod === "bkash"}
+                  className={`flex-1 py-4 rounded-xl font-bold transition-all disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E2136E] focus-visible:ring-offset-2 ${
                     paymentMethod === "bkash"
                       ? "bg-[#E2136E] text-white-pure shadow-lg scale-105"
-                      : "bg-charcoal/5 text-charcoal/60"
+                      : "bg-charcoal/5 text-charcoal/60 hover:bg-charcoal/10"
                   }`}
                 >
                   bKash
@@ -310,10 +311,11 @@ export default function GiftPage() {
                   type="button"
                   onClick={() => setPaymentMethod("nagad")}
                   disabled={busy}
-                  className={`flex-1 py-4 rounded-xl font-bold transition-all disabled:cursor-not-allowed ${
+                  aria-pressed={paymentMethod === "nagad"}
+                  className={`flex-1 py-4 rounded-xl font-bold transition-all disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ED1C24] focus-visible:ring-offset-2 ${
                     paymentMethod === "nagad"
                       ? "bg-[#ED1C24] text-white-pure shadow-lg scale-105"
-                      : "bg-charcoal/5 text-charcoal/60"
+                      : "bg-charcoal/5 text-charcoal/60 hover:bg-charcoal/10"
                   }`}
                 >
                   Nagad

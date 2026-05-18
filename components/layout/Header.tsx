@@ -54,7 +54,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="group flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-95 font-hind-siliguri"
+            className="group flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-95 font-hind-siliguri focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-4 rounded-lg"
             aria-label="ধোঁয়া-মুক্ত পথ হোম"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -86,7 +86,7 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="relative font-medium transition-colors duration-300 font-noto-bengali text-charcoal hover:text-emerald-deep"
+                className="relative font-medium transition-colors duration-300 font-noto-bengali text-charcoal hover:text-emerald-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-4 rounded-sm"
               >
                 <span className="relative inline-block group">
                   {link.label}
@@ -111,7 +111,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 transition-colors text-charcoal hover:text-emerald-deep"
+              className="md:hidden p-2 transition-colors text-charcoal hover:text-emerald-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal rounded-md"
               aria-label="মেনু খুলুন"
               aria-expanded={isMobileMenuOpen}
             >
@@ -158,7 +158,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-lg text-white-pure/90 hover:text-gold-glow transition-colors font-medium font-noto-bengali py-1"
+                  className="block text-lg text-white-pure/90 hover:text-gold-glow transition-colors font-medium font-noto-bengali py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-2 focus-visible:ring-offset-emerald-abyss rounded-sm"
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 }}

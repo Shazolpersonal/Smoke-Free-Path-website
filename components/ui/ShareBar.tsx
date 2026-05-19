@@ -21,14 +21,15 @@ export function ShareBar({
 
   const handleWhatsApp = () => {
     const text = encodeURIComponent(`${message}\n\n${url}`);
-    window.open(`https://wa.me/?text=${text}`, "_blank");
+    window.open(`https://wa.me/?text=${text}`, "_blank", "noopener,noreferrer");
   };
 
   const handleFacebook = () => {
     const shareUrl = encodeURIComponent(url);
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
-      "_blank"
+      "_blank",
+      "noopener,noreferrer"
     );
   };
 

@@ -6,3 +6,7 @@
 **Vulnerability:** The Cloudflare Worker `workers/order-handler/src/index.ts` used `Math.random()` to generate the `id` for new orders. `Math.random()` is not cryptographically secure and the resulting values can be predicted.
 **Learning:** For identifiers generated for transaction tracking, predictability might allow unauthorized users to guess other order IDs, creating a security/privacy risk.
 **Prevention:** Use secure random number generators like `crypto.randomUUID()` instead of `Math.random()` when creating unique identifiers or tokens.
+## 2026-05-19 - [MEDIUM] Reverse Tabnabbing via window.open
+**Vulnerability:** The application used `window.open(url, "_blank")` without specifying `noopener,noreferrer`. This exposes the `window.opener` object to the newly opened tab, which could potentially navigate the original application window to a malicious URL (reverse tabnabbing).
+**Learning:** `window.open` behavior is similar to `<a target="_blank">` but requires explicit mitigation via the third argument `features` string or by setting `noopener` explicitly.
+**Prevention:** Always pass `"noopener,noreferrer"` as the third parameter when opening external links using `window.open` with `"_blank"`.

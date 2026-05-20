@@ -50,6 +50,10 @@ function validateOrder(o: unknown): OrderData | string {
     if (typeof d[k] !== "string" || (d[k] as string).length === 0) {
       return `Field '${k}' is required`;
     }
+    // 🛡️ Sentinel: Enforce max length on required strings (DoS prevention)
+    if ((d[k] as string).length > 255) {
+      return `Field '${k}' exceeds maximum length of 255`;
+    }
   }
   if (d.purpose !== "self" && d.purpose !== "gift") {
     return "purpose must be 'self' or 'gift'";
@@ -63,6 +67,15 @@ function validateOrder(o: unknown): OrderData | string {
   if ((d.purpose as string) === "gift") {
     if (!d.recipientName || !d.recipientEmail) {
       return "gift orders need recipientName and recipientEmail";
+    }
+  }
+
+  // 🛡️ Sentinel: Enforce types and bounds on optional fields
+  const optional: Array<keyof OrderData> = ["recipientName", "recipientEmail", "message"];
+  for (const k of optional) {
+    if (d[k] !== undefined) {
+      if (typeof d[k] !== "string") return `Field '${k}' must be a string if provided`;
+      if ((d[k] as string).length > 2000) return `Field '${k}' exceeds maximum length`;
     }
   }
   return d as unknown as OrderData;
@@ -197,11 +210,13 @@ const handler = {
     try {
       await sendViaResend(env, result, id);
     } catch (err) {
+      // 🛡️ Sentinel: Do not leak error details (like API keys/messages) to client
+      console.error("[sendViaResend Error]:", err);
       return Response.json(
         {
           ok: false,
           error: "email_send_failed",
-          detail: err instanceof Error ? err.message : String(err),
+          detail: "Internal error while processing email.",
           id, // client still knows the id in case operator queries logs
         },
         { status: 502, headers: cors }

@@ -188,6 +188,8 @@ export default function CheckoutPage() {
                     id="name"
                     {...register("name")}
                     disabled={busy}
+                    aria-invalid={errors.name ? "true" : "false"}
+                    aria-describedby={errors.name ? "name-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.name
                         ? "border-red-alert bg-red-alert/5"
@@ -196,7 +198,7 @@ export default function CheckoutPage() {
                     placeholder="আপনার পুরো নাম"
                   />
                   {errors.name && (
-                    <p className="text-red-alert text-sm mt-1">{errors.name.message}</p>
+                    <p id="name-error" className="text-red-alert text-sm mt-1">{errors.name.message}</p>
                   )}
                 </div>
 
@@ -208,6 +210,8 @@ export default function CheckoutPage() {
                     id="email"
                     {...register("email")}
                     disabled={busy}
+                    aria-invalid={errors.email ? "true" : "false"}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.email
                         ? "border-red-alert bg-red-alert/5"
@@ -217,7 +221,7 @@ export default function CheckoutPage() {
                     type="email"
                   />
                   {errors.email && (
-                    <p className="text-red-alert text-sm mt-1">{errors.email.message}</p>
+                    <p id="email-error" className="text-red-alert text-sm mt-1">{errors.email.message}</p>
                   )}
                 </div>
 
@@ -229,6 +233,8 @@ export default function CheckoutPage() {
                     id="phone"
                     {...register("phone")}
                     disabled={busy}
+                    aria-invalid={errors.phone ? "true" : "false"}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.phone
                         ? "border-red-alert bg-red-alert/5"
@@ -238,7 +244,7 @@ export default function CheckoutPage() {
                     type="tel"
                   />
                   {errors.phone && (
-                    <p className="text-red-alert text-sm mt-1">{errors.phone.message}</p>
+                    <p id="phone-error" className="text-red-alert text-sm mt-1">{errors.phone.message}</p>
                   )}
                 </div>
               </div>
@@ -364,6 +370,8 @@ export default function CheckoutPage() {
                   id="trxId"
                   {...register("trxId")}
                   disabled={busy}
+                  aria-invalid={errors.trxId ? "true" : "false"}
+                  aria-describedby={errors.trxId ? "trxId-error" : undefined}
                   className={`w-full px-4 py-3 rounded-xl border ${
                     errors.trxId
                       ? "border-red-alert bg-red-alert/5"
@@ -372,7 +380,7 @@ export default function CheckoutPage() {
                   placeholder="e.g. 9E5BXXXXXXXX"
                 />
                 {errors.trxId && (
-                  <p className="text-red-alert text-sm mt-1">{errors.trxId.message}</p>
+                  <p id="trxId-error" className="text-red-alert text-sm mt-1">{errors.trxId.message}</p>
                 )}
               </div>
             </div>

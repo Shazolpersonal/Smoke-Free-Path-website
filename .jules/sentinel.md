@@ -10,3 +10,7 @@
 **Vulnerability:** The application used `window.open(url, "_blank")` without specifying `noopener,noreferrer`. This exposes the `window.opener` object to the newly opened tab, which could potentially navigate the original application window to a malicious URL (reverse tabnabbing).
 **Learning:** `window.open` behavior is similar to `<a target="_blank">` but requires explicit mitigation via the third argument `features` string or by setting `noopener` explicitly.
 **Prevention:** Always pass `"noopener,noreferrer"` as the third parameter when opening external links using `window.open` with `"_blank"`.
+## 2026-05-21 - [HIGH] XSS Vulnerability in Structured Data Scripts
+**Vulnerability:** The application used `dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}` inside `<script type="application/ld+json">` tags to render structured data. If the data contained user input or environment variables with malicious HTML tags (e.g. `</script><script>alert(1)</script>`), the JSON serialization would not escape the `<` character, leading to an XSS execution.
+**Learning:** `JSON.stringify` does not escape HTML entities, making it unsafe to inject directly inside `<script>` tags if the content contains a closing `</script>` tag.
+**Prevention:** Always sanitize the output of `JSON.stringify` when placing it inside a `<script>` block, for example by using `.replace(/</g, '\\u003c')`.

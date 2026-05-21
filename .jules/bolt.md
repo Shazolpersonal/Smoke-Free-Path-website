@@ -6,3 +6,7 @@
 ## 2024-06-25 - [High Frequency Context Consumers in Lists]
 **Learning:** The project's audio context (`useAudioPlayer`) updates the `currentLineIndex` very frequently (e.g., ~4 times a second) during playback. If list items inside a map (like `TranscriptLineRow` in `KaraokeTranscript`) do not use `React.memo` and stable callbacks, they will completely re-render on every tick. This creates unnecessary react render overhead and UI stuttering.
 **Action:** When a context provides frequently updating values to a long list, ensure that list child components use `React.memo` and that they receive stable props (e.g. passing a parent `seek` function and the child's `time` instead of inline closures `() => seek(line.t)`).
+
+## 2024-05-25 - [Scroll Event Listeners Cleanup]
+**Learning:** When using `requestAnimationFrame` to throttle scroll event listeners, simply tracking `ticking` is not enough to prevent potential React warnings about updating unmounted components. If the component unmounts right after a scroll event but before the animation frame executes, the state update runs on an unmounted component.
+**Action:** Always store the returned frame ID from `requestAnimationFrame` in a variable (e.g. `frameId`) and explicitly call `window.cancelAnimationFrame(frameId)` in the `useEffect` cleanup return function along with `removeEventListener`.

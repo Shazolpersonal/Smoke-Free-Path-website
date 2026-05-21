@@ -11,12 +11,29 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    // ⚡ Bolt Performance Optimization:
+    // 1. Throttle scroll event using requestAnimationFrame to limit state updates to 60 FPS, reducing re-renders.
+    // 2. passive: true prevents scroll jank by letting the browser know we won't call preventDefault().
+    // Expected Impact: Eliminates layout thrashing during scroll, ensuring smooth 60fps scrolling performance.
+    let ticking = false;
+    let frameId: number;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (!ticking) {
+        frameId = window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   // Absolute paths (with leading "/") so in-page anchors also work when

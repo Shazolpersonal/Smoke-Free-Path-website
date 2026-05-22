@@ -11,12 +11,29 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let frameId: number | null = null;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (frameId !== null) return;
+
+      // ⚡ Bolt: Throttled state update using requestAnimationFrame to prevent scroll jank
+      // and respect 60 FPS refresh rate.
+      frameId = requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 20);
+        frameId = null;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // ⚡ Bolt: Added { passive: true } to prevent blocking main thread scroll
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      // ⚡ Bolt: Cleanup frame to prevent memory leaks
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+      }
+    };
   }, []);
 
   // Absolute paths (with leading "/") so in-page anchors also work when

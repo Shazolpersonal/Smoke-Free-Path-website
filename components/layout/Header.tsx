@@ -11,12 +11,27 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let frameId: number | null = null;
+
+    // ⚡ Bolt Optimization:
+    // Problem: Scroll events fire continuously and synchronously, blocking the main thread and causing jank.
+    // Solution: Throttled state updates using `requestAnimationFrame` and made the listener passive.
+    // Impact: Respects 60 FPS refresh rate, prevents React render queueing, and stops compositor blocking.
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (frameId !== null) return;
+      frameId = window.requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 20);
+        frameId = null;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
   }, []);
 
   // Absolute paths (with leading "/") so in-page anchors also work when

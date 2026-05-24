@@ -11,12 +11,29 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let frameId: number | null = null;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (frameId !== null) return;
+
+      frameId = window.requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 20);
+        frameId = null;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // ⚡ Bolt Optimization:
+    // Problem: Synchronous high-frequency scroll event listeners block the main thread and cause scroll jank.
+    // Solution: Throttle state updates using requestAnimationFrame and use `{ passive: true }`
+    // Impact: Smooths scrolling by preventing state updates from exceeding the browser's 60 FPS refresh rate.
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
   }, []);
 
   // Absolute paths (with leading "/") so in-page anchors also work when

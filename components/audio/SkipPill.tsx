@@ -65,6 +65,7 @@ export function SkipPill() {
             onClick={dismissMiniPlayer}
             className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition"
             aria-label={A11Y_TEXT.close}
+            title={A11Y_TEXT.close}
           >
             <svg
               viewBox="0 0 24 24"

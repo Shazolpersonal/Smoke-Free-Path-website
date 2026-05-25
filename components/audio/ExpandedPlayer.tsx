@@ -152,6 +152,7 @@ export function ExpandedPlayer() {
               onClick={collapse}
               className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition"
               aria-label={A11Y_TEXT.collapse}
+              title={`${A11Y_TEXT.collapse} (Esc)`}
               data-testid="sfp-audio-expanded-close"
             >
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
@@ -246,6 +247,7 @@ export function ExpandedPlayer() {
                   onClick={() => skipBackward(AUDIO_CONFIG.skipBackwardSec)}
                   className="w-11 h-11 rounded-full text-[#faf8f1]/80 hover:text-[#D4A017] hover:bg-white/5 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition"
                   aria-label={A11Y_TEXT.skip15Back}
+                  title={`${A11Y_TEXT.skip15Back} (←)`}
                 >
                   <svg viewBox="0 0 28 28" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
                     <path d="M14 7V4l-5 5 5 5V11a6 6 0 1 1-6 6" strokeLinecap="round" strokeLinejoin="round" />
@@ -258,6 +260,7 @@ export function ExpandedPlayer() {
                   onClick={toggle}
                   className="w-16 h-16 rounded-full bg-gradient-to-br from-[#10b981] to-[#059669] hover:shadow-[0_0_40px_#10b98166] text-white flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition-shadow"
                   aria-label={state.isPlaying ? A11Y_TEXT.pause : A11Y_TEXT.play}
+                  title={`${state.isPlaying ? A11Y_TEXT.pause : A11Y_TEXT.play} (Space)`}
                   data-testid="sfp-audio-expanded-toggle"
                 >
                   {state.isPlaying ? (
@@ -276,6 +279,7 @@ export function ExpandedPlayer() {
                   onClick={() => skipForward(AUDIO_CONFIG.skipForwardSec)}
                   className="w-11 h-11 rounded-full text-[#faf8f1]/80 hover:text-[#D4A017] hover:bg-white/5 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition"
                   aria-label={A11Y_TEXT.skip15Forward}
+                  title={`${A11Y_TEXT.skip15Forward} (→)`}
                 >
                   <svg viewBox="0 0 28 28" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
                     <path d="M14 7V4l5 5-5 5V11a6 6 0 1 0 6 6" strokeLinecap="round" strokeLinejoin="round" />
@@ -291,6 +295,7 @@ export function ExpandedPlayer() {
                   onClick={toggleMute}
                   className="w-9 h-9 rounded-lg text-[#faf8f1]/70 hover:text-[#D4A017] hover:bg-white/5 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition"
                   aria-label={state.isMuted ? A11Y_TEXT.unmute : A11Y_TEXT.mute}
+                  title={`${state.isMuted ? A11Y_TEXT.unmute : A11Y_TEXT.mute} (M)`}
                 >
                   {state.isMuted || state.volume === 0 ? (
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">

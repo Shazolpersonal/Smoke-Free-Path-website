@@ -111,6 +111,7 @@ export function MiniPlayer() {
                 onPointerDown={handleDragPointerDown}
                 className="shrink-0 relative w-12 h-12 rounded-lg overflow-hidden bg-[#0a0f1c] touch-none cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017]"
                 aria-label={A11Y_TEXT.drag}
+                title={A11Y_TEXT.drag}
               >
                 <Image
                   src={AUDIO_CONFIG.coverImage}
@@ -144,6 +145,7 @@ export function MiniPlayer() {
                 onClick={toggle}
                 className="shrink-0 w-9 h-9 rounded-full bg-[#10b981] hover:bg-[#059669] text-white flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition-colors"
                 aria-label={state.isPlaying ? A11Y_TEXT.pause : A11Y_TEXT.play}
+                title={state.isPlaying ? A11Y_TEXT.pause : A11Y_TEXT.play}
                 data-testid="sfp-audio-mini-toggle"
               >
                 {state.isPlaying ? (
@@ -163,6 +165,7 @@ export function MiniPlayer() {
                 onClick={expand}
                 className="shrink-0 w-8 h-8 rounded-lg text-[#faf8f1]/70 hover:text-[#D4A017] hover:bg-white/5 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition-colors"
                 aria-label={A11Y_TEXT.expand}
+                title={A11Y_TEXT.expand}
                 data-testid="sfp-audio-mini-expand"
               >
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -179,6 +182,7 @@ export function MiniPlayer() {
                 onClick={dismissMiniPlayer}
                 className="shrink-0 w-7 h-7 rounded-lg text-[#faf8f1]/50 hover:text-[#B8342D] hover:bg-white/5 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition-colors"
                 aria-label={A11Y_TEXT.close}
+                title={A11Y_TEXT.close}
                 data-testid="sfp-audio-mini-close"
               >
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">

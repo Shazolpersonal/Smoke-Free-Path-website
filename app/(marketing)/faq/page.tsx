@@ -68,9 +68,10 @@ export default function FAQPage() {
 
   return (
     <>
+      {/* 🛡️ Sentinel: Escape < to prevent XSS in JSON-LD injection */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }}
       />
 
       <div className="bg-[#f4f1ea] min-h-screen pt-24 md:pt-28 pb-20 px-4 md:px-8">

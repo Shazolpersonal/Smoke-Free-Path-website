@@ -62,9 +62,10 @@ export default function ContactPage() {
 
   return (
     <div className="bg-[#f4f1ea] min-h-screen py-24 px-4 md:px-8">
+      {/* 🛡️ Sentinel: Escape < to prevent XSS in JSON-LD injection */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ldJson) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ldJson).replace(/</g, '\\u003c') }}
       />
 
       <div className="max-w-5xl mx-auto">

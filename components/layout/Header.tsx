@@ -11,12 +11,33 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    let rafId: number | null = null;
+
+    // ⚡ Bolt Optimization:
+    // Problem: Frequent scroll events cause excessive state updates and re-renders.
+    // Solution: Throttle state updates using requestAnimationFrame to match the browser's refresh rate.
+    // Impact: Prevents layout thrashing, avoids scroll jank, and improves performance on long pages.
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (!ticking) {
+        rafId = window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // ⚡ Bolt Optimization:
+    // Added { passive: true } to prevent blocking the main thread during scroll.
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   // Absolute paths (with leading "/") so in-page anchors also work when

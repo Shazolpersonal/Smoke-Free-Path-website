@@ -7,3 +7,6 @@
 ## 2024-05-18 - Add ARIA attributes for form validation
 **Learning:** Form inputs with visual error messages were missing `aria-invalid` and `aria-describedby` attributes, leaving screen reader users without proper context for validation failures.
 **Action:** Always link inline error messages to their respective inputs using `aria-describedby` and indicate invalid states with `aria-invalid="true"`.
+## 2026-05-26 - Add ARIA attributes for gift form validation
+**Learning:** Screen reader users rely on `aria-invalid` and `aria-describedby` to get proper context for inline validation failures. The gift form inputs lacked these, making errors hard to identify.
+**Action:** Always link inline error messages to their respective inputs using `aria-describedby` and indicate invalid states with `aria-invalid={!!errors[fieldName]}`.

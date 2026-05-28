@@ -21,7 +21,7 @@ export default function StoryPage() {
         <div className="mt-16 text-center">
           <a
             href="/checkout"
-            className="inline-block bg-red-alert text-white-pure font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-red-alert/30 hover:-translate-y-1 transition-all duration-300 font-noto-sans-bengali text-lg"
+            className="inline-block bg-red-alert text-white-pure font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-red-alert/30 hover:-translate-y-1 transition-all duration-300 font-noto-sans-bengali text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-alert focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4f1ea]"
           >
             হ্যাঁ, আমি প্রস্তুত — ৳৩৬৯
           </a>

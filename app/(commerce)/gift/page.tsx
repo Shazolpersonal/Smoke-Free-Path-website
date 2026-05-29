@@ -368,7 +368,7 @@ export default function GiftPage() {
                 type="submit"
                 disabled={busy || locked}
                 aria-busy={busy}
-                className={`w-full py-4 rounded-xl font-bold text-lg text-charcoal font-noto-sans-bengali transition-all shadow-lg ${
+                className={`w-full py-4 rounded-xl font-bold text-lg text-charcoal font-noto-sans-bengali transition-all shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-2 ${
                   busy || locked
                     ? "bg-gold-royal/50 cursor-not-allowed"
                     : "bg-gold-royal hover:shadow-gold-royal/30 hover:-translate-y-1"

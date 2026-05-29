@@ -465,13 +465,29 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     );
   }, [transcript, state.currentTime]);
 
+  // ⚡ Bolt Optimization: Replace O(N) linear search with O(log N) binary search
+  // Problem: currentTime updates ~4x/sec, and linearly scanning a long array of lines blocks the main thread.
+  // Solution: Since the lines array is chronologically sorted by time (t), we can binary search to find the active line.
+  // Impact: Reduces complexity from O(N) to O(log N), lowering CPU overhead during high-frequency update cycles.
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    const targetTime = state.currentTime;
+
+    let left = 0;
+    let right = lines.length - 1;
+    let activeIndex = -1;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      if (lines[mid].t <= targetTime) {
+        activeIndex = mid;
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
     }
-    return -1;
+    return activeIndex;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

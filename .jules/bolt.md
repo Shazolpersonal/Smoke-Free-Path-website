@@ -7,6 +7,10 @@
 **Learning:** The project's audio context (`useAudioPlayer`) updates the `currentLineIndex` very frequently (e.g., ~4 times a second) during playback. If list items inside a map (like `TranscriptLineRow` in `KaraokeTranscript`) do not use `React.memo` and stable callbacks, they will completely re-render on every tick. This creates unnecessary react render overhead and UI stuttering.
 **Action:** When a context provides frequently updating values to a long list, ensure that list child components use `React.memo` and that they receive stable props (e.g. passing a parent `seek` function and the child's `time` instead of inline closures `() => seek(line.t)`).
 
+## 2024-06-26 - [High Frequency Updates and O(N) Array Searches]
+**Learning:** In contexts with high-frequency updates (e.g., `currentTime` updating ~4x/sec in `AudioProvider`), performing O(N) operations like a backward linear search on an array of transcript lines blocks the main thread excessively.
+**Action:** Always favor O(log N) algorithms, such as a binary search, for array lookups during high-frequency cycles when the data is chronologically sorted.
+
 ## 2024-07-28 - [Throttling Scroll Event Listeners]
 **Learning:** Frequent window events like "scroll" fire rapidly. If a React component attaches a scroll listener that directly updates component state (e.g., `setIsScrolled`), it will trigger unnecessary and excessive re-renders (dozens of times per second). While React 18 batches some state updates, rapid firing of events still hurts performance, and browsers' natural refresh rate is better respected. Furthermore, scroll event listeners should be marked as `{ passive: true }` so the browser doesn't wait for `preventDefault()`, improving scrolling smoothness.
 **Action:** Always throttle continuous events like `scroll` or `resize`. A simple `requestAnimationFrame` flag check effectively limits state updates to the browser's 60 FPS refresh rate. Also, pass `{ passive: true }` to `window.addEventListener` for scroll and touch events to avoid scrolling jank.

@@ -396,7 +396,7 @@ export default function CheckoutPage() {
                 type="submit"
                 disabled={busy || isGift || locked}
                 aria-busy={busy}
-                className={`w-full py-4 rounded-xl font-bold text-lg text-white-pure font-noto-sans-bengali transition-all shadow-lg ${
+                className={`w-full py-4 rounded-xl font-bold text-lg text-white-pure font-noto-sans-bengali transition-all shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-deep focus-visible:ring-offset-2 ${
                   busy || isGift || locked
                     ? "bg-charcoal/30 cursor-not-allowed"
                     : "bg-emerald-deep hover:shadow-emerald-deep/30 hover:-translate-y-1"

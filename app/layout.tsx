@@ -155,7 +155,8 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          // Prevent XSS by escaping HTML characters in JSON injected into script tags
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
         />
         {process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN && (
           <script

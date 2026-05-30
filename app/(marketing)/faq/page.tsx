@@ -70,7 +70,8 @@ export default function FAQPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        // Prevent XSS by escaping HTML characters in JSON injected into script tags
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }}
       />
 
       <div className="bg-[#f4f1ea] min-h-screen pt-24 md:pt-28 pb-20 px-4 md:px-8">

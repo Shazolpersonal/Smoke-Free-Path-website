@@ -465,13 +465,27 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     );
   }, [transcript, state.currentTime]);
 
+  // ⚡ Bolt: Replace O(N) linear search with O(log N) binary search.
+  // The transcript updates very frequently (~4x/sec), so optimizing this lookup is critical.
   const currentLineIndex = useMemo<number>(() => {
-    if (!transcript) return -1;
+    if (!transcript || transcript.lines.length === 0) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+
+    let left = 0;
+    let right = lines.length - 1;
+    let result = -1;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      if (lines[mid].t <= state.currentTime) {
+        result = mid; // Possible match, but keep searching to the right for later matches
+        left = mid + 1;
+      } else {
+        right = mid - 1; // Overshot, search left
+      }
     }
-    return -1;
+
+    return result;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

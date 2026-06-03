@@ -458,20 +458,44 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
     if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+    // ⚡ Bolt Optimization: Replaced O(N) Array.find with O(log N) binary search
+    // to reduce CPU overhead during ~4x/sec state.currentTime updates.
+    const chapters = transcript.chapters;
+    let left = 0;
+    let right = chapters.length - 1;
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      const c = chapters[mid];
+      if (state.currentTime >= c.start && state.currentTime < c.end) {
+        return c;
+      } else if (state.currentTime < c.start) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    }
+    return null;
   }, [transcript, state.currentTime]);
 
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
+    // ⚡ Bolt Optimization: Replaced O(N) backward linear search with O(log N)
+    // binary search to prevent dropped frames as the transcript grows.
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    let left = 0;
+    let right = lines.length - 1;
+    let bestIndex = -1;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      if (state.currentTime >= lines[mid].t) {
+        bestIndex = mid;
+        left = mid + 1; // look for a later line
+      } else {
+        right = mid - 1; // look for an earlier line
+      }
     }
-    return -1;
+    return bestIndex;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

@@ -456,22 +456,52 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   /* ----- derived: current chapter + line ----- */
 
+  // ⚡ Bolt Optimization:
+  // Problem: `currentChapter` and `currentLineIndex` update ~4x/sec during playback.
+  // The previous O(N) linear search caused unnecessary CPU overhead, especially with long transcripts.
+  // Solution: Replaced linear search with O(log N) binary search since the data is time-sorted.
+  // Impact: Reduces lookup time for transcript state significantly, preventing main thread lag
+  // during audio playback updates.
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
     if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+    const chapters = transcript.chapters;
+    let low = 0;
+    let high = chapters.length - 1;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      const c = chapters[mid];
+      if (state.currentTime >= c.start && state.currentTime < c.end) {
+        return c;
+      } else if (state.currentTime < c.start) {
+        high = mid - 1;
+      } else {
+        // If state.currentTime >= c.end or we just haven't found the bound yet,
+        // we can track it as a potential match if there are gaps (there shouldn't be),
+        // but strictly based on start/end, we just move low.
+        low = mid + 1;
+      }
+    }
+    return null;
   }, [transcript, state.currentTime]);
 
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    let low = 0;
+    let high = lines.length - 1;
+    let bestMatch = -1;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (state.currentTime >= lines[mid].t) {
+        bestMatch = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
-    return -1;
+    return bestMatch;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

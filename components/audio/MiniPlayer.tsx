@@ -143,6 +143,7 @@ export function MiniPlayer() {
               <button
                 type="button"
                 onClick={toggle}
+                aria-pressed={state.isPlaying}
                 className="shrink-0 w-9 h-9 rounded-full bg-[#10b981] hover:bg-[#059669] text-white flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition-colors"
                 aria-label={state.isPlaying ? A11Y_TEXT.pause : A11Y_TEXT.play}
                 title={state.isPlaying ? A11Y_TEXT.pause : A11Y_TEXT.play}

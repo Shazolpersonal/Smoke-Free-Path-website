@@ -258,6 +258,7 @@ export function ExpandedPlayer() {
                 <button
                   type="button"
                   onClick={toggle}
+                  aria-pressed={state.isPlaying}
                   className="w-16 h-16 rounded-full bg-gradient-to-br from-[#10b981] to-[#059669] hover:shadow-[0_0_40px_#10b98166] text-white flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition-shadow"
                   aria-label={state.isPlaying ? A11Y_TEXT.pause : A11Y_TEXT.play}
                   title={`${state.isPlaying ? A11Y_TEXT.pause : A11Y_TEXT.play} (Space)`}
@@ -293,6 +294,7 @@ export function ExpandedPlayer() {
                 <button
                   type="button"
                   onClick={toggleMute}
+                  aria-pressed={state.isMuted}
                   className="w-9 h-9 rounded-lg text-[#faf8f1]/70 hover:text-[#D4A017] hover:bg-white/5 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] transition"
                   aria-label={state.isMuted ? A11Y_TEXT.unmute : A11Y_TEXT.mute}
                   title={`${state.isMuted ? A11Y_TEXT.unmute : A11Y_TEXT.mute} (M)`}

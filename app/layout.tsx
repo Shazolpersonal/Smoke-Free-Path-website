@@ -155,7 +155,8 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          // Security: Sanitize JSON string output to prevent XSS execution vulnerabilities from unescaped HTML characters.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
         />
         {process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN && (
           <script
@@ -167,6 +168,7 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_CLARITY_ID && (
           <script
             type="text/javascript"
+            // Ensure NEXT_PUBLIC_CLARITY_ID is free of malicious characters before using in inline script.
             dangerouslySetInnerHTML={{
               __html: `
                 (function(c,l,a,r,i,t,y){

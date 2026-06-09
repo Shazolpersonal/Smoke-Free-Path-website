@@ -456,22 +456,52 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   /* ----- derived: current chapter + line ----- */
 
+  // ⚡ Bolt Optimization: Replace O(N) array scans with O(log N) binary search.
+  // The state.currentTime updates ~4 times a second. For large transcripts,
+  // scanning arrays linearly causes unnecessary CPU load on the main thread.
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
-    if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+    if (!transcript || transcript.chapters.length === 0) return null;
+    let low = 0;
+    let high = transcript.chapters.length - 1;
+
+    while (low <= high) {
+      const mid = (low + high) >> 1;
+      const c = transcript.chapters[mid];
+      if (state.currentTime >= c.start && state.currentTime < c.end) {
+        return c;
+      }
+      if (state.currentTime < c.start) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+    return null;
   }, [transcript, state.currentTime]);
 
+  // ⚡ Bolt Optimization: O(log N) binary search for the active transcript line.
   const currentLineIndex = useMemo<number>(() => {
-    if (!transcript) return -1;
+    if (!transcript || transcript.lines.length === 0) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+
+    // Quick check for start/end bounds
+    if (state.currentTime < lines[0].t) return -1;
+    if (state.currentTime >= lines[lines.length - 1].t) return lines.length - 1;
+
+    let low = 0;
+    let high = lines.length - 1;
+    let best = -1;
+
+    while (low <= high) {
+      const mid = (low + high) >> 1;
+      if (state.currentTime >= lines[mid].t) {
+        best = mid; // This is a candidate
+        low = mid + 1; // See if we can find a later one
+      } else {
+        high = mid - 1; // Too far ahead
+      }
     }
-    return -1;
+    return best;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

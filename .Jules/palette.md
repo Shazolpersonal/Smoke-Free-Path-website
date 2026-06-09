@@ -9,3 +9,7 @@
 ## 2026-05-23 - Icon-Only Button Tooltips & Keyboard Shortcut Discoverability
 **Learning:** Icon-only buttons in the audio players (ExpandedPlayer, MiniPlayer, SkipPill) had `aria-label` for screen readers but lacked native `title` tooltips for sighted users. Crucially, the ExpandedPlayer supports keyboard shortcuts (Space for play/pause, M for mute, Esc to close, Arrows to seek), but these were completely undiscoverable without visual tooltips. Sighted keyboard/mouse users rely on tooltips just as much as screen reader users rely on aria-labels.
 **Action:** Combined `aria-label` with native `title` attributes on all icon-only buttons. For buttons with keyboard shortcuts, appended the shortcut key to the `title` (e.g., `title="বিরতি (Space)"`) to surface the hidden functionality and improve power-user UX. Always ensure keyboard shortcuts are discoverable.
+
+## 2026-05-24 - Form Input ARIA Error Associations
+**Learning:** Found that while the `checkout` form inputs had `aria-invalid` and `aria-describedby` properly linked to their inline error messages, the `gift` form inputs did not. Screen reader users rely on `aria-describedby` to hear inline error messages automatically when an invalid field receives focus.
+**Action:** Always verify that every form input explicitly links to its inline error message `<p>` tag using `aria-describedby` and a matching `id`, and sets `aria-invalid` dynamically based on the field's error state.

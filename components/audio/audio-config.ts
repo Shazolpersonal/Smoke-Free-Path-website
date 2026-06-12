@@ -56,6 +56,8 @@ export const A11Y_TEXT = {
   play: "শুনুন",
   pause: "বিরতি",
   resume: "আবার চালু করুন",
+  playToggle: "শুনুন / বিরতি",
+  muteToggle: "মিউট / আনমিউট করুন",
   skip15Forward: "১৫ সেকেন্ড এগিয়ে যান",
   skip15Back: "১৫ সেকেন্ড পিছিয়ে যান",
   volume: "ভলিউম নিয়ন্ত্রণ",

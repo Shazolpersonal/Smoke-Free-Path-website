@@ -155,7 +155,8 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          // 🛡️ Sentinel: XSS prevent করার জন্য JSON-LD sanitize করা হলো
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
         />
         {process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN && (
           <script

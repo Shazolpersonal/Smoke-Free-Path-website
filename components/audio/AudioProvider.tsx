@@ -456,22 +456,45 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   /* ----- derived: current chapter + line ----- */
 
+  // ⚡ Bolt Optimization: Replace O(N) linear search with O(log N) binary search
+  // for currentChapter. This runs ~4x/sec during playback.
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
     if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+    const chapters = transcript.chapters;
+    let low = 0;
+    let high = chapters.length - 1;
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      const c = chapters[mid];
+      if (state.currentTime >= c.start && state.currentTime < c.end) {
+        return c;
+      } else if (state.currentTime < c.start) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+    return null;
   }, [transcript, state.currentTime]);
 
+  // ⚡ Bolt Optimization: Replace O(N) backward linear search with O(log N) binary search
+  // for currentLineIndex. This runs ~4x/sec during playback.
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    let low = 0;
+    let high = lines.length - 1;
+    let bestMatch = -1;
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (state.currentTime >= lines[mid].t) {
+        bestMatch = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
-    return -1;
+    return bestMatch;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

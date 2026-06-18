@@ -456,22 +456,47 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   /* ----- derived: current chapter + line ----- */
 
+  // ⚡ Bolt Optimization:
+  // Problem: Linear search O(N) runs 4x/sec during playback, causing unnecessary CPU cycles.
+  // Solution: Binary search O(log N) finds the current chapter and line index efficiently.
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
     if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+    const chapters = transcript.chapters;
+    let low = 0;
+    let high = chapters.length - 1;
+    const t = state.currentTime;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      const c = chapters[mid];
+      if (t >= c.start && t < c.end) return c;
+      if (t < c.start) high = mid - 1;
+      else low = mid + 1;
+    }
+    return null;
   }, [transcript, state.currentTime]);
 
+  // ⚡ Bolt Optimization:
+  // Problem: Linear search O(N) runs 4x/sec during playback, causing unnecessary CPU cycles.
+  // Solution: Binary search O(log N) finds the current line index efficiently.
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    let low = 0;
+    let high = lines.length - 1;
+    let result = -1;
+    const t = state.currentTime;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (lines[mid].t <= t) {
+        result = mid; // This might be the correct one, but let's check if there's a later one
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
-    return -1;
+    return result;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

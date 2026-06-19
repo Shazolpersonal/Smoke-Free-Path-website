@@ -85,7 +85,7 @@ export default function ContactPage() {
             href={waHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white-pure p-8 rounded-2xl border-2 border-[#25D366]/20 hover:border-[#25D366] transition-colors group text-center block"
+            className="bg-white-pure p-8 rounded-2xl border-2 border-[#25D366]/20 hover:border-[#25D366] transition-colors group text-center block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-[#25D366]"
             aria-label={`WhatsApp: +${whatsapp}`}
           >
             <div className="w-16 h-16 bg-[#25D366]/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
@@ -105,7 +105,7 @@ export default function ContactPage() {
           {/* Email Card */}
           <a
             href={`mailto:${supportEmail}`}
-            className="bg-white-pure p-8 rounded-2xl border-2 border-emerald-deep/20 hover:border-emerald-deep transition-colors group text-center block"
+            className="bg-white-pure p-8 rounded-2xl border-2 border-emerald-deep/20 hover:border-emerald-deep transition-colors group text-center block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-emerald-deep"
             aria-label={`ইমেইল: ${supportEmail}`}
           >
             <div className="w-16 h-16 bg-emerald-deep/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">

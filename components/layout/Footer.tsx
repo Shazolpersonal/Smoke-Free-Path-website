@@ -47,7 +47,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link
               href="/"
-              className="text-2xl font-bold inline-block mb-4 font-hind-siliguri text-luxe-gradient"
+              className="text-2xl font-bold inline-block mb-4 font-hind-siliguri text-luxe-gradient focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-4 focus-visible:ring-offset-emerald-abyss rounded-sm"
             >
               ধোঁয়া-মুক্ত পথ
             </Link>
@@ -66,7 +66,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group text-white-pure/75 hover:text-gold-glow transition-colors font-noto-bengali inline-flex items-center gap-1.5"
+                    className="group text-white-pure/75 hover:text-gold-glow transition-colors font-noto-bengali inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-4 focus-visible:ring-offset-emerald-abyss rounded-sm"
                   >
                     <span
                       aria-hidden="true"
@@ -136,7 +136,7 @@ export function Footer() {
                   href={`https://wa.me/${whatsappIntl}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2 text-white-pure/75 hover:text-gold-glow transition-colors"
+                  className="group flex items-center gap-2 text-white-pure/75 hover:text-gold-glow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-4 focus-visible:ring-offset-emerald-abyss rounded-sm"
                   aria-label={`WhatsApp ${whatsappDisplay}`}
                 >
                   <svg
@@ -153,7 +153,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${SUPPORT_EMAIL}`}
-                  className="group flex items-center gap-2 text-white-pure/75 hover:text-gold-glow transition-colors"
+                  className="group flex items-center gap-2 text-white-pure/75 hover:text-gold-glow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-royal focus-visible:ring-offset-4 focus-visible:ring-offset-emerald-abyss rounded-sm"
                   aria-label={`ইমেইল ${SUPPORT_EMAIL}`}
                 >
                   <svg

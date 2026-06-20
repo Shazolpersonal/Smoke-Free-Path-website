@@ -468,10 +468,26 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    const currentTime = state.currentTime;
+
+    // ⚡ Bolt Optimization:
+    // Problem: Linear search (O(N)) on every time update (~4x/sec) causes unnecessary CPU overhead.
+    // Solution: Replaced with binary search (O(log N)) to find the current line index.
+    // Impact: Drastically reduces operations, especially for long transcripts, keeping playback UI smooth.
+    let left = 0;
+    let right = lines.length - 1;
+    let index = -1;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      if (currentTime >= lines[mid].t) {
+        index = mid; // This line is valid, but we might find a later one
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
     }
-    return -1;
+    return index;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

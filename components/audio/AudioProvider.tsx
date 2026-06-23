@@ -465,13 +465,27 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     );
   }, [transcript, state.currentTime]);
 
+  // ⚡ Bolt Optimization:
+  // Problem: Linear search for current line index runs on every tick (~4x/sec), leading to O(N) operations.
+  // Solution: Replace linear scan with O(log N) binary search for timestamps, optimizing execution time for large arrays.
+  // Impact: Reduces time complexity and minimizes main thread blocking during frequent audio state updates.
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    let low = 0;
+    let high = lines.length - 1;
+    let result = -1;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (state.currentTime >= lines[mid].t) {
+        result = mid; // the best candidate so far
+        low = mid + 1; // look for a later timestamp that might still be valid
+      } else {
+        high = mid - 1; // target is too high, look in the lower half
+      }
     }
-    return -1;
+    return result;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

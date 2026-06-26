@@ -10,3 +10,7 @@
 ## 2024-07-28 - [Throttling Scroll Event Listeners]
 **Learning:** Frequent window events like "scroll" fire rapidly. If a React component attaches a scroll listener that directly updates component state (e.g., `setIsScrolled`), it will trigger unnecessary and excessive re-renders (dozens of times per second). While React 18 batches some state updates, rapid firing of events still hurts performance, and browsers' natural refresh rate is better respected. Furthermore, scroll event listeners should be marked as `{ passive: true }` so the browser doesn't wait for `preventDefault()`, improving scrolling smoothness.
 **Action:** Always throttle continuous events like `scroll` or `resize`. A simple `requestAnimationFrame` flag check effectively limits state updates to the browser's 60 FPS refresh rate. Also, pass `{ passive: true }` to `window.addEventListener` for scroll and touch events to avoid scrolling jank.
+
+## 2024-08-15 - [High Frequency Audio Context Data Fetching]
+**Learning:** For continuous audio state tracking (~4 updates/second), computing the current chapter and transcript line using O(N) array search (e.g., `array.find()` or a reverse `for` loop) creates noticeable CPU overhead on longer transcripts, since the operations must execute rapidly inside `useMemo` hooks.
+**Action:** When deriving state from a large ordered dataset inside a high-frequency playback loop, always utilize O(log N) operations (like a binary search) instead of O(N) scans. This keeps the main thread clear, preventing lag or jank in the audio UI.

@@ -189,6 +189,7 @@ export default function GiftPage() {
                     id="name"
                     {...register("name")}
                     disabled={busy}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.name ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
@@ -202,6 +203,7 @@ export default function GiftPage() {
                     id="email"
                     {...register("email")}
                     disabled={busy}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.email ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
@@ -216,6 +218,7 @@ export default function GiftPage() {
                     id="phone"
                     {...register("phone")}
                     disabled={busy}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.phone ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
@@ -239,6 +242,7 @@ export default function GiftPage() {
                     id="recipientName"
                     {...register("recipientName")}
                     disabled={busy}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.recipientName ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
@@ -252,6 +256,7 @@ export default function GiftPage() {
                     id="recipientEmail"
                     {...register("recipientEmail")}
                     disabled={busy}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.recipientEmail ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
@@ -353,6 +358,7 @@ export default function GiftPage() {
                   id="trxId"
                   {...register("trxId")}
                   disabled={busy}
+                  aria-required="true"
                   className={`w-full px-4 py-3 rounded-xl border ${
                     errors.trxId ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                   } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all uppercase disabled:cursor-not-allowed`}

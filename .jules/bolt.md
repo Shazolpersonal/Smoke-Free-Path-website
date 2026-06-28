@@ -10,3 +10,7 @@
 ## 2024-07-28 - [Throttling Scroll Event Listeners]
 **Learning:** Frequent window events like "scroll" fire rapidly. If a React component attaches a scroll listener that directly updates component state (e.g., `setIsScrolled`), it will trigger unnecessary and excessive re-renders (dozens of times per second). While React 18 batches some state updates, rapid firing of events still hurts performance, and browsers' natural refresh rate is better respected. Furthermore, scroll event listeners should be marked as `{ passive: true }` so the browser doesn't wait for `preventDefault()`, improving scrolling smoothness.
 **Action:** Always throttle continuous events like `scroll` or `resize`. A simple `requestAnimationFrame` flag check effectively limits state updates to the browser's 60 FPS refresh rate. Also, pass `{ passive: true }` to `window.addEventListener` for scroll and touch events to avoid scrolling jank.
+
+## 2024-11-20 - [Optimize High-Frequency Data Lookups]
+**Learning:** For components that re-calculate derived state frequently based on a time value (like an audio player seeking through transcript lines ~4 times a second), linear scans (O(N)) through large arrays can quickly become a performance bottleneck as the data size grows.
+**Action:** When searching chronologically ordered data (like timestamps) during a high-frequency update cycle (e.g. `requestAnimationFrame` or `timeupdate` events), always implement a binary search algorithm (O(log N)) to reduce CPU overhead and keep the main thread free.

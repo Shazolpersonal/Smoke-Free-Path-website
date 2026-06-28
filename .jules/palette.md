@@ -7,3 +7,6 @@
 ## 2024-05-18 - Add ARIA attributes for form validation
 **Learning:** Form inputs with visual error messages were missing `aria-invalid` and `aria-describedby` attributes, leaving screen reader users without proper context for validation failures.
 **Action:** Always link inline error messages to their respective inputs using `aria-describedby` and indicate invalid states with `aria-invalid="true"`.
+## 2024-05-19 - Explicitly marking schema-validated inputs as required
+**Learning:** Found that mandatory form inputs validated via external libraries (like React Hook Form + Zod) do not inherently communicate their required state to screen readers if the native HTML `required` attribute is omitted.
+**Action:** Always add `aria-required="true"` explicitly to mandatory form fields when relying on external schema validation without native HTML `required` attributes to ensure screen readers announce the requirement.

@@ -190,6 +190,7 @@ export default function CheckoutPage() {
                     disabled={busy}
                     aria-invalid={errors.name ? "true" : "false"}
                     aria-describedby={errors.name ? "name-error" : undefined}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.name
                         ? "border-red-alert bg-red-alert/5"
@@ -212,6 +213,7 @@ export default function CheckoutPage() {
                     disabled={busy}
                     aria-invalid={errors.email ? "true" : "false"}
                     aria-describedby={errors.email ? "email-error" : undefined}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.email
                         ? "border-red-alert bg-red-alert/5"
@@ -235,6 +237,7 @@ export default function CheckoutPage() {
                     disabled={busy}
                     aria-invalid={errors.phone ? "true" : "false"}
                     aria-describedby={errors.phone ? "phone-error" : undefined}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.phone
                         ? "border-red-alert bg-red-alert/5"
@@ -372,6 +375,7 @@ export default function CheckoutPage() {
                   disabled={busy}
                   aria-invalid={errors.trxId ? "true" : "false"}
                   aria-describedby={errors.trxId ? "trxId-error" : undefined}
+                  aria-required="true"
                   className={`w-full px-4 py-3 rounded-xl border ${
                     errors.trxId
                       ? "border-red-alert bg-red-alert/5"

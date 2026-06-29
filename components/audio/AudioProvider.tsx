@@ -468,10 +468,22 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    // ⚡ Bolt: Replace O(N) linear search with O(log N) binary search
+    // to find the current line. This runs ~4x/sec during playback.
+    let low = 0;
+    let high = lines.length - 1;
+    let best = -1;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (lines[mid].t <= state.currentTime) {
+        best = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
-    return -1;
+    return best;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

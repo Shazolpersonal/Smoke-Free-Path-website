@@ -188,6 +188,7 @@ export default function CheckoutPage() {
                     id="name"
                     {...register("name")}
                     disabled={busy}
+                    aria-required="true" // 🎨 Palette: Form Accessibility Convention - explicitly add 'aria-required' to mandatory form fields when a native HTML 'required' attribute is not used
                     aria-invalid={errors.name ? "true" : "false"}
                     aria-describedby={errors.name ? "name-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -210,6 +211,7 @@ export default function CheckoutPage() {
                     id="email"
                     {...register("email")}
                     disabled={busy}
+                    aria-required="true"
                     aria-invalid={errors.email ? "true" : "false"}
                     aria-describedby={errors.email ? "email-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -233,6 +235,7 @@ export default function CheckoutPage() {
                     id="phone"
                     {...register("phone")}
                     disabled={busy}
+                    aria-required="true"
                     aria-invalid={errors.phone ? "true" : "false"}
                     aria-describedby={errors.phone ? "phone-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
@@ -370,6 +373,7 @@ export default function CheckoutPage() {
                   id="trxId"
                   {...register("trxId")}
                   disabled={busy}
+                  aria-required="true"
                   aria-invalid={errors.trxId ? "true" : "false"}
                   aria-describedby={errors.trxId ? "trxId-error" : undefined}
                   className={`w-full px-4 py-3 rounded-xl border ${

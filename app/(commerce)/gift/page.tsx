@@ -189,12 +189,15 @@ export default function GiftPage() {
                     id="name"
                     {...register("name")}
                     disabled={busy}
+                    aria-required="true"
+                    aria-invalid={errors.name ? "true" : "false"}
+                    aria-describedby={errors.name ? "name-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.name ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
                     placeholder="আপনার পুরো নাম"
                   />
-                  {errors.name && <p className="text-red-alert text-sm mt-1">{errors.name.message}</p>}
+                  {errors.name && <p id="name-error" className="text-red-alert text-sm mt-1">{errors.name.message}</p>}
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">ইমেইল ঠিকানা</label>
@@ -202,13 +205,16 @@ export default function GiftPage() {
                     id="email"
                     {...register("email")}
                     disabled={busy}
+                    aria-required="true"
+                    aria-invalid={errors.email ? "true" : "false"}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.email ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
                     placeholder="example@email.com"
                     type="email"
                   />
-                  {errors.email && <p className="text-red-alert text-sm mt-1">{errors.email.message}</p>}
+                  {errors.email && <p id="email-error" className="text-red-alert text-sm mt-1">{errors.email.message}</p>}
                 </div>
                 <div className="md:col-span-2">
                   <label htmlFor="phone" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">মোবাইল নম্বর</label>
@@ -216,13 +222,16 @@ export default function GiftPage() {
                     id="phone"
                     {...register("phone")}
                     disabled={busy}
+                    aria-required="true"
+                    aria-invalid={errors.phone ? "true" : "false"}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.phone ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
                     placeholder="01XXXXXXXXX"
                     type="tel"
                   />
-                  {errors.phone && <p className="text-red-alert text-sm mt-1">{errors.phone.message}</p>}
+                  {errors.phone && <p id="phone-error" className="text-red-alert text-sm mt-1">{errors.phone.message}</p>}
                 </div>
               </div>
             </div>
@@ -239,12 +248,15 @@ export default function GiftPage() {
                     id="recipientName"
                     {...register("recipientName")}
                     disabled={busy}
+                    aria-required="true"
+                    aria-invalid={errors.recipientName ? "true" : "false"}
+                    aria-describedby={errors.recipientName ? "recipientName-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.recipientName ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
                     placeholder="যার জন্য কিনছেন"
                   />
-                  {errors.recipientName && <p className="text-red-alert text-sm mt-1">{errors.recipientName.message}</p>}
+                  {errors.recipientName && <p id="recipientName-error" className="text-red-alert text-sm mt-1">{errors.recipientName.message}</p>}
                 </div>
                 <div>
                   <label htmlFor="recipientEmail" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">প্রাপকের ইমেইল</label>
@@ -252,13 +264,16 @@ export default function GiftPage() {
                     id="recipientEmail"
                     {...register("recipientEmail")}
                     disabled={busy}
+                    aria-required="true"
+                    aria-invalid={errors.recipientEmail ? "true" : "false"}
+                    aria-describedby={errors.recipientEmail ? "recipientEmail-error" : undefined}
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.recipientEmail ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                     } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all disabled:cursor-not-allowed`}
                     placeholder="প্রাপকের ইমেইল"
                     type="email"
                   />
-                  {errors.recipientEmail && <p className="text-red-alert text-sm mt-1">{errors.recipientEmail.message}</p>}
+                  {errors.recipientEmail && <p id="recipientEmail-error" className="text-red-alert text-sm mt-1">{errors.recipientEmail.message}</p>}
                 </div>
                 <div className="md:col-span-2">
                   <label htmlFor="message" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">বিশেষ বার্তা (ঐচ্ছিক)</label>
@@ -353,12 +368,15 @@ export default function GiftPage() {
                   id="trxId"
                   {...register("trxId")}
                   disabled={busy}
+                  aria-required="true"
+                  aria-invalid={errors.trxId ? "true" : "false"}
+                  aria-describedby={errors.trxId ? "trxId-error" : undefined}
                   className={`w-full px-4 py-3 rounded-xl border ${
                     errors.trxId ? "border-red-alert bg-red-alert/5" : "border-charcoal/20 bg-charcoal/5"
                   } focus:outline-none focus:ring-2 focus:ring-gold-royal transition-all uppercase disabled:cursor-not-allowed`}
                   placeholder="e.g. 9E5BXXXXXXXX"
                 />
-                {errors.trxId && <p className="text-red-alert text-sm mt-1">{errors.trxId.message}</p>}
+                {errors.trxId && <p id="trxId-error" className="text-red-alert text-sm mt-1">{errors.trxId.message}</p>}
               </div>
             </div>
 

@@ -155,8 +155,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          // 🛡️ Sentinel: Sanitize JSON to prevent XSS execution vulnerabilities from unescaped HTML characters
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         {process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN && (
           <script

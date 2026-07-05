@@ -468,10 +468,26 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+
+    // ⚡ Bolt Optimization:
+    // Problem: This calculation runs ~4 times per second (on timeupdate). A linear search (O(N))
+    // overhead grows as transcript gets longer.
+    // Solution: Implement binary search (O(log N)) to find the active line based on current time.
+    let low = 0;
+    let high = lines.length - 1;
+    let result = -1;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (lines[mid].t <= state.currentTime) {
+        result = mid; // Possible candidate, but we want the largest one <= currentTime
+        low = mid + 1; // Look for a later line
+      } else {
+        high = mid - 1; // Line starts after current time
+      }
     }
-    return -1;
+
+    return result;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

@@ -456,22 +456,53 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   /* ----- derived: current chapter + line ----- */
 
+  // ⚡ Bolt Optimization:
+  // Problem: `currentChapter` and `currentLineIndex` are recalculated multiple times
+  // per second during audio playback (`state.currentTime` updates on `timeupdate`).
+  // Previously, this used linear O(N) searches (array.find and a for loop).
+  // Solution: Replaced O(N) linear scans with O(log N) binary searches, since
+  // chapters and lines are sorted chronologically by timestamp.
+  // Impact: Reduces CPU overhead on every playback tick, especially beneficial
+  // as the transcript size grows.
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
-    if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+    if (!transcript || transcript.chapters.length === 0) return null;
+    const chapters = transcript.chapters;
+    let low = 0;
+    let high = chapters.length - 1;
+    let result: TranscriptChapter | null = null;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      const chapter = chapters[mid];
+      if (state.currentTime >= chapter.start && state.currentTime < chapter.end) {
+        result = chapter;
+        break;
+      } else if (state.currentTime < chapter.start) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+    return result;
   }, [transcript, state.currentTime]);
 
   const currentLineIndex = useMemo<number>(() => {
-    if (!transcript) return -1;
+    if (!transcript || transcript.lines.length === 0) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    let low = 0;
+    let high = lines.length - 1;
+    let result = -1;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (state.currentTime >= lines[mid].t) {
+        result = mid; // This is a candidate, but there might be a later one
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
-    return -1;
+    return result;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

@@ -153,9 +153,10 @@ export default function RootLayout({
       className={`${hindSiliguri.variable} ${notoSansBengali.variable} ${playfairDisplay.variable} ${inter.variable} ${amiri.variable} antialiased`}
     >
       <head>
+        {/* 🛡️ Sentinel: Sanitize JSON stringify output for script injection to prevent XSS */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
         />
         {process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN && (
           <script

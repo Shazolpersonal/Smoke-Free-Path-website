@@ -465,13 +465,28 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     );
   }, [transcript, state.currentTime]);
 
+  // ⚡ Bolt Optimization:
+  // Problem: `currentLineIndex` is recalculated ~4x/sec during playback using an O(N) linear scan.
+  // Solution: Replaced the O(N) backwards for-loop with an O(log N) binary search.
+  // Impact: Reduces CPU overhead on every timeupdate event, particularly critical for long transcripts.
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    const time = state.currentTime;
+    let left = 0;
+    let right = lines.length - 1;
+    let best = -1;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      if (lines[mid].t <= time) {
+        best = mid;
+        left = mid + 1; // look for a later start time that is still <= time
+      } else {
+        right = mid - 1;
+      }
     }
-    return -1;
+    return best;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

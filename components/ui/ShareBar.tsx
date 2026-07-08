@@ -60,7 +60,7 @@ export function ShareBar({
             "flex items-center gap-2 px-4 py-2 rounded-lg",
             "bg-[#25D366] text-white-pure font-semibold text-sm",
             "hover:bg-[#20BA5A] transition-colors",
-            "focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
           )}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -85,7 +85,7 @@ export function ShareBar({
             "flex items-center gap-2 px-4 py-2 rounded-lg",
             "bg-[#1877F2] text-white-pure font-semibold text-sm",
             "hover:bg-[#166FE5] transition-colors",
-            "focus:outline-none focus:ring-2 focus:ring-[#1877F2] focus:ring-offset-2"
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1877F2] focus-visible:ring-offset-2"
           )}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -110,11 +110,11 @@ export function ShareBar({
             "flex items-center gap-2 px-4 py-2 rounded-lg",
             "bg-charcoal/10 text-charcoal font-semibold text-sm",
             "hover:bg-charcoal/20 transition-colors",
-            "focus:outline-none focus:ring-2 focus:ring-charcoal focus:ring-offset-2"
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2"
           )}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          aria-label="লিংক কপি করুন"
+          aria-live="polite"
         >
           {copied ? (
             <>

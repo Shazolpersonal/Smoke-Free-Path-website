@@ -458,20 +458,39 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
     if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+    const chapters = transcript.chapters;
+    let low = 0;
+    let high = chapters.length - 1;
+    while (low <= high) {
+      const mid = (low + high) >> 1;
+      const c = chapters[mid];
+      if (state.currentTime >= c.start && state.currentTime < c.end) {
+        return c;
+      } else if (state.currentTime >= c.end) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+    return null;
   }, [transcript, state.currentTime]);
 
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+    let low = 0;
+    let high = lines.length - 1;
+    let best = -1;
+    while (low <= high) {
+      const mid = (low + high) >> 1;
+      if (lines[mid].t <= state.currentTime) {
+        best = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
-    return -1;
+    return best;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

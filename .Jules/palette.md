@@ -9,3 +9,7 @@
 ## 2026-05-23 - Icon-Only Button Tooltips & Keyboard Shortcut Discoverability
 **Learning:** Icon-only buttons in the audio players (ExpandedPlayer, MiniPlayer, SkipPill) had `aria-label` for screen readers but lacked native `title` tooltips for sighted users. Crucially, the ExpandedPlayer supports keyboard shortcuts (Space for play/pause, M for mute, Esc to close, Arrows to seek), but these were completely undiscoverable without visual tooltips. Sighted keyboard/mouse users rely on tooltips just as much as screen reader users rely on aria-labels.
 **Action:** Combined `aria-label` with native `title` attributes on all icon-only buttons. For buttons with keyboard shortcuts, appended the shortcut key to the `title` (e.g., `title="বিরতি (Space)"`) to surface the hidden functionality and improve power-user UX. Always ensure keyboard shortcuts are discoverable.
+
+## 2026-05-24 - Dynamic Text Buttons & WCAG 2.5.3 (Label in Name)
+**Learning:** For buttons with dynamic visible text (e.g., 'Copy' changing to 'Copied!'), using a static `aria-label` (like `aria-label="লিংক কপি করুন"`) overrides the visible text for screen readers. This causes a WCAG 2.5.3 violation because the screen reader text and visual text don't match, and prevents users from hearing the updated state ("Copied!").
+**Action:** Removed static `aria-label` from dynamic text buttons and added `aria-live="polite"` so screen readers rely on the visible text and naturally announce state changes.

@@ -468,10 +468,25 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const currentLineIndex = useMemo<number>(() => {
     if (!transcript) return -1;
     const lines = transcript.lines;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (state.currentTime >= lines[i].t) return i;
+
+    // ⚡ Bolt Optimization:
+    // Replaced O(N) reverse linear search with O(log N) binary search.
+    // This runs ~4x a second during audio playback; binary search reduces
+    // the max iterations from ~N to ~log2(N), lowering main thread overhead.
+    let low = 0;
+    let high = lines.length - 1;
+    let bestIndex = -1;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (state.currentTime >= lines[mid].t) {
+        bestIndex = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
-    return -1;
+    return bestIndex;
   }, [transcript, state.currentTime]);
 
   const value = useMemo<AudioContextValue>(

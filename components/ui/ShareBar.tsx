@@ -114,7 +114,8 @@ export function ShareBar({
           )}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          aria-label="লিংক কপি করুন"
+          aria-label={copied ? "কপি হয়েছে!" : "লিংক কপি করুন"}
+          aria-live="polite"
         >
           {copied ? (
             <>

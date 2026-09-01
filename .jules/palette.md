@@ -7,3 +7,7 @@
 ## 2024-05-18 - Add ARIA attributes for form validation
 **Learning:** Form inputs with visual error messages were missing `aria-invalid` and `aria-describedby` attributes, leaving screen reader users without proper context for validation failures.
 **Action:** Always link inline error messages to their respective inputs using `aria-describedby` and indicate invalid states with `aria-invalid="true"`.
+
+## 2026-09-01 - Add ARIA attributes for form validation in gift page
+**Learning:** The gift page form inputs with visual error messages were missing `aria-invalid` and `aria-describedby` attributes, unlike the checkout page.
+**Action:** Always ensure consistency across pages by linking inline error messages to their respective inputs using `aria-describedby` and indicating invalid states with `aria-invalid="true"`.

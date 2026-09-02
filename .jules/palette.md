@@ -10,3 +10,6 @@
 ## 2026-08-27 - Handle dynamic button text accessibly
 **Learning:** Buttons with dynamic visible text (e.g. 'Copy' changing to 'Copied!') should not use static `aria-label`s as they override the visible text, causing WCAG 2.5.3 (Label in Name) violations and preventing state changes from being announced.
 **Action:** For buttons with dynamic text, rely on the visible text and add `aria-live="polite"` to the element so that state changes are correctly announced by screen readers.
+## 2026-09-02 - Add aria-required to custom validated form inputs
+**Learning:** When using external form validation libraries (like React Hook Form + Zod) instead of native HTML validation, screen readers do not automatically announce that fields are required before submission.
+**Action:** Always explicitly add 'aria-required="true"' to mandatory form fields when native HTML 'required' attributes are omitted to ensure proper accessibility communication.

@@ -14,3 +14,7 @@
 ## 2024-08-10 - [High Frequency Array Traversal Avoidance]
 **Learning:** The project's audio context (`useAudioPlayer`) updates the `currentTime` roughly 4 times per second. Calculating the active list element (e.g., `currentLineIndex`) via an O(N) linear array search repeatedly inside the `useMemo` block creates unnecessary CPU overhead on every audio tick.
 **Action:** When deriving state inside high-frequency update cycles like audio time updates, replace O(N) operations (e.g. array linear searches) with O(log N) algorithms (e.g. binary search on a sorted array of timestamps). This prevents blocking the main thread as data scales.
+
+## 2025-02-12 - Throttle Media timeupdate Events
+**Learning:** Frequent media events like `timeupdate` on HTML5 `<audio>` elements can fire continuously (up to 66 times per second depending on browser/device), far exceeding the browser's render capability. Triggering synchronous React state updates on every event blocks the main thread, causing audio/UI stuttering and excessive re-renders for consumers.
+**Action:** When binding continuous events like `timeupdate`, `scroll`, or `resize` that drive state changes, always throttle the state update using `requestAnimationFrame`. Maintain a `ticking` flag to queue only one update per frame, store the `rafId`, and ensure you call `cancelAnimationFrame` in the component cleanup to prevent memory leaks and updates to unmounted components.

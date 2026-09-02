@@ -226,6 +226,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     const audio = audioRef.current;
     if (!audio) return;
 
+    let rafId: number | null = null;
+    let ticking = false;
+
     const onLoaded = () =>
       setState((s) => ({ ...s, isReady: true, duration: audio.duration || s.duration }));
     const onPlay = () => setState((s) => ({ ...s, isPlaying: true, isPaused: false }));
@@ -242,24 +245,35 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       track("audio_completed");
       dispatchCompletionEvent();
     };
+
+    // ⚡ Bolt Optimization:
+    // Problem: Frequent timeupdate events cause excessive state updates and re-renders.
+    // Solution: Throttle state updates using requestAnimationFrame.
+    // Impact: Prevents React from executing multiple state updates per frame, reducing main thread blocking.
     const onTimeUpdate = () => {
-      const now = audio.currentTime;
-      setState((s) => ({ ...s, currentTime: now }));
-      if (audio.duration > 0) {
-        const pct = now / audio.duration;
-        if (Date.now() - lastMilestonePersistTimeRef.current > 2000) {
-          lastMilestonePersistTimeRef.current = Date.now();
-          writeString(LS_KEYS.completionPct, String(Math.round(pct * 100)));
-        }
-        for (const m of AUDIO_CONFIG.progressMilestones) {
-          if (pct >= m && !milestonesReachedRef.current.has(m)) {
-            milestonesReachedRef.current.add(m);
-            writeString(LS_KEYS.milestones, JSON.stringify([...milestonesReachedRef.current]));
-            const ev: AnalyticsEvent =
-              m === 0.25 ? "audio_25pct_reached" : m === 0.5 ? "audio_50pct_reached" : "audio_75pct_reached";
-            track(ev, { at_seconds: Math.round(now) });
+      if (!ticking) {
+        rafId = window.requestAnimationFrame(() => {
+          const now = audio.currentTime;
+          setState((s) => ({ ...s, currentTime: now }));
+          if (audio.duration > 0) {
+            const pct = now / audio.duration;
+            if (Date.now() - lastMilestonePersistTimeRef.current > 2000) {
+              lastMilestonePersistTimeRef.current = Date.now();
+              writeString(LS_KEYS.completionPct, String(Math.round(pct * 100)));
+            }
+            for (const m of AUDIO_CONFIG.progressMilestones) {
+              if (pct >= m && !milestonesReachedRef.current.has(m)) {
+                milestonesReachedRef.current.add(m);
+                writeString(LS_KEYS.milestones, JSON.stringify([...milestonesReachedRef.current]));
+                const ev: AnalyticsEvent =
+                  m === 0.25 ? "audio_25pct_reached" : m === 0.5 ? "audio_50pct_reached" : "audio_75pct_reached";
+                track(ev, { at_seconds: Math.round(now) });
+              }
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     const onProgress = () => {
@@ -300,6 +314,10 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       audio.removeEventListener("progress", onProgress);
       audio.removeEventListener("volumechange", onVolumeChange);
       audio.removeEventListener("error", onError);
+
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
     };
   }, []);
 

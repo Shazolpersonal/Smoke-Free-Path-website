@@ -226,6 +226,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     const audio = audioRef.current;
     if (!audio) return;
 
+    let ticking = false;
+    let rafId: number | null = null;
+
     const onLoaded = () =>
       setState((s) => ({ ...s, isReady: true, duration: audio.duration || s.duration }));
     const onPlay = () => setState((s) => ({ ...s, isPlaying: true, isPaused: false }));
@@ -243,23 +246,35 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       dispatchCompletionEvent();
     };
     const onTimeUpdate = () => {
-      const now = audio.currentTime;
-      setState((s) => ({ ...s, currentTime: now }));
-      if (audio.duration > 0) {
-        const pct = now / audio.duration;
-        if (Date.now() - lastMilestonePersistTimeRef.current > 2000) {
-          lastMilestonePersistTimeRef.current = Date.now();
-          writeString(LS_KEYS.completionPct, String(Math.round(pct * 100)));
-        }
-        for (const m of AUDIO_CONFIG.progressMilestones) {
-          if (pct >= m && !milestonesReachedRef.current.has(m)) {
-            milestonesReachedRef.current.add(m);
-            writeString(LS_KEYS.milestones, JSON.stringify([...milestonesReachedRef.current]));
-            const ev: AnalyticsEvent =
-              m === 0.25 ? "audio_25pct_reached" : m === 0.5 ? "audio_50pct_reached" : "audio_75pct_reached";
-            track(ev, { at_seconds: Math.round(now) });
+      if (!ticking) {
+        rafId = window.requestAnimationFrame(() => {
+          // ⚡ Bolt Optimization:
+          // Problem: The `timeupdate` event fires frequently (~4x/sec), causing uncoordinated
+          // React state updates which block the main thread and create rendering jank.
+          // Solution: Throttle these state updates using `requestAnimationFrame`.
+          // Impact: Aligns React state updates with the browser's 60fps render cycle,
+          // reducing main thread blocking and ensuring smoother transcript scrolling.
+          const now = audio.currentTime;
+          setState((s) => ({ ...s, currentTime: now }));
+          if (audio.duration > 0) {
+            const pct = now / audio.duration;
+            if (Date.now() - lastMilestonePersistTimeRef.current > 2000) {
+              lastMilestonePersistTimeRef.current = Date.now();
+              writeString(LS_KEYS.completionPct, String(Math.round(pct * 100)));
+            }
+            for (const m of AUDIO_CONFIG.progressMilestones) {
+              if (pct >= m && !milestonesReachedRef.current.has(m)) {
+                milestonesReachedRef.current.add(m);
+                writeString(LS_KEYS.milestones, JSON.stringify([...milestonesReachedRef.current]));
+                const ev: AnalyticsEvent =
+                  m === 0.25 ? "audio_25pct_reached" : m === 0.5 ? "audio_50pct_reached" : "audio_75pct_reached";
+                track(ev, { at_seconds: Math.round(now) });
+              }
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     const onProgress = () => {
@@ -300,6 +315,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       audio.removeEventListener("progress", onProgress);
       audio.removeEventListener("volumechange", onVolumeChange);
       audio.removeEventListener("error", onError);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
     };
   }, []);
 

@@ -456,13 +456,29 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   /* ----- derived: current chapter + line ----- */
 
+  // ⚡ Bolt Optimization:
+  // Problem: Linear search for currentChapter runs multiple times per second
+  // during audio playback (due to state.currentTime updates), creating O(N) overhead.
+  // Solution: Replace Array.prototype.find() with binary search O(log N) since chapters are sequential.
+  // Impact: Reduces CPU overhead on high-frequency state updates, preventing main-thread blocking.
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
-    if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+    if (!transcript || transcript.chapters.length === 0) return null;
+    const chapters = transcript.chapters;
+    let left = 0;
+    let right = chapters.length - 1;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      const chapter = chapters[mid];
+      if (state.currentTime >= chapter.start && state.currentTime < chapter.end) {
+        return chapter;
+      } else if (state.currentTime >= chapter.end) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+    return null;
   }, [transcript, state.currentTime]);
 
   const currentLineIndex = useMemo<number>(() => {

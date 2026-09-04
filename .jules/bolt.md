@@ -14,3 +14,7 @@
 ## 2024-08-10 - [High Frequency Array Traversal Avoidance]
 **Learning:** The project's audio context (`useAudioPlayer`) updates the `currentTime` roughly 4 times per second. Calculating the active list element (e.g., `currentLineIndex`) via an O(N) linear array search repeatedly inside the `useMemo` block creates unnecessary CPU overhead on every audio tick.
 **Action:** When deriving state inside high-frequency update cycles like audio time updates, replace O(N) operations (e.g. array linear searches) with O(log N) algorithms (e.g. binary search on a sorted array of timestamps). This prevents blocking the main thread as data scales.
+
+## 2024-11-20 - [High Frequency Array Traversal Avoidance in Contexts]
+**Learning:** Frequent updates in contexts (like `timeupdate` for audio which updates ~4Hz) cause components using those context values to recalculate derived state continuously. Linear searches, like `Array.prototype.find`, run in O(N) time and add significant CPU overhead when run multiple times a second.
+**Action:** When deriving state in high frequency update cycles, replace linear array searches (O(N)) with more efficient algorithms like binary search (O(log N)) when the array is sorted. This mitigates unnecessary CPU load and prevents main-thread blocking.

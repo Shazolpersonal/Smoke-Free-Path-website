@@ -10,3 +10,6 @@
 ## 2026-08-27 - Handle dynamic button text accessibly
 **Learning:** Buttons with dynamic visible text (e.g. 'Copy' changing to 'Copied!') should not use static `aria-label`s as they override the visible text, causing WCAG 2.5.3 (Label in Name) violations and preventing state changes from being announced.
 **Action:** For buttons with dynamic text, rely on the visible text and add `aria-live="polite"` to the element so that state changes are correctly announced by screen readers.
+## 2024-09-05 - Missing focus styles on footer links
+**Learning:** Footer navigation links were missing focus-visible styling, making keyboard navigation difficult to track.
+**Action:** When adding or updating custom links, especially in dark mode sections, always include explicit focus-visible states with appropriate contrast (e.g., using Tailwind's ring utilities).

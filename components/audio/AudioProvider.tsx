@@ -458,11 +458,30 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
     if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+    const chapters = transcript.chapters;
+
+    // ⚡ Bolt Optimization:
+    // Problem: O(N) array search inside a high-frequency (~4Hz) audio context update loop.
+    // Solution: Replaced Array.prototype.find() with O(log N) binary search.
+    // Impact: Prevents main-thread blocking and CPU overhead when computing the current chapter.
+    let left = 0;
+    let right = chapters.length - 1;
+    let bestChapter = null;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      const c = chapters[mid];
+      if (state.currentTime >= c.start && state.currentTime < c.end) {
+        bestChapter = c;
+        break;
+      } else if (state.currentTime < c.start) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    }
+
+    return bestChapter;
   }, [transcript, state.currentTime]);
 
   const currentLineIndex = useMemo<number>(() => {

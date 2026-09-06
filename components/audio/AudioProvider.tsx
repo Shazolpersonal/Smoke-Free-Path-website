@@ -458,11 +458,31 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   const currentChapter = useMemo<TranscriptChapter | null>(() => {
     if (!transcript) return null;
-    return (
-      transcript.chapters.find(
-        (c) => state.currentTime >= c.start && state.currentTime < c.end
-      ) ?? null
-    );
+
+    // ⚡ Bolt Optimization:
+    // Problem: The previous linear search `find()` ran ~4 times per second during
+    // playback, causing unnecessary O(N) array traversals as the number of chapters grows.
+    // Solution: Replaced with a binary search O(log N) since chapters are sorted by time.
+    // Impact: Reduces time complexity and keeps the main thread clear during high-frequency audio updates.
+    const chapters = transcript.chapters;
+    let left = 0;
+    let right = chapters.length - 1;
+    let bestIndex = -1;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      if (state.currentTime >= chapters[mid].start) {
+        bestIndex = mid;
+        left = mid + 1; // Try to find a later chapter that also started
+      } else {
+        right = mid - 1;
+      }
+    }
+
+    if (bestIndex !== -1 && state.currentTime < chapters[bestIndex].end) {
+      return chapters[bestIndex];
+    }
+    return null;
   }, [transcript, state.currentTime]);
 
   const currentLineIndex = useMemo<number>(() => {

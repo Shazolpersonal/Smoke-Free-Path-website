@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { useForm, useWatch } from "react-hook-form";
@@ -11,7 +10,6 @@ import {
   NAGAD_NUMBER,
   formatBdPhoneDisplay,
 } from "@/lib/config";
-
 const checkoutSchema = z.object({
   name: z.string().min(2, "নাম অন্তত ২ অক্ষরের হতে হবে"),
   email: z.string().email("সঠিক ইমেইল ঠিকানা দিন"),
@@ -21,19 +19,15 @@ const checkoutSchema = z.object({
   purpose: z.enum(["self", "gift"]),
   trxId: z.string().min(5, "সঠিক ট্রানজেকশন আইডি দিন"),
 });
-
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
-
 type Status =
   | { kind: "idle" }
   | { kind: "submitting" }
   | { kind: "success"; message: string; mailtoFallback: boolean; orderId?: string }
   | { kind: "error"; message: string };
-
 export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<"bkash" | "nagad">("bkash");
   const [status, setStatus] = useState<Status>({ kind: "idle" });
-
   const {
     register,
     handleSubmit,
@@ -46,17 +40,14 @@ export default function CheckoutPage() {
       purpose: "self",
     },
   });
-
   const purpose = useWatch({
     control,
     name: "purpose",
     defaultValue: "self",
   });
-
   const onSubmit = async (data: CheckoutFormValues) => {
     // Guard against double-submission while a request is in flight.
     if (status.kind === "submitting" || status.kind === "success") return;
-
     setStatus({ kind: "submitting" });
     try {
       const res = await submitOrder(data as OrderData);
@@ -85,12 +76,10 @@ export default function CheckoutPage() {
       });
     }
   };
-
   const isGift = purpose === "gift";
   const activeNumber = paymentMethod === "bkash" ? BKASH_NUMBER : NAGAD_NUMBER;
   const busy = status.kind === "submitting" || isSubmitting;
   const locked = status.kind === "success";
-
   return (
     <div className="bg-[#f4f1ea] min-h-screen py-24 px-4 md:px-8">
       <div className="max-w-3xl mx-auto bg-white-pure rounded-2xl shadow-xl overflow-hidden border border-gold-royal/20">
@@ -103,7 +92,6 @@ export default function CheckoutPage() {
             তিনটি অ্যাপ। সারাজীবনের অ্যাক্সেস। মাত্র ৳৩৬৯।
           </p>
         </div>
-
         <div className="p-8 md:p-12">
           {/* Global status banners (appear above the form) */}
           {status.kind === "success" && (
@@ -149,7 +137,6 @@ export default function CheckoutPage() {
               </div>
             </div>
           )}
-
           {status.kind === "error" && (
             <div
               role="alert"
@@ -168,7 +155,6 @@ export default function CheckoutPage() {
               </button>
             </div>
           )}
-
           <form
             onSubmit={handleSubmit(onSubmit)}
             className={`space-y-8 ${locked ? "opacity-50 pointer-events-none" : ""}`}
@@ -178,7 +164,6 @@ export default function CheckoutPage() {
               <h2 className="text-2xl font-bold text-charcoal font-hind-siliguri border-b border-charcoal/10 pb-2">
                 ১. আপনার তথ্য
               </h2>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
@@ -190,6 +175,7 @@ export default function CheckoutPage() {
                     disabled={busy}
                     aria-invalid={errors.name ? "true" : "false"}
                     aria-describedby={errors.name ? "name-error" : undefined}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.name
                         ? "border-red-alert bg-red-alert/5"
@@ -201,7 +187,6 @@ export default function CheckoutPage() {
                     <p id="name-error" className="text-red-alert text-sm mt-1">{errors.name.message}</p>
                   )}
                 </div>
-
                 <div>
                   <label htmlFor="email" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
                     ইমেইল ঠিকানা
@@ -212,6 +197,7 @@ export default function CheckoutPage() {
                     disabled={busy}
                     aria-invalid={errors.email ? "true" : "false"}
                     aria-describedby={errors.email ? "email-error" : undefined}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.email
                         ? "border-red-alert bg-red-alert/5"
@@ -224,7 +210,6 @@ export default function CheckoutPage() {
                     <p id="email-error" className="text-red-alert text-sm mt-1">{errors.email.message}</p>
                   )}
                 </div>
-
                 <div className="md:col-span-2">
                   <label htmlFor="phone" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
                     মোবাইল নম্বর (বাংলাদেশ)
@@ -235,6 +220,7 @@ export default function CheckoutPage() {
                     disabled={busy}
                     aria-invalid={errors.phone ? "true" : "false"}
                     aria-describedby={errors.phone ? "phone-error" : undefined}
+                    aria-required="true"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       errors.phone
                         ? "border-red-alert bg-red-alert/5"
@@ -248,7 +234,6 @@ export default function CheckoutPage() {
                   )}
                 </div>
               </div>
-
               <div className="mt-4 p-4 bg-charcoal/5 rounded-xl border border-charcoal/10">
                 <fieldset>
                   <legend className="block text-sm font-bold text-charcoal mb-3 font-noto-sans-bengali">
@@ -280,7 +265,6 @@ export default function CheckoutPage() {
                   </div>
                 </fieldset>
               </div>
-
               {isGift && (
                 <div className="mt-4 p-4 bg-gold-royal/10 rounded-xl border border-gold-royal/30">
                   <p className="text-charcoal/80 font-noto-sans-bengali">
@@ -293,13 +277,11 @@ export default function CheckoutPage() {
                 </div>
               )}
             </div>
-
             {/* 2. Payment */}
             <div className="space-y-6 pt-4">
               <h2 className="text-2xl font-bold text-charcoal font-hind-siliguri border-b border-charcoal/10 pb-2">
                 ২. পেমেন্ট করুন
               </h2>
-
               <div className="flex gap-4 mb-6">
                 <button
                   type="button"
@@ -328,7 +310,6 @@ export default function CheckoutPage() {
                   Nagad
                 </button>
               </div>
-
               <div className="bg-charcoal/5 p-6 md:p-8 rounded-xl border border-charcoal/10">
                 <ol className="space-y-4 font-noto-sans-bengali text-lg text-charcoal/90">
                   <li className="flex gap-4">
@@ -361,7 +342,6 @@ export default function CheckoutPage() {
                   </li>
                 </ol>
               </div>
-
               <div>
                 <label htmlFor="trxId" className="block text-sm font-bold text-charcoal mb-2 font-noto-sans-bengali">
                   Transaction ID (TrxID)
@@ -372,6 +352,7 @@ export default function CheckoutPage() {
                   disabled={busy}
                   aria-invalid={errors.trxId ? "true" : "false"}
                   aria-describedby={errors.trxId ? "trxId-error" : undefined}
+                  aria-required="true"
                   className={`w-full px-4 py-3 rounded-xl border ${
                     errors.trxId
                       ? "border-red-alert bg-red-alert/5"
@@ -384,7 +365,6 @@ export default function CheckoutPage() {
                 )}
               </div>
             </div>
-
             {/* 3. Submit */}
             <div className="pt-8 border-t border-charcoal/10 text-center">
               <p className="text-sm text-charcoal/60 mb-6 font-noto-sans-bengali">

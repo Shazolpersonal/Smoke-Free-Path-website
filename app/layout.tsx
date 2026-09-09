@@ -167,6 +167,7 @@ export default function RootLayout({
             data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN}"}`}
           />
         )}
+        {/* 🛡️ Sentinel: Sanitize process.env.NEXT_PUBLIC_CLARITY_ID by escaping < to prevent XSS via dangerouslySetInnerHTML */}
         {process.env.NEXT_PUBLIC_CLARITY_ID && (
           <script
             type="text/javascript"
@@ -176,7 +177,7 @@ export default function RootLayout({
                   c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                   t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-                })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
+                })(window, document, "clarity", "script", ${JSON.stringify(process.env.NEXT_PUBLIC_CLARITY_ID || "").replace(/</g, '\\u003c')});
               `,
             }}
           />

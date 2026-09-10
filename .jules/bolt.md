@@ -14,3 +14,7 @@
 ## 2024-08-10 - [High Frequency Array Traversal Avoidance]
 **Learning:** The project's audio context (`useAudioPlayer`) updates the `currentTime` roughly 4 times per second. Calculating the active list element (e.g., `currentLineIndex`) via an O(N) linear array search repeatedly inside the `useMemo` block creates unnecessary CPU overhead on every audio tick.
 **Action:** When deriving state inside high-frequency update cycles like audio time updates, replace O(N) operations (e.g. array linear searches) with O(log N) algorithms (e.g. binary search on a sorted array of timestamps). This prevents blocking the main thread as data scales.
+
+## 2024-09-10 - [Direct DOM Updates for Frequent Animations]
+**Learning:** Using `useState` within a `requestAnimationFrame` loop (e.g., for number count-up animations) forces React to re-render the component (and potentially its children) at 60 FPS. This continuous reconciliation creates significant CPU overhead and can cause layout thrashing, especially when multiple animations run simultaneously.
+**Action:** When creating continuous or high-frequency animations (like number counters), bypass React's render cycle. Use tools like Framer Motion's `useMotionValue`, `useTransform`, and `animate` (or raw DOM refs) to update the DOM node directly without triggering state updates.

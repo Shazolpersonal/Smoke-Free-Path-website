@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { SectionWrapper, LuxeBackground } from "@/components/ui";
 import { copyBn } from "@/content";
 import { BUNDLE_PRICE, ORIGINAL_PRICE } from "@/lib/config";
@@ -261,36 +261,39 @@ function PriceReveal({
       <span className="text-xl md:text-2xl text-white-pure/40 line-through font-hind-siliguri">
         ৳{original}
       </span>
-      <span
+      <motion.span
         className={[
           "text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-none font-hind-siliguri",
           "text-gold-gradient",
           inView ? "luxe-countup-pop" : "",
         ].join(" ")}
       >
-        ৳{inView ? value : 0}
-      </span>
+        ৳<motion.span>{inView ? value : 0}</motion.span>
+      </motion.span>
     </div>
   );
 }
 
+// ⚡ Bolt Optimization:
+// Problem: Frequent `useState` updates inside a `requestAnimationFrame` loop caused
+// unnecessary React re-renders for the entire `PriceReveal` component (~60fps during 1.4s).
+// Solution: Replaced `useState` with Framer Motion's `useMotionValue` and `animate`
+// to directly manipulate the DOM node without triggering a React render cycle.
+// Impact: Minimizes CPU overhead and React reconciliation costs by keeping the animation purely in the DOM.
 function useCountUp(end: number, duration = 1400, start = false) {
-  const [value, setValue] = useState(0);
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.floor(latest));
+
   useEffect(() => {
     if (!start) return;
-    let raf = 0;
-    let begin: number | null = null;
-    const step = (t: number) => {
-      if (begin === null) begin = t;
-      const progress = Math.min((t - begin) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      setValue(Math.floor(eased * end));
-      if (progress < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [end, duration, start]);
-  return value;
+    const controls = animate(count, end, {
+      duration: duration / 1000,
+      ease: [0.25, 1, 0.5, 1], // easeOutQuart
+    });
+    return controls.stop;
+  }, [count, end, duration, start]);
+
+  return rounded;
 }
 
 function GoldCornerMark({

@@ -1,45 +1,39 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { SectionWrapper } from "@/components/ui";
 import { copyBn } from "@/content";
 import { EASE_LUXE } from "@/lib/motion";
 
 /* Counter animation hook — preserved behaviour, identical math. */
+// ⚡ Bolt Optimization:
+// Problem: `useCountUp` was using `useState` inside a `requestAnimationFrame` loop, causing
+// the component to re-render ~60 times per second during the 2.5s animation.
+// Solution: Use Framer Motion's `useMotionValue`, `useTransform`, and `animate`
+// to bypass React renders and directly update the DOM node.
+// Impact: Eliminates ~150 React re-renders per animated number, vastly reducing CPU usage and layout thrashing.
 function useCountUp(
   end: number,
   duration: number = 2500,
   shouldStart: boolean = false,
 ) {
-  const [count, setCount] = useState(0);
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.floor(latest));
 
   useEffect(() => {
     if (!shouldStart) return;
 
-    let startTime: number | null = null;
-    let animationFrame: number;
+    // We emulate easeOutQuart easing: 1 - Math.pow(1 - progress, 4)
+    const controls = animate(count, end, {
+      duration: duration / 1000, // framer-motion takes seconds
+      ease: [0.25, 1, 0.5, 1], // approximate easeOutQuart
+    });
 
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      // Extra smooth cinematic easing (easeOutQuart)
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * end));
+    return controls.stop;
+  }, [count, end, duration, shouldStart]);
 
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationFrame) cancelAnimationFrame(animationFrame);
-    };
-  }, [end, duration, shouldStart]);
-
-  return count;
+  return rounded;
 }
 
 function EditorialStat({
@@ -60,13 +54,16 @@ function EditorialStat({
   const hasNumber = !isNaN(numericValue);
   const animatedCount = useCountUp(numericValue, 2500, isInView && hasNumber);
 
-  const formatNumber = (num: number) => {
+  const formattedValue = useTransform(animatedCount, (num) => {
     const original = number;
     if (original.includes("৳")) return `৳${num.toLocaleString("bn-BD")}`;
     if (original.includes("%")) return `${num}%`;
     if (original.includes(",")) return num.toLocaleString("bn-BD");
     return num.toString();
-  };
+  });
+
+  // If there's no number, we just show the string. Otherwise, we show the animated motion value.
+  const displayValue = hasNumber ? (isInView ? formattedValue : "0") : number;
 
   // Create an alternating layout logic to make it look like an editorial spread
   const isEven = index % 2 === 0;
@@ -100,7 +97,7 @@ function EditorialStat({
               WebkitTextStroke: "1px rgba(184, 52, 45, 0.4)"
             }}
           >
-            {hasNumber && isInView ? formatNumber(animatedCount) : number}
+            {displayValue}
           </motion.div>
         </div>
       </div>

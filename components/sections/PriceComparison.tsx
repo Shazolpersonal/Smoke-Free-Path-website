@@ -1,11 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { SectionWrapper, LuxeBackground } from "@/components/ui";
 import { copyBn } from "@/content";
 import { BUNDLE_PRICE, ORIGINAL_PRICE } from "@/lib/config";
 import { EASE_LUXE } from "@/lib/motion";
+
+// ⚡ Bolt Optimization:
+// Removed `useCountUp` custom hook which used `useState` inside a `requestAnimationFrame` loop,
+// causing 60 FPS React re-renders. We now use Framer Motion's `useMotionValue` and `animate`
+// to update the DOM directly, saving CPU cycles.
 
 /**
  * PriceComparison — the conversion moment of the page.
@@ -254,7 +259,18 @@ function PriceReveal({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const value = useCountUp(current, 1400, inView);
+
+  const countValue = useMotionValue(0);
+  const displayValue = useTransform(countValue, (latest) => Math.floor(latest));
+
+  useEffect(() => {
+    if (inView) {
+      animate(countValue, current, {
+        duration: 1.4,
+        ease: [0.25, 1, 0.5, 1],
+      });
+    }
+  }, [inView, current, countValue]);
 
   return (
     <div ref={ref} className="flex items-end justify-center gap-4 flex-wrap">
@@ -268,29 +284,11 @@ function PriceReveal({
           inView ? "luxe-countup-pop" : "",
         ].join(" ")}
       >
-        ৳{inView ? value : 0}
+        ৳
+        <motion.span>{displayValue}</motion.span>
       </span>
     </div>
   );
-}
-
-function useCountUp(end: number, duration = 1400, start = false) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    let raf = 0;
-    let begin: number | null = null;
-    const step = (t: number) => {
-      if (begin === null) begin = t;
-      const progress = Math.min((t - begin) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      setValue(Math.floor(eased * end));
-      if (progress < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [end, duration, start]);
-  return value;
 }
 
 function GoldCornerMark({

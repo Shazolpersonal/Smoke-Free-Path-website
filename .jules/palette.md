@@ -10,3 +10,6 @@
 ## 2026-08-27 - Handle dynamic button text accessibly
 **Learning:** Buttons with dynamic visible text (e.g. 'Copy' changing to 'Copied!') should not use static `aria-label`s as they override the visible text, causing WCAG 2.5.3 (Label in Name) violations and preventing state changes from being announced.
 **Action:** For buttons with dynamic text, rely on the visible text and add `aria-live="polite"` to the element so that state changes are correctly announced by screen readers.
+## 2024-09-12 - Improve Form Validation Accessibility in Gift Page
+**Learning:** Just like the checkout page, form inputs in the gift page were missing `aria-invalid` and `aria-describedby` attributes, which prevents screen readers from effectively conveying validation errors to users.
+**Action:** Always link inline error messages to their respective inputs using `aria-describedby` and indicate invalid states with `aria-invalid={!!errors[fieldName]}` to ensure full accessibility for form validation.

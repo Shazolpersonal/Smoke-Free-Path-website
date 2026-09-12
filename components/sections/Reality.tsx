@@ -1,46 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { SectionWrapper } from "@/components/ui";
 import { copyBn } from "@/content";
 import { EASE_LUXE } from "@/lib/motion";
-
-/* Counter animation hook — preserved behaviour, identical math. */
-function useCountUp(
-  end: number,
-  duration: number = 2500,
-  shouldStart: boolean = false,
-) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!shouldStart) return;
-
-    let startTime: number | null = null;
-    let animationFrame: number;
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      // Extra smooth cinematic easing (easeOutQuart)
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * end));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationFrame) cancelAnimationFrame(animationFrame);
-    };
-  }, [end, duration, shouldStart]);
-
-  return count;
-}
 
 function EditorialStat({
   number,
@@ -58,15 +22,30 @@ function EditorialStat({
 
   const numericValue = parseInt(number.replace(/[^0-9]/g, ""));
   const hasNumber = !isNaN(numericValue);
-  const animatedCount = useCountUp(numericValue, 2500, isInView && hasNumber);
 
-  const formatNumber = (num: number) => {
+  // ⚡ Bolt Optimization: Replace useState + requestAnimationFrame with Framer Motion's useMotionValue.
+  // This bypasses the React render cycle and updates the DOM directly, eliminating ~60 re-renders per second
+  // while maintaining the cinematic easeOutQuart animation curve.
+  const motionValue = useMotionValue(0);
+  const displayValue = useTransform(motionValue, (latest) => {
+    if (!hasNumber) return number;
+    const rounded = Math.floor(latest);
     const original = number;
-    if (original.includes("৳")) return `৳${num.toLocaleString("bn-BD")}`;
-    if (original.includes("%")) return `${num}%`;
-    if (original.includes(",")) return num.toLocaleString("bn-BD");
-    return num.toString();
-  };
+    if (original.includes("৳")) return `৳${rounded.toLocaleString("bn-BD")}`;
+    if (original.includes("%")) return `${rounded}%`;
+    if (original.includes(",")) return rounded.toLocaleString("bn-BD");
+    return rounded.toString();
+  });
+
+  useEffect(() => {
+    if (isInView && hasNumber) {
+      animate(motionValue, numericValue, {
+        duration: 2.5,
+        // easeOutQuart approximation
+        ease: [0.25, 1, 0.5, 1],
+      });
+    }
+  }, [isInView, hasNumber, numericValue, motionValue]);
 
   // Create an alternating layout logic to make it look like an editorial spread
   const isEven = index % 2 === 0;
@@ -100,7 +79,7 @@ function EditorialStat({
               WebkitTextStroke: "1px rgba(184, 52, 45, 0.4)"
             }}
           >
-            {hasNumber && isInView ? formatNumber(animatedCount) : number}
+            {hasNumber && isInView ? <motion.span>{displayValue}</motion.span> : number}
           </motion.div>
         </div>
       </div>

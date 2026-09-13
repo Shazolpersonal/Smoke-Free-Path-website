@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SectionWrapper, LuxeBackground } from "@/components/ui";
 import { copyBn } from "@/content";
@@ -253,8 +253,30 @@ function PriceReveal({
   current: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const value = useCountUp(current, 1400, inView);
+
+  useEffect(() => {
+    if (!inView || !textRef.current) return;
+    let raf = 0;
+    let begin: number | null = null;
+    const duration = 1400;
+
+    const step = (t: number) => {
+      if (begin === null) begin = t;
+      const progress = Math.min((t - begin) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const currentValue = Math.floor(eased * current);
+
+      if (textRef.current) {
+        textRef.current.textContent = `৳${currentValue}`;
+      }
+
+      if (progress < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [current, inView]);
 
   return (
     <div ref={ref} className="flex items-end justify-center gap-4 flex-wrap">
@@ -262,35 +284,17 @@ function PriceReveal({
         ৳{original}
       </span>
       <span
+        ref={textRef}
         className={[
           "text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-none font-hind-siliguri",
           "text-gold-gradient",
           inView ? "luxe-countup-pop" : "",
         ].join(" ")}
       >
-        ৳{inView ? value : 0}
+        ৳0
       </span>
     </div>
   );
-}
-
-function useCountUp(end: number, duration = 1400, start = false) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    let raf = 0;
-    let begin: number | null = null;
-    const step = (t: number) => {
-      if (begin === null) begin = t;
-      const progress = Math.min((t - begin) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      setValue(Math.floor(eased * end));
-      if (progress < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [end, duration, start]);
-  return value;
 }
 
 function GoldCornerMark({

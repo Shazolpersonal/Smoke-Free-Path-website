@@ -1,21 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SectionWrapper } from "@/components/ui";
 import { copyBn } from "@/content";
 import { EASE_LUXE } from "@/lib/motion";
 
-/* Counter animation hook — preserved behaviour, identical math. */
-function useCountUp(
+/* Counter animation hook — refactored to use ref to prevent React re-renders */
+function useCountUpRef(
+  nodeRef: React.RefObject<HTMLSpanElement | null>,
   end: number,
+  formatFn: (num: number) => string,
   duration: number = 2500,
   shouldStart: boolean = false,
 ) {
-  const [count, setCount] = useState(0);
-
   useEffect(() => {
-    if (!shouldStart) return;
+    if (!shouldStart || !nodeRef.current) return;
 
     let startTime: number | null = null;
     let animationFrame: number;
@@ -25,7 +25,11 @@ function useCountUp(
       const progress = Math.min((currentTime - startTime) / duration, 1);
       // Extra smooth cinematic easing (easeOutQuart)
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * end));
+      const currentValue = Math.floor(easeOutQuart * end);
+
+      if (nodeRef.current) {
+        nodeRef.current.textContent = formatFn(currentValue);
+      }
 
       if (progress < 1) {
         animationFrame = requestAnimationFrame(animate);
@@ -37,9 +41,7 @@ function useCountUp(
     return () => {
       if (animationFrame) cancelAnimationFrame(animationFrame);
     };
-  }, [end, duration, shouldStart]);
-
-  return count;
+  }, [end, duration, shouldStart, formatFn, nodeRef]);
 }
 
 function EditorialStat({
@@ -54,19 +56,23 @@ function EditorialStat({
   total: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
 
   const numericValue = parseInt(number.replace(/[^0-9]/g, ""));
   const hasNumber = !isNaN(numericValue);
-  const animatedCount = useCountUp(numericValue, 2500, isInView && hasNumber);
 
-  const formatNumber = (num: number) => {
+  // Define format function stable reference to prevent hook dependency thrashing
+  const formatNumber = React.useCallback((num: number) => {
     const original = number;
     if (original.includes("৳")) return `৳${num.toLocaleString("bn-BD")}`;
     if (original.includes("%")) return `${num}%`;
     if (original.includes(",")) return num.toLocaleString("bn-BD");
     return num.toString();
-  };
+  }, [number]);
+
+  // Execute DOM-only animation instead of React re-renders
+  useCountUpRef(textRef, numericValue, formatNumber, 2500, isInView && hasNumber);
 
   // Create an alternating layout logic to make it look like an editorial spread
   const isEven = index % 2 === 0;
@@ -100,7 +106,11 @@ function EditorialStat({
               WebkitTextStroke: "1px rgba(184, 52, 45, 0.4)"
             }}
           >
-            {hasNumber && isInView ? formatNumber(animatedCount) : number}
+            {hasNumber ? (
+              <span ref={textRef}>{number}</span>
+            ) : (
+              number
+            )}
           </motion.div>
         </div>
       </div>

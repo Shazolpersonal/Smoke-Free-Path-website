@@ -88,12 +88,21 @@ function corsHeaders(origin: string | null, allowed: string[]) {
         try {
           const aUrl = new URL(a);
           const oUrl = new URL(origin);
-          // Only allow preview branches for .pages.dev hostnames that are explicitly allowed
+          // 🛡️ Sentinel: Strictly validate preview branches for .pages.dev hostnames
+          // explicitly allowed, ensuring it is a direct subdomain.
           if (aUrl.hostname.endsWith(".pages.dev")) {
-            return (
-              oUrl.hostname.endsWith("." + aUrl.hostname) &&
-              oUrl.protocol === aUrl.protocol
-            );
+            const oParts = oUrl.hostname.split(".");
+            const aParts = aUrl.hostname.split(".");
+
+            // Valid preview URLs have exactly one extra subdomain block
+            // e.g. branch.project.pages.dev vs project.pages.dev
+            if (oParts.length === aParts.length + 1) {
+              const expectedHostname = `${oParts[0]}.${aUrl.hostname}`;
+              return (
+                oUrl.hostname === expectedHostname &&
+                oUrl.protocol === aUrl.protocol
+              );
+            }
           }
         } catch {
           // Ignore invalid URLs

@@ -1,46 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SectionWrapper } from "@/components/ui";
 import { copyBn } from "@/content";
 import { EASE_LUXE } from "@/lib/motion";
-
-/* Counter animation hook — preserved behaviour, identical math. */
-function useCountUp(
-  end: number,
-  duration: number = 2500,
-  shouldStart: boolean = false,
-) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!shouldStart) return;
-
-    let startTime: number | null = null;
-    let animationFrame: number;
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      // Extra smooth cinematic easing (easeOutQuart)
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * end));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationFrame) cancelAnimationFrame(animationFrame);
-    };
-  }, [end, duration, shouldStart]);
-
-  return count;
-}
 
 function EditorialStat({
   number,
@@ -54,19 +18,52 @@ function EditorialStat({
   total: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const countRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
 
   const numericValue = parseInt(number.replace(/[^0-9]/g, ""));
   const hasNumber = !isNaN(numericValue);
-  const animatedCount = useCountUp(numericValue, 2500, isInView && hasNumber);
 
-  const formatNumber = (num: number) => {
-    const original = number;
-    if (original.includes("৳")) return `৳${num.toLocaleString("bn-BD")}`;
-    if (original.includes("%")) return `${num}%`;
-    if (original.includes(",")) return num.toLocaleString("bn-BD");
-    return num.toString();
-  };
+  // ⚡ Bolt Optimization: Replace useState with raw DOM ref for count-up animation
+  // to avoid triggering ~150 React re-renders (60 FPS * 2.5s) per stat block.
+  useEffect(() => {
+    const formatNumber = (num: number) => {
+      const original = number;
+      if (original.includes("৳")) return `৳${num.toLocaleString("bn-BD")}`;
+      if (original.includes("%")) return `${num}%`;
+      if (original.includes(",")) return num.toLocaleString("bn-BD");
+      return num.toString();
+    };
+
+    if (!isInView || !hasNumber || !countRef.current) return;
+
+    const duration = 2500;
+    const end = numericValue;
+    let startTime: number | null = null;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      // Extra smooth cinematic easing (easeOutQuart)
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentCount = Math.floor(easeOutQuart * end);
+
+      if (countRef.current) {
+        countRef.current.textContent = formatNumber(currentCount);
+      }
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+    };
+  }, [isInView, hasNumber, numericValue, number]);
 
   // Create an alternating layout logic to make it look like an editorial spread
   const isEven = index % 2 === 0;
@@ -94,13 +91,14 @@ function EditorialStat({
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-red-alert/10 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-10 pointer-events-none" />
 
           <motion.div
+            ref={countRef}
             className={`${isFirst ? "text-7xl md:text-8xl lg:text-[140px]" : "text-6xl md:text-7xl lg:text-[110px]"} font-black text-red-alert/90 font-hind-siliguri tracking-tighter leading-none group-hover:text-red-500 transition-colors duration-700`}
             style={{
               textShadow: "0 10px 40px rgba(184, 52, 45, 0.2)",
               WebkitTextStroke: "1px rgba(184, 52, 45, 0.4)"
             }}
           >
-            {hasNumber && isInView ? formatNumber(animatedCount) : number}
+            {number}
           </motion.div>
         </div>
       </div>
